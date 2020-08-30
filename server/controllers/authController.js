@@ -51,9 +51,3 @@ module.exports = {
         }
     }
 }
-
-  //# check to see if user exists
-    //# if it does, send error, else
-    //# hash user password
-    //# store email and hash on db
-    //# store new user onto session
