@@ -16,7 +16,10 @@
 
 </br>
 </br>
-***ICEBOX***
+
+___Icebox___
+</br>
+
 - users can filter/sort list of jobs or action items by current status
 - users can search for jobs from Indeed and add to their list
 - user profile with number of jobs applied to, number of offers, etc.
@@ -36,23 +39,62 @@ CREATE TABLE users (
 );
 ```
 
-posts
+jobs
 ```SQL
-CREATE TABLE posts (
-    post_id SERIAL PRIMARY KEY,
-    body TEXT,
-    img TEXT,
-    post_karma_score INT,
-    user_id INT REFERENCES users(user_id)
+CREATE TABLE jobs (
+    job_id SERIAL PRIMARY KEY,
+    title VARCHAR(50),
+    company_id INT REFERENCES users(id),
+    location VARCHAR(100),
+    url VARCHAR(100), 
+    date_posted DATE,
+    description TEXT, 
+    notes TEXT,
+    status VARCHAR(100),
+    contact_id INT REFERENCES contacts(id),
+    user_id INT REFERENCES users(id)
 );
 ```
-comments
+
+action items
 ```SQL
-CREATE TABLE comments (
-    comment_id SERIAL PRIMARY KEY,
-    body TEXT,
-    comment_karma_score INT,
-    post_id iNT REFERENCES posts(post_id),
+CREATE TABLE action_items (
+    action_id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    description TEXT,
+    due_date DATE,
+    status VARCHAR(100),
+    job_id INT REFERENCES jobs(id),
+    contact_id INT REFERENCES contacts(id),
+    user_id INT REFERENCES users(id)
+);
+```
+
+contacts
+```SQL
+CREATE TABLE contacts (
+    contact_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    title VARCHAR(50),
+    company_id INT REFERENCES companies(id),
+    linkedin_url VARCHAR(200),
+    email VARCHAR(100),
+    phone VARCHAR(20),
+    last_contact DATE,
+    notes TEXT,
+    user_id iNT REFERENCES users(user_id)
+);
+```
+
+companies
+```SQL
+CREATE TABLE companies (
+    company_id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    url VARCHAR(200),
+    glassdoor_rating VARCHAR(200),
+    notes TEXT,
     user_id iNT REFERENCES users(user_id)
 );
 ```
@@ -65,9 +107,12 @@ CREATE TABLE comments (
     - express-session (creates session)
 - File Structure:
     - server/ 
+        - index.js
         - controllers/ 
-            - authcontroller.js
-            - postcontroller.js
+            - authController.js
+            - jobController.js
+            - actionController.js
+            - contactController.js
 
 #### Front-end
 - Dependencies:
@@ -93,5 +138,8 @@ CREATE TABLE comments (
         - reset.css
         - redux/
             - store.js
-            - reducer.js
+            - authReducer.js
+            - jobReducer.js
+            - actionReducer.js
+            - contactReducer.js
 
