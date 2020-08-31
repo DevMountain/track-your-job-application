@@ -16,8 +16,13 @@ module.exports = {
             if(authenticated){
                 //Check on this. 
                 // delete foundUser.password;
-                req.session.user = foundUser;
-                return res.status(202).send(foundUser);
+                req.session.user = {
+                    userId: foundUser.user_id,
+                    email: foundUser.email,
+                    firstName: foundUser.first_name,
+                    lastName: foundUser.last_name
+                };
+                return res.status(202).send(req.session.user);
             } else {
                 res.status(401).send("Email or password is incorrect.")
             }
@@ -35,8 +40,13 @@ module.exports = {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
         const [newUser] = await db.user.add_user([email, hash, firstName, lastName])
-        req.session.user = newUser;
-        return res.status(201).send(newUser);
+        req.session.user = {
+            userId: newUser.user_id,
+            email: newUser.email,
+            firstName: newUser.firstName,
+            lastName: newUser.lastName
+        }
+        res.status(200).send(req.session.user);
         }
     },
     logout: (req, res) => {
