@@ -7,6 +7,7 @@ const authCtrl = require('./controllers/authController');
 const jobCtrl = require('./controllers/jobController');
 const actionCtrl = require('./controllers/actionController');
 const contactCtrl = require('./controllers/contactController');
+const compCtrl = require('./controllers/companyController');
 
 const {CONNECTION_STRING, SESSION_SECRET, SERVER_PORT} = process.env;
 

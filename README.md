@@ -7,6 +7,7 @@
 - users can view a list of jobs to apply to and job details, including current application status
 - users can view a list of action items to do and action item details, including current action item status
 - users can view a list of contacts and contact details
+- users can view a list of companies and company details
 - users can add a new job to the list
 - users can add a new action item to the list
 - users can add a new contact to the list
@@ -23,6 +24,7 @@ ___Icebox___
 - users can filter/sort list of jobs or action items by current status
 - users can search for jobs from Indeed and add to their list
 - user profile with number of jobs applied to, number of offers, etc.
+- footer to have links to About page, Contact TYJA page, and copyright info
 - calendar to keep deadlines, schedule tasks, interviews, and meetups, etc.
 - user can get job search tips/encouragement (in a popup) upon login
 - user can create, view, edit, delete list of companies
