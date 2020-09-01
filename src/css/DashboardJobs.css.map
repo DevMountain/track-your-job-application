@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../Components/Dashboard/DashboardJobs/DashboardJobs.scss"
+    ],
+    "names": [],
+    "file": "DashboardJobs.css"
+}

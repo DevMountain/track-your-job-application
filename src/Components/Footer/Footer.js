@@ -5,8 +5,18 @@ import './Footer.scss';
 
 function Footer(){
 
+    const styles = {
+        container: {
+            border: 'solid, #C4C4C4, 2px',
+            backgroundColor: '#F6F6F6',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            color: '#626161'
+        }
+    }
     return (
-        <div className='footer-container'>
+        <div style={styles.container}>
             <p>TYJA © 2020</p>
             {/* Make About Us a link */}
             <p>About Us</p>
