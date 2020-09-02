@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../Components/AddAction/AddAction.scss"
-    ],
-    "names": [],
-    "file": "AddAction.css"
-}

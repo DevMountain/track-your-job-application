@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../Components/Dashboard/DashboardActions/DashboardActions.scss"
-    ],
-    "names": [],
-    "file": "DashboardActions.css"
-}
