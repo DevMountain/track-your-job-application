@@ -1,2 +1,51 @@
+@import './styles/reset.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100&family=Oswald:wght@200;300;306;400&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+// font-family: 'Julius Sans One', sans-serif;
+// font-family: 'Lato', sans-serif;
+// font-family: 'Oswald', sans-serif;
+// font-family: 'Roboto Condensed', sans-serif;
+
+
 $primary-background: #F6F6F6;
 $secondary-background: white;
+
+// @import './components/Login';
+
+
+// $primary-background: #F6F6F6;
+// $secondary-background: white;
+
+
+// * {
+//     font-family: Arial, Helvetica, sans-serif;
+// }
+
+
+
+// $primary-text
+
+@mixin tyja-text {
+    color: #3F3E3E;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid;
+  }
+
+@mixin logo-text {
+    color: #E0AF66;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid;
+    // align-items: ;;
+  }
+
+
+//   @font-face {
+//     font-family: 'Foo';
+//     src: url('/path/to/foo.woff') format('woff');
+//     font-style: normal;
+//     font-weight: 400;
+//     font-display: fallback; /* <- this can be added to each @font-face definition */
+//   }

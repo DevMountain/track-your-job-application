@@ -1,8 +1,38 @@
-$primary-text-color: #3F3E3E;
-$secondary-text-color: black;
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100&family=Oswald:wght@200;300;306;400&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+
+$primary-text-color: black;
+$secondary-text-color: #3F3E3E;
 $small-text-color: #636262;
 
 
 
 $primary-background: #F6F6F6;
 $secondary-background: white;
+
+// .header-text {
+//     font-family: 'Roboto Condensed', sans-serif;
+//     font-weight: lighter;
+//     color: black;
+//     font-size: 40px;
+//     text-align: center;
+// }
+
+// / .header-text
+
+.center-background {
+    border-top: black, 2px, solid;
+    border-bottom: black, 2px, solid;
+    height: 60%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// .footer-text {
+//     color: '#3F3E3E',
+//             fontSize: '60',
+//             fontFamily: 'Arial',
+// }
