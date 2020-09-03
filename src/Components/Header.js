@@ -1,6 +1,4 @@
 import React from 'react';
-import './Header.scss';
-//change to scss
 import {Link} from 'react-router-dom';
 // import {connect} from 'react-redux';
 // import {logoutUser} from '../../redux/reducer';

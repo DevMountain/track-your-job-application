@@ -1,6 +1,8 @@
 import React from 'react';
 // import logo from './logo.svg';
-// import './App.css';
+import './App.scss';
+import './styles/reset.scss'
+// import './styles/main.css';
 import {Switch, Route} from 'react-router-dom';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard'
