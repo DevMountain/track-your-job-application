@@ -10,7 +10,7 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            email: '',
+            email: null,
             password: '',
             firstName: '',
             lastName: '',
@@ -226,13 +226,17 @@ class Login extends React.Component {
 
     register = () => {
         const {email, password, firstName, lastName} = this.state;
-        axios.post('/auth/register', {email, password, firstName, lastName}).then(res => {
-           this.props.loginUser(res.data)
-           this.props.history.push('/dashboard') 
-        }).catch(err => {
-            console.log(err)
-            alert("Registration failed. Try another email address.")
-        })
+        if(email && password && firstName && lastName){
+            axios.post('/auth/register', {email, password, firstName, lastName}).then(res => {
+               this.props.loginUser(res.data)
+               this.props.history.push('/dashboard') 
+            }).catch(err => {
+                console.log(err)
+                alert("Registration failed. Try another email address.")
+            })
+        } else {
+            alert("Registration failed. All fields must have a value.")
+        }
     }
 
     render(){

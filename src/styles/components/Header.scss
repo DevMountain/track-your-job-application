@@ -1,0 +1,53 @@
+@import '../reset.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100&family=Oswald:wght@200;300;306;400&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+.header-container {
+    height: 75px;
+    width: 100%;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Oswald', sans-serif; 
+    font-size: 16px;
+    letter-spacing: 2px;
+    border-bottom: lightgray solid 5px;   
+}
+
+.left-header {
+    height: 60px;
+    width: 450px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+.logo-box {
+    height: 50px;
+    width: 110px;
+    border: solid black 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15px;
+    color: #E0AF66;
+    letter-spacing: 5px;
+    font-size: 35px;
+    
+
+}
+
+.right-header {
+    height: 60px;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 15px;
+    text-decoration: none;
+}

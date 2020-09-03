@@ -38,6 +38,8 @@ export function logoutUser(){
 
 export function getUser(){
     const user = axios.get('/auth/user')
+        .then(res => res.data)
+        .catch(err => console.log(err));
     return {
         type: GET_USER,
         payload: user
@@ -49,7 +51,7 @@ export default function reducer(state = initialState, action) {
     switch(action.type){
         case LOGIN_USER:
             //the following creates a "user" object with three properties on it. This is the proper way to do this.
-            return {...state, ...action.payload }
+            return {...state, user: action.payload, isLoggedIn: true }
             //The next example steps into the object and pulls each property out. It doesn't return an object. 
             // return {...state, username: action.payload.username, id: action.payload.id, profilePic: action.payload.profilePic  }
         // case REGISTER_USER:
@@ -59,7 +61,7 @@ export default function reducer(state = initialState, action) {
         case GET_USER + "_PENDING":
             return state
         case GET_USER + "_FULFILLED":
-            return {...state, ...action.payload}
+            return {...state, user: action.payload, isLoggedIn: true}
         case GET_USER + "_REJECTED":
             return initialState
         default:

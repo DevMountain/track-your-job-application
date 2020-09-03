@@ -90,3 +90,7 @@ input, select {
 
 button {
   outline: none; }
+
+.App {
+  display: flex;
+  flex-direction: column; }

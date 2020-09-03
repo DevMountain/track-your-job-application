@@ -1,11 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import axios from 'axios';
 import DashboardJobs from './DashboardJobs'
 import DashboardActions from './DashboardActions';
-//IMPORT STYLING??
+import '../styles/components/Dashboard.scss';
+// import '../styles/components/Header.scss';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {logoutUser, getUser} from '../redux/authReducer';
+import {withRouter} from 'react-router-dom';
 
 const Dashboard = (props) => {
     // props from App.js
-
+   
+    useEffect(() => {
+        console.log("comes from redux props", props);
+        props.getUser();
+        console.log('props.user.email', props.user.email)
+        if(props.user.email === null){
+            props.history.push('/');
+        }
+    }, [props.user.email, props.location.pathname]);
+        
     //Uncomment the jobMap and actionMap once I have data to send through props. 
 
     // const jobMap = props.jobs.map(job => {
@@ -62,8 +77,15 @@ const Dashboard = (props) => {
     )
 }
 
+// const mapStateToProps = state => state;
+function mapStateToProps(reduxState){
+    console.log("REDUX STATE Nav", reduxState)
+    return {
+        username: reduxState.user.email,
+    };
+}
 
-export default Dashboard
+export default connect(mapStateToProps, {getUser})(withRouter(Dashboard));
 
 //Styling notes: set overflow for lists to auto, so it will scroll down to the other list items.
 {/* Right and left list containers are the same format and can use the same classid or styling handle */}
