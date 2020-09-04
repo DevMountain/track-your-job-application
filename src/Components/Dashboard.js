@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import DashboardJobs from './DashboardJobs'
+import DashboardJobs from './DashboardJob'
 import DashboardActions from './DashboardActions';
 import '../styles/components/Dashboard.scss';
 import {Link} from 'react-router-dom';
