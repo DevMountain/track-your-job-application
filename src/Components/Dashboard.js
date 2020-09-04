@@ -1,25 +1,27 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import DashboardJobs from './DashboardJobs'
 import DashboardActions from './DashboardActions';
 import '../styles/components/Dashboard.scss';
-// import '../styles/components/Header.scss';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {logoutUser, getUser} from '../redux/authReducer';
+import {getUser} from '../redux/authReducer';
 import {withRouter} from 'react-router-dom';
+import arrow from '../left-black-arrow-skinny-icon.png';
 
 const Dashboard = (props) => {
     // props from App.js
+    const [jobs, setJobs] = useState([]);
+    
+        useEffect(() => {
+            axios
+                .get('/api/jobs')
+                .then(res =>{
+                    setJobs(res.data);
+                })
+                .catch(err => console.log(err));
+        }, []);
    
-    useEffect(() => {
-        console.log("comes from redux props", props);
-        props.getUser();
-        console.log('props.user.email', props.user.email)
-        if(props.user.email === null){
-            props.history.push('/');
-        }
-    }, [props.user.email, props.location.pathname]);
         
     //Uncomment the jobMap and actionMap once I have data to send through props. 
 
@@ -38,6 +40,7 @@ const Dashboard = (props) => {
     //Method for axios call to get all jobs here.
 
 
+
     //Method for adding job here.
 
     return(
@@ -45,28 +48,39 @@ const Dashboard = (props) => {
             <section className='big-list-container'>
                 <div className='title-bar'>
                     <div className='title'>
-                        <h1>Jobs</h1>
+                        <p>JOBS</p>
+                    </div>
+                    <div className='arrow-container'>
+                        <img className="arrow" src={arrow} alt='arrow'/>
                     </div>
                     <div className='status'>
-                        <h4>STATUS</h4>
+                        <p>STATUS</p>
                     </div>
                 </div>
-                <button className='add-btn'>ADD JOB</button>
+                <div className='btn-container'>
+                    <button className='add-btn'>ADD JOB</button>
+                </div>
                 <section className='map-list-container'>
                 {/* Uncomment the following line as soon as props are set up. */}
                     {/* {jobMap} */}
                 </section>
             </section>
+            <div className='line-between'></div>
             <section className='big-list-container'>
                 <div className='title-bar'>
-                    <div className='title'>
-                        <h1>Action Items</h1>
+                    <div className='title title-right'>
+                        <p>ACTION ITEMS</p>
+                    </div>
+                    <div className='arrow-container arrow-container-right'>
+                        <img className="arrow arrow-right" src={arrow} alt='arrow'/>
                     </div>
                     <div className='status'>
-                        <h4>STATUS</h4>
+                        <p>STATUS</p>
                     </div>
                 </div>
-                <button className='add-btn'>ADD ACTION ITEM</button>
+                <div className='btn-container'>
+                    <button className='add-btn'>ADD ACTION ITEM</button>
+                </div>
                 <section className='map-list-container'>
                     {/* Uncomment the following line as soon as props are set up. */}
                     {/* {actionMap} */}
@@ -81,7 +95,7 @@ const Dashboard = (props) => {
 function mapStateToProps(reduxState){
     console.log("REDUX STATE Nav", reduxState)
     return {
-        username: reduxState.user.email,
+        user: reduxState.user
     };
 }
 

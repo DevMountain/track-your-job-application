@@ -36,7 +36,7 @@ app.post('/auth/logout', authCtrl.logout)
 app.get('/auth/user', authCtrl.getUser)
 
 // //endpoints for jobs
-// app.get('/api/jobs', jobCtrl.getJobs);
+app.get('/api/jobs', jobCtrl.getJobs);
 // app.get('/api/jobs/:id', jobCtrl.getJob);
 // app.put('/api/jobs/:id', jobCtrl.editJob);
 // app.delete('/api/jobs/:id', jobCtrl.deleteJobs);

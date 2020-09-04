@@ -4,13 +4,13 @@ import '../styles/components/Login.scss';
 import {loginUser} from '../redux/authReducer';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Simulate } from 'react-dom/test-utils';
+// import { Simulate } from 'react-dom/test-utils';
 // import { registerUser} from '../../redux/reducer';
 class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            email: null,
+            email: '',
             password: '',
             firstName: '',
             lastName: '',

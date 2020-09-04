@@ -51,6 +51,7 @@ export default function reducer(state = initialState, action) {
     switch(action.type){
         case LOGIN_USER:
             //the following creates a "user" object with three properties on it. This is the proper way to do this.
+            console.log('hit login user redux', action.payload)
             return {...state, user: action.payload, isLoggedIn: true }
             //The next example steps into the object and pulls each property out. It doesn't return an object. 
             // return {...state, username: action.payload.username, id: action.payload.id, profilePic: action.payload.profilePic  }
@@ -61,10 +62,11 @@ export default function reducer(state = initialState, action) {
         case GET_USER + "_PENDING":
             return state
         case GET_USER + "_FULFILLED":
+            console.log('action.payload', action.payload)
             return {...state, user: action.payload, isLoggedIn: true}
         case GET_USER + "_REJECTED":
-            return initialState
+            return state
         default:
-            return initialState
+            return state
     }
 }

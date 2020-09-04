@@ -10,12 +10,14 @@ import {withRouter} from 'react-router-dom';
 
 const Header = (props) => {
     useEffect(() => {
-        console.log("comes from redux props", props);
+        // console.log("comes from redux props", props);
         props.getUser();
-        console.log('props.history', props.history)
+        console.log('props.history', props.history);
         if(props.user.email === ''){
             props.history.push('/');
         }
+        //getting this warning:  Line 20:8:  React Hook useEffect has a missing dependency: 'props'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+        //Also - I want to understand what the dependency array at the end of the useEffect method does.
     }, [props.user.email, props.location.pathname]);
     
     const logout = () => {
@@ -57,7 +59,7 @@ const Header = (props) => {
 function mapStateToProps(reduxState){
     console.log("REDUX STATE Nav", reduxState)
     return {
-        username: reduxState.user.email,
+        user: reduxState.user,
     };
 }
 
