@@ -18,6 +18,7 @@ const Header = (props) => {
         }
         //getting this warning:  Line 20:8:  React Hook useEffect has a missing dependency: 'props'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
         //Also - I want to understand what the dependency array at the end of the useEffect method does.
+    // }, []);
     }, [props.user.email, props.location.pathname]);
     
     const logout = () => {

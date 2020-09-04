@@ -1,12 +1,14 @@
 module.exports = {
+    //On the front end, define what information you need.
     getJobs: async (req, res) => {
         const db = req.app.get('db');
-        const jobs = await db.jobs.get_jobs()
+        const {userId} = req.params;
+        const jobs = await db.jobs.get_jobs(userId)
         res.status(200).send(jobs);
     },
-    // maybe this query needs to include the job company name from the companies table. Maybe update the SQL query to what I wrote in getJobBrief - meaning, add a join so it will give more info from companies. 
     getJob: async (req, res) => {
         const db = req.app.get('db');
+        const {jobId} = req.params;
     },
     editJob: async (req, res) => {
         const db = req.app.get('db');
@@ -17,10 +19,11 @@ module.exports = {
     addJob: async (req, res) => {
         const db = req.app.get('db');
     },
-    getJobBrief: async (req, res) => {
-        const db = req.app.get('db');
-        const jobs = await db.jobs.get_job_brief(${id})
+    // getJobBrief: async (req, res) => {
+    //     const db = req.app.get('db');
+    //     const {jobId} = req.params;
+    //     const jobs = await db.jobs.get_job_brief(jobId)
     
-    } 
+    // } 
 
 }

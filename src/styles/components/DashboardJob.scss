@@ -1,0 +1,23 @@
+.mapped-job-box {
+    width: 400px;
+    height: 50px;
+    border: solid 1px black;    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+.job-company-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+//use if statement to style the status box to have the right color to match the status. I need to define the status colors. 
+.job-title {
+    // @if
+}
