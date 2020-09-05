@@ -54,14 +54,14 @@ function App(props) {
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route path="/dashboard" component={Dashboard}/>
-          {/* <Route path="/job" component={Job}/>
-          <Route path="/action" component={Action}/>
-          <Route path="/contacts" component={Contacts}/>
-          <Route path="/companies" component={Companies}/>
+          <Route path="/job" component={Job}/>
+          {/* <Route path="/action" component={Action}/> */}
+          {/* <Route path="/contacts" component={Contacts}/> */}
+          {/* <Route path="/companies" component={Companies}/> */}
           <Route path="/add_job" component={AddJob}/>
-          <Route path="/add_action" component={AddAction}/>
-          <Route path="/add_contact" component={AddContact}/>
-          <Route path="/add_company" component={AddCompany}/> */}
+          {/* <Route path="/add_action" component={AddAction}/> */}
+          {/* <Route path="/add_contact" component={AddContact}/> */}
+          {/* <Route path="/add_company" component={AddCompany}/> */}
         </Switch>
       </section>
       {props.location.pathname !== '/' ?
