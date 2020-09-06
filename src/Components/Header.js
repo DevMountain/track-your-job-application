@@ -10,7 +10,7 @@ import {withRouter} from 'react-router-dom';
 
 const Header = (props) => {
     useEffect(() => {
-        // console.log("comes from redux props", props);
+        console.log("comes from redux props", props);
         props.getUser();
         console.log('props.history', props.history);
         if(props.user.email === ''){

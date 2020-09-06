@@ -5,9 +5,10 @@ const session = require('express-session');
 const app = express();
 const authCtrl = require('./controllers/authController');
 const jobCtrl = require('./controllers/jobController');
-const actionCtrl = require('./controllers/actionController');
-const contactCtrl = require('./controllers/contactController');
-const compCtrl = require('./controllers/companyController');
+//ICEBOX features: 
+// const actionCtrl = require('./controllers/actionController');
+// const contactCtrl = require('./controllers/contactController');
+// const compCtrl = require('./controllers/companyController');
 
 const {CONNECTION_STRING, SESSION_SECRET, SERVER_PORT} = process.env;
 
@@ -43,6 +44,7 @@ app.get('/api/jobs/:id', jobCtrl.getJobs);
 // app.delete('/api/jobs/:id', jobCtrl.deleteJobs);
 // app.post('/api/jobs/:id', jobCtrl.addJob);
 
+//ICEBOX - All following endpoints: 
 // //endpoints for action items
 // app.get('/api/actions', actionCtrl.getActions);
 // app.get('/api/actions/:id', actionCtrl.getAction);
