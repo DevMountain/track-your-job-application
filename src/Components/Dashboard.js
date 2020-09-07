@@ -1,5 +1,5 @@
 import React from 'react';
-// import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 // import DashboardJob from './DashboardJob'
 // import DashboardAction from './DashboardAction';
@@ -10,47 +10,51 @@ import {getUser} from '../redux/authReducer';
 import {getJobs} from '../redux/jobReducer';
 import {withRouter} from 'react-router-dom';
 import arrow from '../left-black-arrow-skinny-icon.png';
-// import StatusColorChanger from './StatusColorChanger';
-import { render } from 'sass';
+import StatusColorChanger from './StatusColorChanger';
+// import { render } from 'sass';
 
-class Dashboard extends React.Component {
-    constructor(){
-        super();
-        this.state = {
-            jobs: []
-        }
-    }
+//used hooks
+const Dashboard = (props) => {
+// class Dashboard extends React.Component {
+    // constructor(){
+    //     super();
+    //     this.state = {
+    //         jobs: []
+    //     }
+    // }
     // const {} = props.
     // props from App.js (But what is it? Why does App.js have props? Is it from withRouter?)
-    // const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState([]);
     // const [users, setUsers] = useState();
     // I need hooks here because I need the lifecycle method. I don't know if I need state or not. I don't think I do. I do need a link on the add button to the add job page. I think I need state because I need to make the axios call and update the value of state with the response (res.data) of the axios call. And that's what I'll pass down as props to dashboardjob.js. And also, I need to connect to redux to get the userId off of user in the store. 
 
     //When do I need to pass something in as a parameter here? Do I need to pass userID in? Or props?
 
     //If I can figure out how to make this a functional component, use this instead of the componentDidMount:
-    // useEffect(() => {
-    //     const {userId} = props.user;
-    //     axios
-    //         .get(`/api/jobs/${userId}`)
-    //         .then(res =>{
-    //             setJobs(res.data);
-    //         })
-    //         .catch(err => console.log(err));
-    // }, []);
-   
-    componentDidMount(){
-        const {userId} = this.props.user;
-        console.log('userId', this.props.user)
+    useEffect(() => {
+        const {userId} = props.user;
         axios
             .get(`/api/jobs/${userId}`)
             .then(res =>{
-                this.setState({
-                    jobs: res.data
-                })
+                setJobs(res.data);
             })
             .catch(err => console.log(err));
-    }
+    }, []);
+   
+    //Do I pass in userId as a parameter?\
+
+    // componentDidMount(){
+    //     const {userId} = this.props.user;
+    //     console.log('userId', this.props.user)
+    //     axios
+    //         .get(`/api/jobs/${userId}`)
+    //         .then(res =>{
+    //             this.setState({
+    //                 jobs: res.data
+    //             })
+    //         })
+    //         .catch(err => console.log(err));
+    // }
         
 
     // const actionMap = props.actions.map(job => {
@@ -67,18 +71,7 @@ class Dashboard extends React.Component {
     // })
 
     //Method for adding job here.
-
-    render(){
-        const {jobs} = this.state;
-        // const statusColorChanger = () => {
-        //     switch(jobs[i])
-        // }
-
-
-
-
-
-        return(
+        return (
             <div className='dash-page'>
                 <section className='big-list-container'>
                     <div className='title-bar'>
@@ -96,15 +89,19 @@ class Dashboard extends React.Component {
                         <button className='add-btn'>ADD JOB</button>
                     </div>
                     <section className='map-list-container'>
-                        {jobs.map((job, index, array) => {
+                        {this.state.jobs.map((job, index, array) => {
                             return (
-                                <div key={index}>
-                                    <div className='job-company-box'>
-                                        <p className='job-title'>TEST TITLE{job.title}</p>
-                                        <p className='company-name'>TEST COMPANY{job.company}</p>
-                                    </div>
-                                    {/* {statusColorChanger} */}
-                                </div>
+                                <div>
+                                    <Link to='/job'>
+                                        <div className='job-map-box' key={index} >
+                                            <div className='job-company-box'>
+                                                <p className='job-title'>TEST TITLE{job.title}</p>
+                                                <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            </div>
+                                            <StatusColorChanger job={job}/>
+                                        </div>
+                                    </Link>
+                               </div>
                             );
                         })}
                     </section>
@@ -135,7 +132,7 @@ class Dashboard extends React.Component {
             </div>
         )
 
-    }
+    
 }
 
 
@@ -145,7 +142,7 @@ function mapStateToProps(reduxState){
     console.log("REDUX STATE Nav", reduxState)
     return {
         user: reduxState.user,
-        job: reduxState.job
+        // job: reduxState.job
     };
 }
 

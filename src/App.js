@@ -6,11 +6,11 @@ import './App.scss';
 import {Switch, Route} from 'react-router-dom';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard'
-// import Job from './Components/Job/Job';
+import Job from './Components/Job/Job';
+import AddJob from './Components/AddJob/AddJob';
 // import Action from './Components/Action/Action';
 // import Contacts from './Components/Contacts/Contacts';
 // import Companies from './Components/Companies/Companies';
-// import AddJob from './Components/AddJob/AddJob';
 // import AddAction from './Components/AddAction/AddAction';
 // import AddContact from './Components/AddContact/AddContact';
 // import AddCompany from './Components/AddCompanies/AddCompany';
@@ -54,8 +54,8 @@ function App(props) {
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route path="/dashboard" component={Dashboard}/>
-          {/* <Route path="/job" component={Job}/> */}
-          {/* <Route path="/addjob" component={AddJob}/> */}
+          <Route path="/job" component={Job}/>
+          <Route path="/addjob" component={AddJob}/>
 
           {/* ICEBOX ROUTES: */}
           {/* <Route path="/action" component={Action}/> */}
