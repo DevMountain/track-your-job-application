@@ -24,12 +24,12 @@ $secondary-font: 'Roboto Condensed', sans serif;
     border: solid 1px black;
 
 }
-.line-between {
-    margin-top: 20px;
-    height: 600px;
-    width: 5px;
-    background-color: lightgray;
-}
+// .line-between {
+//     margin-top: 20px;
+//     height: 600px;
+//     width: 5px;
+//     background-color: lightgray;
+// }
 .title-bar {
     height: 80px;
     width: 400px;
@@ -91,4 +91,9 @@ $secondary-font: 'Roboto Condensed', sans serif;
 .add-btn {
     display: flex;
     justify-content: flex-end;
+}
+
+.map-list-container {
+    height: 500px;
+    width: 400px;
 }

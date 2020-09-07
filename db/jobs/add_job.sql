@@ -6,11 +6,22 @@
 -- SELECT * FROM jobs
 -- ORDER BY job_id;
 
--- -- **company_id needs to be a drop down, and if the company_id doesn't exist in the drop-down menu, it will need to be added, to create a new company entry. Or left null.
-
--- -- **contact_id needs to be a drop down, and if the contact_id doesn't exist in the drop-down menu, it will need to be added, to create a new contact entry. Or left null.
-
 -- -- **job_status_id needs to be a drop down.
+
+----**SEE IF THIS ONE WORKS:
+-- **INSERT INTO jobs (title, location, url, date_posted, description, notes, job_status_id) 
+-- **VALUES
+-- **($1, $2, $3, $4, $5, $6, (SELECT job_status_name FROM job_status WHERE job_status_id = $1));
+
+-- **SELECT * FROM jobs
+-- **ORDER BY job_id;
+
+
+
+-- -- company_id needs to be a drop down, and if the company_id doesn't exist in the drop-down menu, it will need to be added, to create a new company entry. Or left null.
+
+-- -- contact_id needs to be a drop down, and if the contact_id doesn't exist in the drop-down menu, it will need to be added, to create a new contact entry. Or left null.
+
 
 
 -- INSERT INTO job_status
@@ -44,9 +55,7 @@
 -- bar -> jobs table
 
 -- --I think this one would work sort of. 
--- INSERT INTO jobs (title, location, url, date_posted, description, notes, job_status_id) 
--- VALUES
--- ($1, $2, $3, $4, $5, $6, (SELECT job_status_name FROM job_status WHERE job_status_id = $1));
+
 -- --Drop down for status id
 
 

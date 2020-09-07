@@ -1,0 +1,94 @@
+@mixin flex-positioning-evenly {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@mixin big-header-font {
+    font-family: $primary-font;
+    font-size: 40px;
+    color: black;
+}
+
+//make globals - and put these mixins and variables and a button style as well. 
+
+$primary-font: 'Oswald', sans serif;
+$secondary-font: 'Roboto Condensed', sans serif;
+
+.page {
+    display: flex;
+    justify-content: space-around;
+}
+.job-container {
+    margin-top: 20px;
+    width: 500px;
+    height: 600px;
+    // border: solid 1px black;
+}
+
+//same as dashboard.scss title-bar (do a variable or mixin)
+.title-bar {
+    height: 80px;
+    width: 500px;
+    display: flex;
+    // border: solid 1px black;
+    @include flex-positioning-evenly;
+    justify-content: space-between;
+    @include big-header-font;
+    
+}
+
+.line-between {
+    margin-top: 20px;
+    height: 575px;
+    width: 5px;
+    background-color: lightgray;
+}
+
+.status-container {
+    margin-top: 20px;
+    width: 300px;
+    height: 600px;
+    // border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}    
+
+.status-title {
+    height: 80px;
+    @include big-header-font;
+
+}
+.list-w-bar {
+    height: 500px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.status-line {
+    display: flex;
+    height: 500px;
+    width: 4px;
+    background-color: black;
+
+}
+.status-list {
+    height: 500px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // padding-right: 50px;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    border: none;
+    font-family: $primary-font;
+    ;
+}

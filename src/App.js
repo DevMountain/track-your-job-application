@@ -6,8 +6,8 @@ import './App.scss';
 import {Switch, Route} from 'react-router-dom';
 import Login from './Components/Login';
 import Dashboard from './Components/Dashboard'
-import Job from './Components/Job/Job';
-import AddJob from './Components/AddJob/AddJob';
+import Job from './Components/Job';
+import AddJob from './Components/AddJob';
 // import Action from './Components/Action/Action';
 // import Contacts from './Components/Contacts/Contacts';
 // import Companies from './Components/Companies/Companies';

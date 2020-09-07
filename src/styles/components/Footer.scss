@@ -19,7 +19,7 @@
     font-family: 'Oswald', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
+    border-top: lightgray solid 5px; 
 }
 
 .footer-links {
@@ -28,5 +28,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     font-size: 14px;
 }
