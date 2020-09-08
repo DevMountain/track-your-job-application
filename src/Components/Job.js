@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
 import { connect } from "react-redux";
 import '../styles/components/Job.scss'
-// import {} from '../redux/jobReducer';
+import {setJobs} from '../redux/jobReducer';
 
 // Dashboard methods: get jobs, delete, edit, add function (defined on jobReducer), handlechange if I add a search/filter function. 
 
@@ -10,10 +11,34 @@ import '../styles/components/Job.scss'
 const Job = (props) => {
     console.log('props', props)
     const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.job;
-    // const {}
-//How am I getting props from redux? console log it to see what I'm getting.
+    const {input, setInput} = useState({
+        title: '',
+        location: '',
+        ulr: '',
+        //Data type of datePosted? 
+        datePosted: '',
+        description: '',
+        notes: '',
+        jobStatusId: 1,
+        company: '',
+        contact: ''
+    })
+    
+    const inputHandler = (e) => {
+        setInput({...input, [e.target.name]: e.target.value})
+    };
 
 //Need edit, save edit, and delete functions here. 
+
+    const saveEdit = (jobId, title, location, url, datePosted, description, notes,jobStatusId, company, contact) => {
+        // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
+        const {userId} = props.match.params;
+        axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
+            props.setJobs(res.data);
+        }).catch(err => console.log(err));
+    }
+
+
 
     return (
         <div className='page'>
@@ -31,10 +56,36 @@ const Job = (props) => {
                 </div>
                 <div className='details-container'>
                     <div className='detail-item'>
-                        <p
+                        <p className='item'>COMPANY</p>
+                        <p className='value'>{company}</p>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>LOCATION</p>
+                        <p className='value'>{location}</p>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>URL</p>
+                        <p className='value'>{url}</p>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>DATE POSTED</p>
+                        <p className='value'>{datePosted}</p>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>CONTACT</p>
+                        <p className='value'>{contact}</p>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>DESCRIPTION</p>
+                        <textarea className='value'>{description}</textarea>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>NOTES</p>
+                        <textarea className='value'>{notes}</textarea>
                     </div>
                 </div>
             </section>
+
             <section className='status-container'>
                 <div className='status-title'>
                     <p>STATUS</p>
@@ -130,9 +181,9 @@ const Job = (props) => {
 
 }
 
-const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps)(Job);
+export default connect(mapStateToProps, { setJobs })(Job);
 
 
 // need to get jobs from redux state.

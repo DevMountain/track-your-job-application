@@ -91,6 +91,259 @@ input, select {
 button {
   outline: none; }
 
+.dash-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  align-items: flex-start; }
+
+.big-list-container {
+  margin-top: 20px;
+  width: 700px;
+  height: 600px; }
+
+.title-bar-jobs {
+  height: 80px;
+  width: 700px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  font-family: "Oswald", sans serif;
+  font-size: 40px;
+  color: black;
+  letter-spacing: 2px;
+  justify-content: space-between;
+  font-family: "Oswald", sans serif; }
+
+.title {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px; }
+
+.status {
+  display: flex;
+  justify-content: flex-end;
+  width: 200px;
+  font-size: 32px;
+  letter-spacing: 2px;
+  margin-left: 70px; }
+
+.select-line-box {
+  height: 80px;
+  width: 420px; }
+
+.line-box {
+  height: 80px;
+  width: 20px;
+  border: 1px black solid; }
+
+.line-container {
+  transform: scaleX(-1);
+  height: 80px;
+  width: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+
+.box-line-up {
+  padding: 22px;
+  height: 20px;
+  width: 300px;
+  border-bottom: 1px black solid;
+  border-right: 1px black solid; }
+
+.box-line-down {
+  height: 20px;
+  width: 300px;
+  border-right: 1px black solid; }
+
+.btn-container {
+  display: flex;
+  justify-content: flex-end; }
+
+.btn {
+  background-color: white;
+  color: black;
+  border: solid 1px black;
+  font-family: "Oswald", sans serif;
+  font-size: 16px;
+  margin-left: 20px;
+  letter-spacing: 1px; }
+
+.map-list-container {
+  height: 500px;
+  width: 700px;
+  border: solid 1px black; }
+
+.page {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px; }
+
+.job-container {
+  margin-left: 30px;
+  width: 500px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; }
+
+.title-bar {
+  height: 80px;
+  width: 500px;
+  display: flex;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Oswald", sans serif;
+  font-size: 40px;
+  color: black;
+  letter-spacing: 2px; }
+
+.status-container {
+  margin-top: 20px;
+  width: 300px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.status-title {
+  height: 80px;
+  font-family: "Oswald", sans serif;
+  font-size: 40px;
+  color: black;
+  letter-spacing: 2px; }
+
+.list-w-bar {
+  height: 500px;
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
+
+.status-line {
+  display: flex;
+  height: 500px;
+  width: 4px;
+  background-color: lightgray; }
+
+.status-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center; }
+  .status-item-container p {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 30px;
+    padding-left: 5px;
+    border: none;
+    color: black; }
+
+.status-dash {
+  display: flex;
+  height: 4px;
+  width: 15px;
+  background-color: lightgray; }
+
+.status-list {
+  font-family: "Oswald", sans serif;
+  font-size: 18px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  height: 500px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly; }
+
+.btn {
+  background-color: white;
+  color: black;
+  border: solid 1px black;
+  font-family: "Oswald", sans serif;
+  font-size: 16px;
+  margin-left: 20px;
+  letter-spacing: 1px; }
+
+.researching {
+  border: 3px solid #eece42;
+  color: #eece42; }
+
+.networking {
+  border: 3px solid #cfa20c;
+  color: #cfa20c; }
+
+.applying {
+  border: 3px solid #da6415;
+  color: #da6415; }
+
+.application-submitted {
+  border: 3px solid #4ac7f8;
+  color: black; }
+
+.assessments {
+  border: 3px solid #02878b;
+  color: #02878b; }
+
+.interviewing {
+  border: 3px solid #2342a7;
+  color: #2342a7; }
+
+.thankyou {
+  border: 3px solid #512679;
+  color: #512679; }
+
+.waiting {
+  border: 3px solid #5f5e5f;
+  color: #5f5e5f; }
+
+.offer {
+  border: 3px solid #3ff148;
+  color: #3ff148; }
+
+.rejected {
+  border: 3px solid #c23613;
+  color: #c23613; }
+
+.negotiating {
+  border: 3px solid #94327b;
+  color: #94327b; }
+
+.accepted-offer {
+  border: 3px solid #195832;
+  color: #195832; }
+
+.rejected-offer {
+  border: 3px solid #693434;
+  color: #693434; }
+
 .App {
   display: flex;
   flex-direction: column; }
+
+.btn {
+  background-color: white;
+  color: black;
+  border: solid 1px black;
+  font-family: "Oswald", sans serif;
+  font-size: 16px;
+  margin-left: 20px;
+  letter-spacing: 1px; }

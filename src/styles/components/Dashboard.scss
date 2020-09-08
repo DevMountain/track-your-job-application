@@ -1,9 +1,15 @@
 @mixin flex-positioning-evenly {
     display: flex;
     justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
 }
-
+@mixin big-header-font {
+    font-family: $primary-font;
+    font-size: 40px;
+    color: black;
+    letter-spacing: 2px;
+}
 $primary-font: 'Oswald', sans serif;
 $secondary-font: 'Roboto Condensed', sans serif;
 
@@ -11,7 +17,7 @@ $secondary-font: 'Roboto Condensed', sans serif;
     height: 100vh;
     width: 100vw;
     background-color: white;
-    @include flex-positioning-evenly();
+    @include flex-positioning-evenly;
     align-items: flex-start;
     // display: flex;
     // justify-content: space-evenly;
@@ -19,9 +25,9 @@ $secondary-font: 'Roboto Condensed', sans serif;
 
 .big-list-container {
     margin-top: 20px;
-    width: 400px;
+    width: 700px;
     height: 600px;
-    border: solid 1px black;
+    // border: solid 1px black;
 
 }
 // .line-between {
@@ -30,11 +36,12 @@ $secondary-font: 'Roboto Condensed', sans serif;
 //     width: 5px;
 //     background-color: lightgray;
 // }
-.title-bar {
+.title-bar-jobs {
     height: 80px;
-    width: 400px;
+    width: 700px;
     // border: solid 1px black;
     @include flex-positioning-evenly;
+    @include big-header-font();
     justify-content: space-between;
     font-family: $primary-font;
     
@@ -43,30 +50,40 @@ $secondary-font: 'Roboto Condensed', sans serif;
 .title {
     @include flex-positioning-evenly;
     justify-content: space-between;
-    font-size: 40px;
-    width: 50px;
-    letter-spacing: 3px;
-    // margin-left;
-    
+    width: 200px;
 }
-.title-right {
-    font-size: 36px;
-    width: 210px;
-    letter-spacing: 2px;
-}
+// .title-right {
+//     font-size: 36px;
+//     width: 210px;
+//     letter-spacing: 2px;
+// }
 .status {
     display: flex;
-    width: 90px;
-    font-size: 28px;
-    font-family: $secondary-font;
+    justify-content: flex-end;
+    width: 200px;
+    font-size: 32px;
+    // font-family: $secondary-font;
+    letter-spacing: 2px;
+    margin-left: 70px;
 
 }
+.select-line-box {
+    height: 80px;
+    width: 420px;
+}
+.line-box {
+    height: 80px;
+    width: 20px;
+    border: 1px black solid;
 
-.arrow-container {
+}
+.line-container {
     transform: scaleX(-1);
     height: 80px;
-    width: 100px;
+    width: 400px;
     @include flex-positioning-evenly();
+    justify-content: center;
+    flex-direction: column;
     // justify-content: flex-start;
     // display: flex;
     // // justify-content: flex-end;
@@ -74,26 +91,53 @@ $secondary-font: 'Roboto Condensed', sans serif;
     // border: black 1px solid;
 
 }
-.arrow-container-right {
-    width: 80px;
+
+.box-line-up {
+    padding: 22px;
+    height: 20px;
+    width: 300px;
+    border-bottom: 1px black solid;
+    border-right: 1px black solid;
 }
-.arrow {
-    height: 60px;
-    width: 100px;
+.box-line-down {
+    height: 20px;
+    width: 300px;
+    border-right: 1px black solid;
+
 }
-.arrow-right {
-    width: 80px;
-}
+
+// .arrow-container-right {
+//     width: 80px;
+// }
+// .arrow {
+//     height: 60px;
+//     width: 150px;
+//     margin-left: 30px;
+// }
+// .arrow-right {
+//     width: 80px;
+// }
 .btn-container {
     display: flex;
     justify-content: flex-end;
 }
-.add-btn {
-    display: flex;
-    justify-content: flex-end;
-}
+.btn {
+    background-color: white;
+    color: black;
+    border: solid 1px black;
+    font-family: $primary-font;
+    font-size: 16px;
+    margin-left: 20px;
+    letter-spacing: 1px;
+  }
+// .add-btn {
+//     display: flex;
+//     justify-content: flex-end;
+// }
 
 .map-list-container {
     height: 500px;
-    width: 400px;
+    width: 700px;
+    border: solid 1px black;
+
 }

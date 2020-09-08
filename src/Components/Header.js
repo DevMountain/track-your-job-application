@@ -40,8 +40,8 @@ const Header = (props) => {
                 <Link to='/dashboard'>
                     <p>Dashboard</p>
                 </Link>
-                <Link to='/contacts'>
-                    <p>Contacts</p>
+                <Link to='/addjob'>
+                    <p>Add Job</p>
                 </Link>
 
                 {/* <p>Companies</p> */}

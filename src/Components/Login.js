@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 // import { Simulate } from 'react-dom/test-utils';
 // import { registerUser} from '../../redux/reducer';
+
+//Try to convert to hooks.
 class Login extends React.Component {
     constructor() {
         super();
@@ -273,7 +275,7 @@ class Login extends React.Component {
                                         <input style={this.styles.inputs} placeholder='Email' name="email" value={email} type="text" onChange={e => this.handleChange(e)}/>
                                     </div>
                                     <div >
-                                        <input style={this.styles.inputs} placeholder='Password' name="password" value={password} type="text" onChange={e => this.handleChange(e)}/>
+                                        <input style={this.styles.inputs} placeholder='Password' name="password" value={password} type="password" onChange={e => this.handleChange(e)}/>
                                     </div>
                                     <div style={this.styles.btnContainer}>
                                         <button style={this.styles.btn} onClick={this.login}>Login</button>

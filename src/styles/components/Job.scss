@@ -2,19 +2,20 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-}
-
-@mixin big-header-font {
+  }
+  
+  @mixin big-header-font {
     font-family: $primary-font;
     font-size: 40px;
     color: black;
     letter-spacing: 2px;
-}
+  }
+  
+  $primary-font: 'Oswald', sans serif;
+  $secondary-font: 'Roboto Condensed', sans serif;
 
 //make globals - and put these mixins and variables and a button style as well. 
 
-$primary-font: 'Oswald', sans serif;
-$secondary-font: 'Roboto Condensed', sans serif;
 
 .page {
     display: flex;
@@ -122,12 +123,12 @@ $secondary-font: 'Roboto Condensed', sans serif;
 .btn {
     background-color: white;
     color: black;
-    border: none;
+    border: solid 1px black;
     font-family: $primary-font;
-    font-size: 20px;
+    font-size: 16px;
     margin-left: 20px;
     letter-spacing: 1px;
-}
+  }
 
 .researching {
     border: 3px solid rgb(238, 206, 66);

@@ -9,13 +9,14 @@
 -- -- **job_status_id needs to be a drop down.
 
 ----**SEE IF THIS ONE WORKS:
--- **INSERT INTO jobs (title, location, company, url, date_posted, description, notes, contact, job_status_id) 
--- **VALUES
--- **($1, $2, $3, $4, $5, $6, (SELECT job_status_name FROM job_status WHERE job_status_id = $1));
+**INSERT INTO jobs (title, location, company, url, date_posted, description, notes, contact, job_status_id) 
+**VALUES
+**($1, $2, $3, $4, $5, $6, (SELECT job_status_id FROM job_status WHERE job_status_name = $7));
 
 -- **SELECT * FROM jobs
 -- **ORDER BY job_id;
 
+--Just all start at researching status. 
 
 
 -- -- company_id needs to be a drop down, and if the company_id doesn't exist in the drop-down menu, it will need to be added, to create a new company entry. Or left null.

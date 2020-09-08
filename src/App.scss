@@ -1,4 +1,6 @@
 @import './styles/reset.scss';
+@import './styles/components/Dashboard.scss';
+@import './styles/components/Job.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100&family=Oswald:wght@200;300;306;400&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
@@ -8,7 +10,31 @@
 
 }
 
+@mixin flex-positioning-evenly {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
+@mixin big-header-font {
+  font-family: $primary-font;
+  font-size: 40px;
+  color: black;
+  letter-spacing: 2px;
+}
+
+$primary-font: 'Oswald', sans serif;
+$secondary-font: 'Roboto Condensed', sans serif;
+
+.btn {
+  background-color: white;
+  color:black;
+  border: solid 1px black;
+  font-family: $primary-font;
+  font-size: 16px;
+  margin-left: 20px;
+  letter-spacing: 1px;
+}
 
 // @import './styles/components/Header.scss'
 // font-family: 'Julius Sans One', sans-serif;

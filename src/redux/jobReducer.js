@@ -1,57 +1,35 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// const initialState = {
-//     job: {},
-//     currentUser: {},
-//     status: []
-// }
-//I defined status in a table, so now it doesn't have to be hard coded here in initialSate. But how do I use it? 
+const initialState = {
+    jobs: []
+}
 
+const SET_JOBS = 'SET_JOBS';
+// or SET_JOBS?
 
-// const GET_JOBS = 'GET_JOBS';
-// const 
+//need function to update state
+// Don't need an action for each axios call type. Just use setjob to update redux state.
 
-// const LOGIN_USER = 'LOGIN_USER';
-// const LOGOUT_USER = 'LOGOUT_USER;'
-// // const REGISTER_USER = 'REGISTER_USER;'
-// const GET_USER = 'GET_USER;'
-
-// //Look into this. Not sure about parameters and payload value:
-
-// //Not sure if I need registerUser also, since it does basically the same thing as loginUser. Check on this.
-// // export function registerUser(user){
-// //     return {
-// //         type: REGISTER_USER,
-// //         payload: user
-// //     }
-// // }
-
-// export function loginUser(user){
-//     //refer to Auth.js login method (res.data passed into this.props.loginUser)
-//     return {
-//         type: LOGIN_USER,
-//         payload: user
-//     }
-// }
-
-// export function logoutUser(){
-//     return {
-//         type: LOGOUT_USER,
-//         payload: initialState
-//     }
-// }
-
-// export function getUser(){
-//     const user = axios.get('/auth/user')
-//         .then(res => res.data)
-//         .catch(err => console.log(err));
-//     return {
-//         type: GET_USER,
-//         payload: user
-//     }
-// }
+// getting response from axios and putting response into jobs array on state. But the axios call doesn't happen here, it happens in the separate components, and the results of the actions are stored in redux state.
 
 
+export function setJobs(jobs){
+    return {
+        type: 'SET_JOBS',
+        payload: jobs
+    }
+}
+
+
+export default function reducer(state = initialState, action) {
+    switch(action.type){
+        case SET_JOBS:
+            console.log('hit setJob redux', action.payload)
+            return {...state, jobs: action.payload}
+        default:
+            return state
+    }
+}
 // export default function reducer(state = initialState, action) {
 //     switch(action.type){
 //         case LOGIN_USER:

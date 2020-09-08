@@ -7,9 +7,9 @@ import '../styles/components/Dashboard.scss';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUser} from '../redux/authReducer';
-import {getJobs} from '../redux/jobReducer';
+// import {getJobs} from '../redux/jobReducer';
 import {withRouter} from 'react-router-dom';
-import arrow from '../left-black-arrow-skinny-icon.png';
+// import arrow from '../left-black-arrow-skinny-icon.png';
 import StatusColorChanger from './StatusColorChanger';
 // import { render } from 'sass';
 
@@ -26,17 +26,19 @@ const Dashboard = (props) => {
     // props from App.js (But what is it? Why does App.js have props? Is it from withRouter?)
 
     //Why is it saying that jobs here isn't used?
+    //
     const [jobs, setJobs] = useState([]);
     // const [users, setUsers] = useState();
     // I need hooks here because I need the lifecycle method. I don't know if I need state or not. I don't think I do. I do need a link on the add button to the add job page. I think I need state because I need to make the axios call and update the value of state with the response (res.data) of the axios call. And that's what I'll pass down as props to dashboardjob.js. And also, I need to connect to redux to get the userId off of user in the store. 
 
-    //When do I need to pass something in as a parameter here? Do I need to pass userID in? Or props?
+
 
     useEffect(() => {
         const {userId} = props.user;
         axios
             .get(`/api/jobs/${userId}`)
             .then(res =>{
+                // instead of setJobs, interact with reducer. 
                 setJobs(res.data);
             })
             .catch(err => console.log(err));
@@ -59,25 +61,35 @@ const Dashboard = (props) => {
 
  
     //Method for adding job here.
+
+    
+
         return (
             <div className='dash-page'>
                 <section className='big-list-container'>
-                    <div className='title-bar'>
+                    <div className='title-bar-jobs'>
                         <div className='title'>
                             <p>JOBS</p>
                         </div>
-                        <div className='arrow-container'>
-                            <img className="arrow" src={arrow} alt='arrow'/>
-                        </div>
+                        <section className='select-line-box'>
+                            <div className='line-box'></div>
+                            <div className='line-container'>
+                                <div className='box-line-up'></div>
+                                <div className='box-line-down'></div>
+                                {/* <img className="arrow" src={arrow} alt='arrow'/> */}
+                            </div>
+
+                        </section>
                         <div className='status'>
                             <p>STATUS</p>
                         </div>
                     </div>
                     <div className='btn-container'>
-                        <button className='add-btn'>ADD JOB</button>
+                        <button className='btn'>ADD JOB</button>
                     </div>
                     <section className='map-list-container'>
-                        {this.state.jobs.map((job, index, array) => {
+                       {/* In hooks, do we have to do props or anything or do we destructure at all? See jobs below: */}
+                        {jobs.map((job, index, array) => {
                             return (
                                 <div>
                                     <Link to='/job'>
@@ -134,7 +146,7 @@ function mapStateToProps(reduxState){
     };
 }
 
-export default connect(mapStateToProps, {getUser, getJobs})(withRouter(Dashboard));
+export default connect(mapStateToProps, {getUser})(withRouter(Dashboard));
 
 //Styling notes: set overflow for lists to auto, so it will scroll down to the other list items.
 // {/* Right and left list containers are the same format and can use the same classid or styling handle */}
