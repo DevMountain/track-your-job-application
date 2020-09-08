@@ -24,13 +24,14 @@ const Dashboard = (props) => {
     // }
     // const {} = props.
     // props from App.js (But what is it? Why does App.js have props? Is it from withRouter?)
+
+    //Why is it saying that jobs here isn't used?
     const [jobs, setJobs] = useState([]);
     // const [users, setUsers] = useState();
     // I need hooks here because I need the lifecycle method. I don't know if I need state or not. I don't think I do. I do need a link on the add button to the add job page. I think I need state because I need to make the axios call and update the value of state with the response (res.data) of the axios call. And that's what I'll pass down as props to dashboardjob.js. And also, I need to connect to redux to get the userId off of user in the store. 
 
     //When do I need to pass something in as a parameter here? Do I need to pass userID in? Or props?
 
-    //If I can figure out how to make this a functional component, use this instead of the componentDidMount:
     useEffect(() => {
         const {userId} = props.user;
         axios
@@ -41,7 +42,6 @@ const Dashboard = (props) => {
             .catch(err => console.log(err));
     }, []);
    
-    //Do I pass in userId as a parameter?\
 
     // componentDidMount(){
     //     const {userId} = this.props.user;
@@ -57,19 +57,7 @@ const Dashboard = (props) => {
     // }
         
 
-    // const actionMap = props.actions.map(job => {
-    //     return <DashboardActions
-    //                 key={action.id}
-    //                 job={action}/>
-    // })
-
-
-// const jobMap = props.jobs.map(job => {
-    //     return <DashboardJob
-    //                 key={job.jobId}
-    //                 job={job}/>
-    // })
-
+ 
     //Method for adding job here.
         return (
             <div className='dash-page'>

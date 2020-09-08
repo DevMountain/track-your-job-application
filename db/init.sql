@@ -9,14 +9,17 @@ CREATE TABLE users (
 CREATE TABLE jobs (
     job_id SERIAL PRIMARY KEY,
     title VARCHAR(50),
-    company_id INT REFERENCES companies(company_id),
+    -- company_id INT REFERENCES companies(company_id),
     location VARCHAR(100),
     url VARCHAR(100), 
     date_posted DATE,
     description TEXT, 
     notes TEXT,
+    -- contact_id INT REFERENCES contacts(contact_id),
+    user_id INT REFERENCES users(user_id),
     job_status_id INT REFERENCES job_status(job_status_id),
-    user_id INT REFERENCES users(user_id)
+    company VARCHAR(50),
+    contact VARCHAR(50)
 );
 
 CREATE TABLE job_status (
