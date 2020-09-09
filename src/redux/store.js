@@ -1,8 +1,10 @@
 import authReducer from './authReducer';
-// import jobReducer from './jobReducer';
-import {createStore, applyMiddleware} from 'redux';
+import jobReducer from './jobReducer';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
 import promiseMiddleware from 'redux-promise-middleware';
 
-// rootReducer = combineReducers({authentication: authReducer, jobs: jobReducer})
+const rootReducer = combineReducers({authReducer, jobReducer})
 
-export default createStore(authReducer, applyMiddleware(promiseMiddleware));
+export default createStore(rootReducer, applyMiddleware(promiseMiddleware));
+
+//console.log props - because this adds another level (props.authReducer.user...etc.). Fix this in the components that subscribe to redux.

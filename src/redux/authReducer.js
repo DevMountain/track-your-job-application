@@ -47,7 +47,7 @@ export function getUser(){
 }
 
 
-export default function reducer(state = initialState, action) {
+export default function authReducer(state = initialState, action) {
     switch(action.type){
         case LOGIN_USER:
             //the following creates a "user" object with three properties on it. This is the proper way to do this.

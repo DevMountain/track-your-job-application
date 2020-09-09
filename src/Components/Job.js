@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
 import '../styles/components/Job.scss'
@@ -10,36 +10,74 @@ import {setJobs} from '../redux/jobReducer';
 
 const Job = (props) => {
     console.log('props', props)
-    const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.job;
-    const {input, setInput} = useState({
-        title: '',
-        location: '',
-        ulr: '',
-        //Data type of datePosted? 
-        datePosted: '',
-        description: '',
-        notes: '',
-        jobStatusId: 1,
-        company: '',
-        contact: ''
+    //maybe take jobStatusId off this, because it needs to be in the side Status list. 
+    // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.jobReducer.jobs;
+    //am I destructuring off props.job? or props.jobs? I think it's jobs, but then, how do I get into the 
+    const [isEditing, setIsEditing] = useState(false)
+    const [job, setJob] = useState({})
+    const [input, setInput] = useState({
+        // title: props.job.title,
+        //since I destructured off props, do I need to do it like the above? Or will this work:
+        title,
+        location,
+        url,
+        datePosted,
+        description,
+        notes,
+        jobStatusId,
+        company,
+        contact
     })
-    
-    const inputHandler = (e) => {
+
+    // get the job info in an axios request get jobs, inside a component did mount/useEffect, so the job is listed as soon as I view the component.
+    useEffect = () => {
+        console.log('props', props)
+        axios.get(`/api/jobs/${props.match.params.jobId}`).then(res=> {
+            setJob(res.data)
+        }).catch(err => console.log(err));
+    };
+
+    const handleChange = (e) => {
         setInput({...input, [e.target.name]: e.target.value})
     };
 
-//Need edit, save edit, and delete functions here. 
-
-    const saveEdit = (jobId, title, location, url, datePosted, description, notes,jobStatusId, company, contact) => {
+    const saveEdit = (jobId, title, location, url, datePosted, description, notes, jobStatusId, company, contact) => {
         // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
-        const {userId} = props.match.params;
+        const {userId} = props.user;
+        //Or this? Which is better? I'm connected to redux, so probably redux.
+        // const {userId} = props.match.params;
         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
             props.setJobs(res.data);
         }).catch(err => console.log(err));
-    }
+    };
 
+    const deleteJob = (userId, jobId) => {
+        // const {userId} = props.user;
+        //Do I need to destructure userId off props? Or just pass it in as a parameter? 
+        axios.delete(`/api/jobs/${userId}/${jobId}`).then(res=> {
+            setJobs(res.data);
+            props.history.push('/dashboard');
+        }).catch(err => console.log(err))
+    };
 
+    const toggleEdit = () => {
+        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.jobs;
+        setIsEditing(!isEditing);
+        //Do I need to do title: props.job.title? or will below work because I destructured it off props.job?
+        setInput({
+            title,
+            location,
+            url,
+            datePosted,
+            description,
+            notes,
+            jobStatusId,
+            company,
+            contact
+        });
+    };
 
+   
     return (
         <div className='page'>
             <section className='job-container'>
@@ -50,11 +88,27 @@ const Job = (props) => {
                     </div>
                     <div className='edit-delete-box'>
                         {/* Add onClick method */}
-                        <button className='btn' >EDIT</button>
-                        <button className='btn' >DELETE</button>
+                        <button onClick={toggleEdit} className='btn' >EDIT</button>
+                        <button onClick={saveEdit(
+                            //How am I getting jobId?
+                            //Do I need to save userId in here?
+                            props.job.jobId,
+                            input.title,
+                            input.location,
+                            input.ulr,
+                            input.datePosted,
+                            input.description,
+                            input.notes,
+                            input.jobStatusId,
+                            input.company,
+                            input.contact
+                        )} className='btn' >SAVE</button>
+                        <button onClick={deleteJob(props.user.userId, props.job.jobId)} className='btn' >DELETE</button>
                     </div>
                 </div>
                 <div className='details-container'>
+                    {!isEditing ? (
+                        <>
                     <div className='detail-item'>
                         <p className='item'>COMPANY</p>
                         <p className='value'>{company}</p>
@@ -77,12 +131,45 @@ const Job = (props) => {
                     </div>
                     <div className='detail-item'>
                         <p className='item'>DESCRIPTION</p>
-                        <textarea className='value'>{description}</textarea>
+                        <p className='value'>{description}</p>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>NOTES</p>
-                        <textarea className='value'>{notes}</textarea>
+                        <props className='value'>{notes}</props>
                     </div>
+                        </>
+                    ) : (
+                        <>
+                    <div className='detail-item'>
+                        <p className='item'>COMPANY</p>
+                        <input onChange={handleChange} className='value' value={input.company}/>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>LOCATION</p>
+                        <input className='value' value={input.location}/>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>URL</p>
+                        <input className='value' value={input.url}/>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>DATE POSTED</p>
+                        <input className='value' value={input.datePosted}/>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>CONTACT</p>
+                        <input className='value' value={input.contact}/>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>DESCRIPTION</p>
+                        <textarea placeholder='Enter job description here.' className='value'>{input.description}</textarea>
+                    </div>
+                    <div className='detail-item'>
+                        <p className='item'>NOTES</p>
+                        <textarea placeholder='Enter any notes here.' className='value'>{input.notes}</textarea>
+                    </div>
+                        </>
+                    )} 
                 </div>
             </section>
 
@@ -94,7 +181,7 @@ const Job = (props) => {
                     <div className='status-line'></div>
                     {/* <div className='line-circle'></div> */}
                     <div className='status-list'>
-                        {/* This needs conditional rendering to select the right status from the list and make border and text color change. No border if not selected, and colored border if selected.  */}
+                        {/* Conditional rendering for status */}
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
                                 {jobStatusId === 1 ? 

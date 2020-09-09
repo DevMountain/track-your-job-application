@@ -15,13 +15,13 @@ const SET_JOBS = 'SET_JOBS';
 
 export function setJobs(jobs){
     return {
-        type: 'SET_JOBS',
+        type: SET_JOBS,
         payload: jobs
     }
 }
 
 
-export default function reducer(state = initialState, action) {
+export default function jobReducer(state = initialState, action) {
     switch(action.type){
         case SET_JOBS:
             console.log('hit setJob redux', action.payload)

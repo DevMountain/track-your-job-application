@@ -9,9 +9,13 @@
 -- -- **job_status_id needs to be a drop down.
 
 ----**SEE IF THIS ONE WORKS:
-**INSERT INTO jobs (title, location, company, url, date_posted, description, notes, contact, job_status_id) 
-**VALUES
-**($1, $2, $3, $4, $5, $6, (SELECT job_status_id FROM job_status WHERE job_status_name = $7));
+
+--**Do I need the user_id here? It's a foreign key reference.
+--Is this referencing job_status table correctly? 
+INSERT INTO jobs (title, location, company, url, date_posted, description, notes, contact, job_status_id, user_id) 
+VALUES
+($1, $2, $3, $4, $5, $6, $7, $8, (SELECT job_status_id FROM job_status WHERE job_status_name = $9))
+
 
 -- **SELECT * FROM jobs
 -- **ORDER BY job_id;

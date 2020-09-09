@@ -6,24 +6,48 @@ module.exports = {
         const jobs = await db.jobs.get_jobs(userId)
         res.status(200).send(jobs);
     },
-    getJob: async (req, res) => {
-        const db = req.app.get('db');
-        const {jobId} = req.params;
-    },
     editJob: async (req, res) => {
+        console.log(req.params)
+        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
+        const {userId} = req.params; 
         const db = req.app.get('db');
+        const jobs = await db.jobs.edit_job({
+            title,
+            location,
+            url,
+            date_posted: datePosted,
+            description,
+            notes,
+            job_status_id: jobStatusId,
+            company,
+            contact
+        })
+        res.status(200).send(jobs);
     },
+    //getting userId and jobId - how?
     deleteJob: async (req, res) => {
+        const {userId, jobId} = req.params;
+        // const {jobId} = req.params;
         const db = req.app.get('db');
+        const jobs = await db.jobs.delete_job([jobId, userId])
+        res.status(200).send(jobs);
     },
     addJob: async (req, res) => {
+        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
+        const {userId} = req.params; 
         const db = req.app.get('db');
-    },
-    // getJobBrief: async (req, res) => {
-    //     const db = req.app.get('db');
-    //     const {jobId} = req.params;
-    //     const jobs = await db.jobs.get_job_brief(jobId)
-    
-    // } 
-
+        const jobs = await db.jobs.add_job({
+            title,
+            location,
+            url,
+            date_posted: datePosted,
+            description,
+            notes,
+            user_id: userId,
+            job_status_id: jobStatusId,
+            company,
+            contact
+        })
+        res.status(200).send(jobs)
+    }
 }

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { connect } from "react";
+import { connect } from "react-redux";
 import {setJobs} from '../redux/jobReducer';
+import {getUser} from '../redux/authReducer';
 import '../styles/components/AddJob.scss';
 
-
+//used hooks
 const AddJob = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState({
@@ -32,7 +33,8 @@ const AddJob = (props) => {
     //When adding a job with a foreign key reference, do I need to add the userId? Or because I get that off match.params, will that be put on the job object?  
 
     const addJob = () => {
-        const {userId} = props.match.params;
+        // const {userId} = props.match.params;
+        const {userId} = props.user;
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
         axios.post(`/api/jobs/${userId}`, {title, location, url, datePosted, description, notes, userId, jobStatusId, company, contact}).then(res => {
             props.setJobs(res.data);
@@ -69,33 +71,33 @@ const AddJob = (props) => {
                 <div className='details-container'>
                     <div className='detail-item'>
                         <p className='item'>JOB TITLE</p>
-                        <input type='text' name='title' value={title} onChange={handleChange} className='value'/>
+                        <input type='text' name='title' value={input.title} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>COMPANY</p>
-                        <input type='text' name='company' value={company} onChange={handleChange} className='value'/>
+                        <input type='text' name='company' value={input.company} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>LOCATION</p>
-                        <input type='text' name='location' value={location} onChange={handleChange} className='value'/>
+                        <input type='text' name='location' value={input.location} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>URL</p>
-                        <input type='text' name='url' value={url} onChange={handleChange} className='value'/>
+                        <input type='text' name='url' value={input.url} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>DATE POSTED</p>
-                        <input type='text' placeholder='YYYY-MM-DD' name='datePosted' value={datePosted} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='YYYY-MM-DD' name='datePosted' value={input.datePosted} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>CONTACT</p>
-                        <input type='text' name='contact' value={contact} onChange={handleChange} className='value'/>
+                        <input type='text' name='contact' value={input.contact} onChange={handleChange} className='value'/>
                     </div>
                     <div onClick={toggling} className='status-dropdown-container'>
                         <p className='item'>STATUS</p>
                         {isOpen && (
 
-                            <select  name='jobStatusId' className='dropdown' value={jobStatusId} onChange={handleChange}>
+                            <select  name='jobStatusId' className='dropdown' value={input.jobStatusId} onChange={handleChange}>
                                 {/* Is it case sensitive? They're in the tables in all caps; for the query to work, does it need to be all caps? Or will this work? */}
                                 <option value='1'>Researching</option>
                                 <option value='2'>Networking</option>
@@ -115,11 +117,11 @@ const AddJob = (props) => {
                     </div>
                     <div className='detail-item'>
                         <p className='item'>DESCRIPTION</p>
-                        <textarea type='text' name='description' placeholder='Enter job description here.' className='description'>{description}</textarea>
+                        <textarea type='text' name='description' placeholder='Enter job description here.' className='description'>{input.description}</textarea>
                     </div>
                     <div className='detail-item'>
                         <p placeholder='Enter any other notes here.' className='item'>NOTES</p>
-                        <textarea type='text' name='notes' className='notes'>{notes}</textarea>
+                        <textarea type='text' name='notes' className='notes'>{input.notes}</textarea>
                     </div>
                 </div>
             </section>
@@ -130,4 +132,4 @@ const AddJob = (props) => {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, {setJobs})(AddJob);
+export default connect(mapStateToProps, {getUser, setJobs})(AddJob);

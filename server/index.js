@@ -36,23 +36,23 @@ app.post('/auth/register', authCtrl.register)
 app.post('/auth/logout', authCtrl.logout)
 app.get('/auth/user', authCtrl.getUser)
 
-// //endpoints for jobs
-app.get('/api/jobs/:id', jobCtrl.getJobs);
-// app.get('/api/jobs/:id')
-// app.get('/api/job/:id', jobCtrl.getJob);
-// app.put('/api/jobs/:id', jobCtrl.editJob);
-// app.delete('/api/jobs/:id', jobCtrl.deleteJobs);
-// app.post('/api/jobs/:id', jobCtrl.addJob);
+//endpoints for jobs
+//Check on these endpoints - how do I get userId and jobId in put and delete?
+app.get('/api/jobs/:userId', jobCtrl.getJobs);
+app.put('/api/jobs/:userId/:jobId', jobCtrl.editJob);
+//it doesn't like this:
+app.delete('/api/jobs/:userId/:jobId', jobCtrl.deleteJob);
+app.post('/api/jobs/:userId', jobCtrl.addJob);
 
 //ICEBOX - All following endpoints: 
-// //endpoints for action items
+//endpoints for action items
 // app.get('/api/actions', actionCtrl.getActions);
 // app.get('/api/actions/:id', actionCtrl.getAction);
 // app.put('/api/actions/:id', actionCtrl.editAction);
 // app.delete('/api/actions/:id', actionCtrl.deleteAction);
 // app.post('/api/actions/:id', actionCtrl.addAction);
 
-// //endpoints for contact 
+//endpoints for contact 
 // app.get('/api/contacts', contactCtrl.getContacts);
 // app.get('/api/contacts/:id', contactCtrl.getContact);
 // app.put('/api/contacts/:id', contactCtrl.editContact);

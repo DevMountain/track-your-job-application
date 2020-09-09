@@ -31,10 +31,10 @@ const Dashboard = (props) => {
     // const [users, setUsers] = useState();
     // I need hooks here because I need the lifecycle method. I don't know if I need state or not. I don't think I do. I do need a link on the add button to the add job page. I think I need state because I need to make the axios call and update the value of state with the response (res.data) of the axios call. And that's what I'll pass down as props to dashboardjob.js. And also, I need to connect to redux to get the userId off of user in the store. 
 
-
+//Uncomment this after I console.log props.
 
     useEffect(() => {
-        const {userId} = props.user;
+        const {userId} = props.authReducer.user;
         axios
             .get(`/api/jobs/${userId}`)
             .then(res =>{
@@ -70,10 +70,11 @@ const Dashboard = (props) => {
                 </div>
                 <section className='map-list-container'>
                     {/* In hooks, do we have to do props or anything or do we destructure at all? See jobs below: */}
-                    {jobs.map((job, index, array) => {
+                    {/* Is this right? */}
+                    {props.jobReducer.jobs.map((job, index, array) => {
                         return (
                             <div>
-                                <Link to='/job'>
+                                <Link to = {`/job/${job.jobId}`}>
                                     <div className='job-map-box' key={index} >
                                         <div className='job-company-box'>
                                             <p className='job-title'>TEST TITLE{job.title}</p>

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/components/Footer.scss';
+import {Link} from 'react-router-dom';
 
 
 
