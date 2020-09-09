@@ -34,9 +34,9 @@
 
     // border: solid 1px black;
 }
-.title-bar {
+.title-bar-add-job {
     height: 80px;
-    width: 500px;
+    width: 600px;
     display: flex;
     // border: solid 1px black;
     @include flex-positioning-evenly;
@@ -59,33 +59,37 @@
 
 .details-container {
     height: 500px;
-    width: 700px;    
+    width: 600px;    
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     overflow: auto;
+    resize: none;
 }
 
 .detail-item {
     height: 18px;
-    width: 150px;
+    width: 600px;
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
 }
 
 .item {
     font-family: $primary-font;
-    font-size: 14px;
+    font-size: 16px;
+    width: 150px;
 
-    .input {
-        width: 550px;
-        border: none;
-        border-bottom: 1px solid black;
-        font-family: $secondary-font;
-        font-size: 13px;
-    }
 }
 
+.value {
+    width: 450px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: $secondary-font;
+    font-size: 15px;
+}
+
+// Why isn't this affecting the description and notes?
 .description .notes {
     height: 40px;
     width: 550px;

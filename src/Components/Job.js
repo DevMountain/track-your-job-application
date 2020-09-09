@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
 import '../styles/components/Job.scss'
-import {setJobs} from '../redux/jobReducer';
+import {updateJobs} from '../redux/jobReducer';
 
 // Dashboard methods: get jobs, delete, edit, add function (defined on jobReducer), handlechange if I add a search/filter function. 
 
@@ -18,24 +18,25 @@ const Job = (props) => {
     const [input, setInput] = useState({
         // title: props.job.title,
         //since I destructured off props, do I need to do it like the above? Or will this work:
-        title,
-        location,
-        url,
-        datePosted,
-        description,
-        notes,
-        jobStatusId,
-        company,
-        contact
+        title: props.job.title,
+        location: props.job.location,
+        url: props.job.url,
+        datePosted: props.job.datePosted,
+        description: props.job.description,
+        notes: props.job.notes,
+        jobStatusId: props.job.jobStatusId,
+        company: props.job.company,
+        contact: props.job.contact,
     })
 
     // get the job info in an axios request get jobs, inside a component did mount/useEffect, so the job is listed as soon as I view the component.
-    useEffect = () => {
+    //Do I need the userId? I think I put it in the endpoint.
+    useEffect(() => {
         console.log('props', props)
         axios.get(`/api/jobs/${props.match.params.jobId}`).then(res=> {
             setJob(res.data)
         }).catch(err => console.log(err));
-    };
+    });
 
     const handleChange = (e) => {
         setInput({...input, [e.target.name]: e.target.value})
@@ -47,7 +48,7 @@ const Job = (props) => {
         //Or this? Which is better? I'm connected to redux, so probably redux.
         // const {userId} = props.match.params;
         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
-            props.setJobs(res.data);
+            props.updateJobs(res.data);
         }).catch(err => console.log(err));
     };
 
@@ -55,13 +56,13 @@ const Job = (props) => {
         // const {userId} = props.user;
         //Do I need to destructure userId off props? Or just pass it in as a parameter? 
         axios.delete(`/api/jobs/${userId}/${jobId}`).then(res=> {
-            setJobs(res.data);
+            props.updateJobs(res.data);
             props.history.push('/dashboard');
         }).catch(err => console.log(err))
     };
 
     const toggleEdit = () => {
-        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.jobs;
+        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.job;
         setIsEditing(!isEditing);
         //Do I need to do title: props.job.title? or will below work because I destructured it off props.job?
         setInput({
@@ -84,15 +85,15 @@ const Job = (props) => {
                 <div className='title-bar'>
                     <div className='title-box'>
                         {/* The job title needs to come from redux. */}
-                        <p>{title}</p>
+                        <p>{job.title}</p>
                     </div>
                     <div className='edit-delete-box'>
                         {/* Add onClick method */}
                         <button onClick={toggleEdit} className='btn' >EDIT</button>
                         <button onClick={saveEdit(
-                            //How am I getting jobId?
+                            //How am I getting jobId? (It's in the props sent here, and also, it was in the link route.)
                             //Do I need to save userId in here?
-                            props.job.jobId,
+                            // props.job.jobId,
                             input.title,
                             input.location,
                             input.ulr,
@@ -111,31 +112,31 @@ const Job = (props) => {
                         <>
                     <div className='detail-item'>
                         <p className='item'>COMPANY</p>
-                        <p className='value'>{company}</p>
+                        <p className='value'>{props.job.company}</p>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>LOCATION</p>
-                        <p className='value'>{location}</p>
+                        <p className='value'>{props.job.location}</p>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>URL</p>
-                        <p className='value'>{url}</p>
+                        <p className='value'>{props.job.url}</p>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>DATE POSTED</p>
-                        <p className='value'>{datePosted}</p>
+                        <p className='value'>{props.job.datePosted}</p>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>CONTACT</p>
-                        <p className='value'>{contact}</p>
+                        <p className='value'>{props.job.contact}</p>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>DESCRIPTION</p>
-                        <p className='value'>{description}</p>
+                        <p className='value'>{props.job.description}</p>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>NOTES</p>
-                        <props className='value'>{notes}</props>
+                        <props className='value'>{props.job.notes}</props>
                     </div>
                         </>
                     ) : (
@@ -162,11 +163,11 @@ const Job = (props) => {
                     </div>
                     <div className='detail-item'>
                         <p className='item'>DESCRIPTION</p>
-                        <textarea placeholder='Enter job description here.' className='value'>{input.description}</textarea>
+                        <textarea placeholder='Enter job description here.' className='value-textarea'>{input.description}</textarea>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>NOTES</p>
-                        <textarea placeholder='Enter any notes here.' className='value'>{input.notes}</textarea>
+                        <textarea placeholder='Enter any notes here.' className='value-textarea'>{input.notes}</textarea>
                     </div>
                         </>
                     )} 
@@ -184,79 +185,79 @@ const Job = (props) => {
                         {/* Conditional rendering for status */}
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                                {jobStatusId === 1 ? 
+                                {props.job.jobStatusId === 1 ? 
                                 <p className='researching'>RESEARCHING</p>
                                 : <p className='normal-text'>RESEARCHING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 2 ? 
+                            {props.job.jobStatusId === 2 ? 
                                 <p className='networking'>NETWORKING</p>
                                 : <p className='normal-text'>NETWORKING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                                 <p className='applying'>APPLYING</p>
                                 : <p className='normal-text'>APPLYING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='application-submitted'>APPLICATION SUBMITTED</p>
                             : <p className='normal-text'>APPLICATION SUBMITTED</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='assessments'>ASSESSMENTS</p>
                             : <p className='normal-text'>ASSESSMENTS</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='interviewing'>INTERVIEWING</p>
                             : <p className='normal-text'>INTERVIEWING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='thankyou'>THANK YOU SENT</p>
                             : <p className='normal-text'>THANK YOU SENT</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='waiting'>WAITING FOR RESPONSE</p>
                             : <p className='normal-text'>WAITING FOR RESPONSE</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='offer'>OFFER</p>
                             : <p className='normal-text'>OFFER</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='rejected'>REJECTED</p>
                             : <p className='normal-text'>REJECTED</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='negotiating'>NEGOTIATING</p>
                             : <p className='normal-text'>NEGOTIATING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='accepted-offer'>ACCEPTED OFFER</p>
                             : <p className='normal-text'>ACCEPTED OFFER</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {jobStatusId === 1 ? 
+                            {props.job.jobStatusId === 1 ? 
                             <p className='rejected-offer'>REJECTED OFFER</p>
                             : <p className='normal-text'>REJECTED OFFER</p>}
                         </div>
@@ -270,7 +271,7 @@ const Job = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, { setJobs })(Job);
+export default connect(mapStateToProps, { updateJobs })(Job);
 
 
 // need to get jobs from redux state.

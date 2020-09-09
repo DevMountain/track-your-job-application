@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/components/Login.scss';
 import {loginUser} from '../redux/authReducer';
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 // import { Simulate } from 'react-dom/test-utils';
 // import { registerUser} from '../../redux/reducer';
@@ -322,11 +323,14 @@ class Login extends React.Component {
                 </div>
                 <footer className='footer-text' style={this.styles.footer}>
                     <div style={this.styles.footerLinks}>
-                        <p>TYJA © 2020</p>
+                        {/* This would be nice, but I have to figure out how to get it to go to About Us when not logged in. */}
+                        {/* <p>TYJA © 2020</p> */}
                         {/* Make About Us a link */}
-                        <p>About Us</p>
+                        {/* <Link to='/about'>
+                            <p>About Us</p>
+                        </Link> */}
                         {/* Make Contact Us a link to send email with nodemailer */}
-                        <p>Contact Us</p>
+                        {/* <p>Contact Us</p> */}
                     </div>
                 </footer>
             </div>

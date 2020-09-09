@@ -3,11 +3,12 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 // import DashboardJob from './DashboardJob'
 // import DashboardAction from './DashboardAction';
+import Job from './Job';
 import '../styles/components/Dashboard.scss';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUser} from '../redux/authReducer';
-// import {getJobs} from '../redux/jobReducer';
+// import {updateJobs} from '../redux/jobReducer';
 import {withRouter} from 'react-router-dom';
 // import arrow from '../left-black-arrow-skinny-icon.png';
 import StatusColorChanger from './StatusColorChanger';
@@ -15,31 +16,24 @@ import StatusColorChanger from './StatusColorChanger';
 
 //used hooks
 const Dashboard = (props) => {
-// class Dashboard extends React.Component {
-    // constructor(){
-    //     super();
-    //     this.state = {
-    //         jobs: []
-    //     }
-    // }
-    // const {} = props.
-    // props from App.js (But what is it? Why does App.js have props? Is it from withRouter?)
 
     //Why is it saying that jobs here isn't used?
     //
-    // const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState([]);
     // const [users, setUsers] = useState();
     // I need hooks here because I need the lifecycle method. I don't know if I need state or not. I don't think I do. I do need a link on the add button to the add job page. I think I need state because I need to make the axios call and update the value of state with the response (res.data) of the axios call. And that's what I'll pass down as props to dashboardjob.js. And also, I need to connect to redux to get the userId off of user in the store. 
 
 //Uncomment this after I console.log props.
 
     useEffect(() => {
+        console.log('props on dashboard', props)
         const {userId} = props.authReducer.user;
+        // const {updateJobs} = props.jobReducer;
         axios
             .get(`/api/jobs/${userId}`)
             .then(res =>{
-                // instead of setJobs, interact with reducer. 
-                props.setJobs(res.data);
+                //**It's not recognizing that I'm using what I'm importing from jobReducer. Why? Am I not using jobs from redux state? I think I need to update state here and then it will map to redux. 
+                setJobs(res.data);
             })
             .catch(err => console.log(err));
     }, []);
@@ -50,16 +44,17 @@ const Dashboard = (props) => {
             <section className='big-list-container'>
                 <div className='title-bar-jobs'>
                     <div className='title'>
-                        <p>JOBS</p>
+                        <p>ALL JOBS</p>
                     </div>
-                    <section className='select-line-box'>
+                    {/* Fix this line (style) element when I have time. */}
+                    {/* <section className='select-line-box'>
                         <div className='line-box'></div>
                         <div className='line-container'>
                             <div className='box-line-up'></div>
                             <div className='box-line-down'></div>
                         </div>
-                    </section>
-                    <div className='status'>
+                    </section> */}
+                    <div className='status-title'>
                         <p>STATUS</p>
                     </div>
                 </div>
@@ -74,12 +69,22 @@ const Dashboard = (props) => {
                     {props.jobReducer.jobs.map((job, index, array) => {
                         return (
                             <div>
+                                {/* Should I pass props down to Job.js, so I don't have to do an axios call to get the one job? I could render all of this but just have it display: none here. */}
                                 <Link to = {`/job/${job.jobId}`}>
                                     <div className='job-map-box' key={index} >
                                         <div className='job-company-box'>
                                             <p className='job-title'>TEST TITLE{job.title}</p>
                                             <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            
+                                            {/* <p className='location'>TEST COMPANY{job.location}</p>
+                                            <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            <p className='company-name'>TEST COMPANY{job.company}</p> */}
                                         </div>
+                                        <Job className='display-none' job={job}/>
                                         <StatusColorChanger job={job}/>
                                     </div>
                                 </Link>
@@ -117,14 +122,15 @@ const Dashboard = (props) => {
 
 
 
-// const mapStateToProps = state => state;
-function mapStateToProps(reduxState){
-    console.log("REDUX STATE Nav", reduxState)
-    return {
-        user: reduxState.user,
-        // job: reduxState.job
-    };
-}
+const mapStateToProps = state => state;
+// function mapStateToProps(reduxState){
+//     console.log("REDUX STATE Nav", reduxState)
+//     return {
+//         user: reduxState.user,
+        //**Do I need this? 
+//         jobs: reduxState.jobs
+//     };
+// }
 
 export default connect(mapStateToProps, {getUser})(withRouter(Dashboard));
 

@@ -4,8 +4,7 @@ const initialState = {
     jobs: []
 }
 
-const SET_JOBS = 'SET_JOBS';
-// or SET_JOBS?
+const UPDATE_JOBS = 'UPDATE_JOBS';
 
 //need function to update state
 // Don't need an action for each axios call type. Just use setjob to update redux state.
@@ -13,9 +12,9 @@ const SET_JOBS = 'SET_JOBS';
 // getting response from axios and putting response into jobs array on state. But the axios call doesn't happen here, it happens in the separate components, and the results of the actions are stored in redux state.
 
 
-export function setJobs(jobs){
+export function updateJobs(jobs){
     return {
-        type: SET_JOBS,
+        type: UPDATE_JOBS,
         payload: jobs
     }
 }
@@ -23,7 +22,7 @@ export function setJobs(jobs){
 
 export default function jobReducer(state = initialState, action) {
     switch(action.type){
-        case SET_JOBS:
+        case UPDATE_JOBS:
             console.log('hit setJob redux', action.payload)
             return {...state, jobs: action.payload}
         default:
