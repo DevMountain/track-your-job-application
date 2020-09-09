@@ -1,0 +1,79 @@
+@mixin flex-positioning-evenly {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+}
+@mixin big-header-font {
+    font-family: $primary-font;
+    font-size: 40px;
+    color: black;
+    letter-spacing: 2px;
+}
+$primary-font: 'Oswald', sans serif;
+$secondary-font: 'Roboto Condensed', sans serif;
+
+.status {
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    
+    &--researching{
+        border: 1px solid rgb(238, 206, 66);
+        color: 1px solid rgb(238, 206, 66);
+    }
+    &--networking {
+        border: 3px solid rgb(207, 162, 12);
+        color: rgb(207, 162, 12);
+    }
+    &--applying {
+        border: 3px solid rgb(218, 100, 21);
+        color: rgb(218, 100, 21);
+    }
+    &--application-submitted {
+        border: 3px solid rgb(74, 199, 248);
+        color: black;
+    }
+    &--assessments {
+        border: 3px solid rgb(2, 135, 139);
+        color: rgb(2, 135, 139);
+    }
+    &--interviewing {
+        border: 3px solid rgb(35, 66, 167);
+        color: rgb(35, 66, 167);
+    }
+    &--thankyou {
+        border: 3px solid rgb(81, 38, 121);
+        color:  rgb(81, 38, 121);
+    }
+    &--waiting {
+        border: 3px solid rgb(95, 94, 95);
+        color:  rgb(95, 94, 95);
+    
+    }
+    &--offer {
+        border: 3px solid rgb(63, 241, 72);
+        color:  rgb(63, 241, 72);
+    }
+    &--rejected {
+        border: 3px solid rgb(194, 54, 19);
+        color: rgb(194, 54, 19);
+    }
+    &--negotiating {
+        border: 3px solid rgb(148, 50, 123);
+        color: rgb(148, 50, 123);
+    }
+    &--accepted-offer {
+        border: 3px solid rgb(25, 88, 50);
+        color: rgb(25, 88, 50);
+    }
+    &--rejected-offer {
+        border: 3px solid rgb(105, 52, 52);
+        color:  rgb(105, 52, 52);
+    }
+}
+
+

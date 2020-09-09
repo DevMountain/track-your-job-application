@@ -141,3 +141,40 @@ $secondary-font: 'Roboto Condensed', sans serif;
     border: solid 1px black;
 
 }
+
+.job-map-box {
+    width: 700px;
+    height: 30px;
+    border-bottom: black solid 1px;
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+}
+
+.job-company-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.job-title {
+    width: 600px;
+    font-family: $primary-font;
+    font-size: 16px;
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: solid 1px lightgray;
+}
+
+.company-name {
+    width: 600px;
+    font-family: $secondary-font;
+    font-size: 12px;
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+

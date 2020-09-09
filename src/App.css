@@ -186,6 +186,38 @@ button {
   width: 700px;
   border: solid 1px black; }
 
+.job-map-box {
+  width: 700px;
+  height: 30px;
+  border-bottom: black solid 1px;
+  display: flex;
+  flex-direction: row;
+  padding: 2px; }
+
+.job-company-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; }
+
+.job-title {
+  width: 600px;
+  font-family: "Oswald", sans serif;
+  font-size: 16px;
+  color: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: solid 1px lightgray; }
+
+.company-name {
+  width: 600px;
+  font-family: "Roboto Condensed", sans serif;
+  font-size: 12px;
+  color: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; }
+
 .page {
   display: flex;
   justify-content: space-around;

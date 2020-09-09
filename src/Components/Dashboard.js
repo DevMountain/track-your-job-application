@@ -27,7 +27,7 @@ const Dashboard = (props) => {
 
     //Why is it saying that jobs here isn't used?
     //
-    const [jobs, setJobs] = useState([]);
+    // const [jobs, setJobs] = useState([]);
     // const [users, setUsers] = useState();
     // I need hooks here because I need the lifecycle method. I don't know if I need state or not. I don't think I do. I do need a link on the add button to the add job page. I think I need state because I need to make the axios call and update the value of state with the response (res.data) of the axios call. And that's what I'll pass down as props to dashboardjob.js. And also, I need to connect to redux to get the userId off of user in the store. 
 
@@ -39,100 +39,79 @@ const Dashboard = (props) => {
             .get(`/api/jobs/${userId}`)
             .then(res =>{
                 // instead of setJobs, interact with reducer. 
-                setJobs(res.data);
+                props.setJobs(res.data);
             })
             .catch(err => console.log(err));
     }, []);
-   
+     
 
-    // componentDidMount(){
-    //     const {userId} = this.props.user;
-    //     console.log('userId', this.props.user)
-    //     axios
-    //         .get(`/api/jobs/${userId}`)
-    //         .then(res =>{
-    //             this.setState({
-    //                 jobs: res.data
-    //             })
-    //         })
-    //         .catch(err => console.log(err));
-    // }
-        
-
- 
-    //Method for adding job here.
-
-    
-
-        return (
-            <div className='dash-page'>
-                <section className='big-list-container'>
-                    <div className='title-bar-jobs'>
-                        <div className='title'>
-                            <p>JOBS</p>
-                        </div>
-                        <section className='select-line-box'>
-                            <div className='line-box'></div>
-                            <div className='line-container'>
-                                <div className='box-line-up'></div>
-                                <div className='box-line-down'></div>
-                                {/* <img className="arrow" src={arrow} alt='arrow'/> */}
-                            </div>
-
-                        </section>
-                        <div className='status'>
-                            <p>STATUS</p>
-                        </div>
+    return (
+        <div className='dash-page'>
+            <section className='big-list-container'>
+                <div className='title-bar-jobs'>
+                    <div className='title'>
+                        <p>JOBS</p>
                     </div>
-                    <div className='btn-container'>
-                        <button className='btn'>ADD JOB</button>
-                    </div>
-                    <section className='map-list-container'>
-                       {/* In hooks, do we have to do props or anything or do we destructure at all? See jobs below: */}
-                        {jobs.map((job, index, array) => {
-                            return (
-                                <div>
-                                    <Link to='/job'>
-                                        <div className='job-map-box' key={index} >
-                                            <div className='job-company-box'>
-                                                <p className='job-title'>TEST TITLE{job.title}</p>
-                                                <p className='company-name'>TEST COMPANY{job.company}</p>
-                                            </div>
-                                            <StatusColorChanger job={job}/>
-                                        </div>
-                                    </Link>
-                               </div>
-                            );
-                        })}
+                    <section className='select-line-box'>
+                        <div className='line-box'></div>
+                        <div className='line-container'>
+                            <div className='box-line-up'></div>
+                            <div className='box-line-down'></div>
+                        </div>
                     </section>
+                    <div className='status'>
+                        <p>STATUS</p>
+                    </div>
+                </div>
+                <div className='btn-container'>
+                    <Link to='/addjob'>
+                        <button className='btn'>ADD JOB</button>
+                    </Link>
+                </div>
+                <section className='map-list-container'>
+                    {/* In hooks, do we have to do props or anything or do we destructure at all? See jobs below: */}
+                    {jobs.map((job, index, array) => {
+                        return (
+                            <div>
+                                <Link to='/job'>
+                                    <div className='job-map-box' key={index} >
+                                        <div className='job-company-box'>
+                                            <p className='job-title'>TEST TITLE{job.title}</p>
+                                            <p className='company-name'>TEST COMPANY{job.company}</p>
+                                        </div>
+                                        <StatusColorChanger job={job}/>
+                                    </div>
+                                </Link>
+                            </div>
+                        );
+                    })}
                 </section>
-                {/* ICEBOX feature for future version: */}
-                {/* <div className='line-between'></div> */}
-                {/* <section className='big-list-container'>
-                    <div className='title-bar'>
-                        <div className='title title-right'>
-                            <p>ACTION ITEMS</p>
-                        </div>
-                        <div className='arrow-container arrow-container-right'>
-                            <img className="arrow arrow-right" src={arrow} alt='arrow'/>
-                        </div>
-                        <div className='status'>
-                            <p>STATUS</p>
-                        </div>
+            </section>
+            {/* ICEBOX feature for future version: */}
+            {/* <div className='line-between'></div> */}
+            {/* <section className='big-list-container'>
+                <div className='title-bar'>
+                    <div className='title title-right'>
+                        <p>ACTION ITEMS</p>
                     </div>
-                    <div className='btn-container'>
-                        <button className='add-btn'>ADD ACTION ITEM</button>
+                    <div className='arrow-container arrow-container-right'>
+                        <img className="arrow arrow-right" src={arrow} alt='arrow'/>
                     </div>
-                    <section className='map-list-container'>
-                        {/* Uncomment the following line as soon as props are set up. */}
-                        {/* {actionMap} */}
-                    {/* </section>
-                </section>  */}
-                
-            </div>
-        )
-
-    
+                    <div className='status'>
+                        <p>STATUS</p>
+                    </div>
+                </div>
+                <div className='btn-container'>
+                    <button className='add-btn'>ADD ACTION ITEM</button>
+                </div>
+                <section className='map-list-container'>
+                    {/* Uncomment the following line as soon as props are set up. */}
+                    {/* {actionMap} */}
+                {/* </section>
+            </section>  */}
+            
+        </div>
+    )
 }
 
 
