@@ -22,6 +22,7 @@
     justify-content: space-around;
     margin-top: 20px;
 }
+//Right side of the page.
 
 .job-container {
     // margin-top: 20px;
@@ -34,6 +35,8 @@
 
     // border: solid 1px black;
 }
+
+//same as dashboard.scss title-bar (do a variable or mixin)
 .title-bar {
     height: 80px;
     width: 500px;
@@ -45,61 +48,15 @@
     @include big-header-font;
     
 }
-   
-
-.btn {
-    background-color: white;
-    color: black;
-    border: solid 1px black;
-    font-family: $primary-font;
-    font-size: 16px;
-    margin-left: 20px;
-    letter-spacing: 1px;
-}
 
 .details-container {
-    height: 500px;
-    width: 700px;    
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    overflow: auto;
-}
-
-.detail-item {
-    height: 18px;
-    width: 150px;
+    height: 600px;
+    width: 600px;
+    font-family: $secondary-font;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
-}
-
-.item {
-    font-family: $primary-font;
-    font-size: 14px;
-
-    .input {
-        width: 550px;
-        border: none;
-        border-bottom: 1px solid black;
-        font-family: $secondary-font;
-        font-size: 13px;
-    }
-}
-
-.description .notes {
-    height: 40px;
-    width: 550px;
-    overflow: auto;
-    font-size: 12px;
-    font-family: $secondary-font;
-    border: 1px solid black;
-
-}
-
-
-.status-dropdown-container {
-    height: 100px;
-    width: 550px;
-    color: rgb(53, 53, 53);
-    font-family: $secondary-font;
+    text-align: left;
+    align-items: center;
+    margin-left: 30px;
 }

@@ -12,7 +12,9 @@ function Footer(){
             <div className='footer-links'>
                 <p>TYJA © 2020</p>
                 {/* Make About Us a link */}
-                <p>About Us</p>
+                <Link to='/about'>
+                    <p>About Us</p>
+                </Link>
                 {/* Make Contact Us a link to send email with nodemailer */}
                 <p>Contact Us</p>
                 </div>

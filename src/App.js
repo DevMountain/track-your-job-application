@@ -8,6 +8,7 @@ import Login from './Components/Login';
 import Dashboard from './Components/Dashboard'
 import Job from './Components/Job';
 import AddJob from './Components/AddJob';
+import About from './Components/About';
 // import Action from './Components/Action/Action';
 // import Contacts from './Components/Contacts/Contacts';
 // import Companies from './Components/Companies/Companies';
@@ -56,6 +57,7 @@ function App(props) {
           <Route path="/dashboard" component={Dashboard}/>
           <Route path="/job" component={Job}/>
           <Route path="/addjob" component={AddJob}/>
+          <Route path="/about" component={About}/>
 
           {/* ICEBOX ROUTES: */}
           {/* <Route path="/action" component={Action}/> */}
