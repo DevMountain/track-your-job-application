@@ -14,3 +14,15 @@
     "userId": 5
 }
 
+// Edit job. this worked in postman.
+{
+    "title": "Sweep",
+    "location": "London",
+    "url": "www.bertsweeps.com",
+    "datePosted": "9/2/20",
+    "description": "Must sweep 5 chimneys a week.",
+    "notes": "Get new broom.",
+    "company": "Sweepers Ltd",
+    "contact": "Mary Poppins",
+    "userId": 1
+}

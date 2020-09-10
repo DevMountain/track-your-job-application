@@ -8,14 +8,12 @@ url = $3,
 date_posted = $4,
 description = $5,
 notes = $6,
--- job_status_id = $7,
--- user_id = ${user_id},
 company = $7,
 contact = $8
 WHERE job_id = $9 AND user_id = $10;
 
-SELECT * FROM jobs 
-ORDER BY job_id;
+-- SELECT * FROM jobs 
+-- ORDER BY job_id;
 
 
 

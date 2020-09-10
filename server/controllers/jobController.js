@@ -7,24 +7,25 @@ module.exports = {
         const jobs = await db.jobs.get_jobs(userId)
         res.status(200).send(jobs);
     },
+    //this now works in postman. Do job_status_id in a separate endpoint.
     editJob: async (req, res) => {
         console.log('console.log req.params in edit jobs', req.params)
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {userId, jobId} = req.params; 
         const db = req.app.get('db');
         const jobs = await db.jobs.edit_job([
+            // jobId,
             title,
             location,
             url,
             datePosted,
             description,
             notes,
-            //It's not allowing me to insert the foreign key jobStatusId.
-            // jobStatusId,
             company,
             contact,
             jobId,
-            userId
+            userId,
+            
         ])
         res.status(200).send(jobs);
     },
