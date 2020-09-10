@@ -12,12 +12,12 @@ const Header = (props) => {
         console.log("comes from redux props", props);
         props.getUser();
         console.log('props.history', props.history);
-        // if(props.user.email === ''){
-        //     props.history.push('/');
-        // }
+        if(props.user.email === ''){
+            props.history.push('/');
+        }
         //getting this warning:  Line 20:8:  React Hook useEffect has a missing dependency: 'props'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
         //Also - I want to understand what the dependency array at the end of the useEffect method does.
-    // }, []);
+    // }, []);s
     }, [props.user.email, props.location.pathname]);
 
     const logout = () => {

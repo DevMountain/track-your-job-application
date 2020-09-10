@@ -17,17 +17,19 @@
 //make globals - and put these mixins and variables and a button style as well. 
 
 
-.page {
+.page-add {
+    height: 85vh;
+    width: 100vw;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-top: 20px;
 }
 
-.job-container {
+.job-container-add {
     // margin-top: 20px;
     margin-left: 30px;
-    width: 500px;
-    height: 600px;
+    width: 650px;
+    height: 900px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -36,7 +38,7 @@
 }
 .title-bar-add-job {
     height: 80px;
-    width: 600px;
+    width: 650px;
     display: flex;
     // border: solid 1px black;
     @include flex-positioning-evenly;
@@ -58,19 +60,21 @@
 }
 
 .details-container {
-    height: 500px;
-    width: 600px;    
+    height: 700px;
+    width: 650px;    
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    overflow: auto;
-    resize: none;
+    justify-content: flex-start;
+    // overflow: auto;
+    // resize: none;
+    padding-top: 20px;
 }
 
 .detail-item {
     height: 18px;
-    width: 600px;
+    width: 650px;
     display: flex;
+    margin-bottom: 25px;
     // flex-direction: row;
 }
 
@@ -78,32 +82,73 @@
     font-family: $primary-font;
     font-size: 16px;
     width: 150px;
+    color: black;
+    display: flex;
+
 
 }
 
 .value {
-    width: 450px;
+    width: 500px;
     border: none;
     border-bottom: 1px solid black;
     font-family: $secondary-font;
     font-size: 15px;
+    padding-left: 10px;
 }
 
-// Why isn't this affecting the description and notes?
-.description .notes {
-    height: 40px;
-    width: 550px;
-    overflow: auto;
-    font-size: 12px;
-    font-family: $secondary-font;
-    border: 1px solid black;
-
-}
-
-
-.status-dropdown-container {
+//Why is this not doing anything?
+.detail-item-textarea {
     height: 100px;
-    width: 550px;
-    color: rgb(53, 53, 53);
+    display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+
+}
+
+textarea {
+// .description .notes {
+    display: flex;
+    height: 100px;
+    width: 500px;
+    overflow: auto;
+    font-size: 14px;
     font-family: $secondary-font;
+    letter-spacing: 1px;
+    border: 1px solid black;
+    // margin-bottom: 25px;
+    resize: none;
+
+
+}
+
+
+.status-dropdown-container-line {
+    height: 20px;
+    width: 650px;
+    font-family: $secondary-font;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+
+}
+
+.dropdown {
+    display: flex;
+    overflow: auto;
+    height: 20px;
+    width: 500px;
+    font-family: $secondary-font;
+    font-size: 15px;
+
+}
+option {
+    height: 28px;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
 }

@@ -14,7 +14,7 @@ $primary-font: 'Oswald', sans serif;
 $secondary-font: 'Roboto Condensed', sans serif;
 
 .dash-page {
-    height: 100vh;
+    height: 85vh;
     width: 100vw;
     background-color: white;
     @include flex-positioning-evenly;

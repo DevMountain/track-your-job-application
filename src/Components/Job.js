@@ -81,7 +81,7 @@ const Job = (props) => {
    
     return (
         <div className='page'>
-            <section className='job-container'>
+            <section className='job-container-jobjs'>
                 <div className='title-bar'>
                     <div className='title-box'>
                         {/* The job title needs to come from redux. */}

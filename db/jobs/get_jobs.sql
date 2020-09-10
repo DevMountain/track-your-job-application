@@ -1,4 +1,4 @@
-SELECT j.job_id, j.title, j.location, j.url, j.date_posted, j.description, j.notes, j.user_id, jst.job_status_name, j.job_status_id, j.company, j.contact
+SELECT j.job_id, j.title, j.location, j.url, j.date_posted, j.description, j.notes, j.user_id, jst.job_status_name, j.company, j.contact
 FROM jobs j
 JOIN users u ON j.user_id = u.user_id
 JOIN job_status jst ON jst.job_status_id = j.job_status_id

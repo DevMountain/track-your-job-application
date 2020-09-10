@@ -14,7 +14,7 @@
 --Is this referencing job_status table correctly? 
 INSERT INTO jobs (title, location, company, url, date_posted, description, notes, contact, job_status_id, user_id) 
 VALUES
-($1, $2, $3, $4, $5, $6, $7, $8, (SELECT job_status_id FROM job_status WHERE job_status_name = $9))
+($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
 
 
 -- **SELECT * FROM jobs

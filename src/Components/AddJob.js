@@ -25,6 +25,11 @@ const AddJob = (props) => {
         setInput({...input, [e.target.name]: e.target.value})
     };
 
+    const handleDropdown = (e) => {
+        e.stopPropagation();
+        setInput({...input, jobStatusId: e.target.value})
+    };
+
     // (attach to dropdown container)
     const toggling = () => setIsOpen(!isOpen); 
 
@@ -57,8 +62,8 @@ const AddJob = (props) => {
     }
 
     return (
-        <div className='page'>
-            <section className='job-container'>
+        <div className='page-add'>
+            <section className='job-container-add'>
                 <div className='title-bar-add-job'>
                     <div className='title-box'>
                         <p>ADD JOB</p>
@@ -93,35 +98,46 @@ const AddJob = (props) => {
                         <p className='item'>CONTACT</p>
                         <input type='text' name='contact' value={input.contact} onChange={handleChange} className='value'/>
                     </div>
-                    <div onClick={toggling} className='status-dropdown-container'>
+                    
+                    <div onClick={toggling} className='status-dropdown-container-line'>
                         <p className='item'>STATUS</p>
-                        {isOpen && (
+                        {/* Option value needs to be a number. */}
+                        {/* {isOpen && ( */}
 
-                            <select  name='jobStatusId' className='dropdown' value={input.jobStatusId} onChange={handleChange}>
-                                {/* Is it case sensitive? They're in the tables in all caps; for the query to work, does it need to be all caps? Or will this work? */}
-                                <option value='1'>Researching</option>
-                                <option value='2'>Networking</option>
-                                <option value='3'>Applying</option>
-                                <option value='4'>Application Submitted</option>
-                                <option value='5'>Assessments</option>
-                                <option value='6'>Interviewing</option>
-                                <option value='7'>Thank You Sent</option>
-                                <option value='8'>Waiting for Response</option>
-                                <option value='9'>Offer</option>
-                                <option value='10'>Rejected</option>
-                                <option value='11'>Negotiating</option>
-                                <option value='12'>Accepted Offer</option>
-                                <option value='13'>Rejected Offer</option>
+                            <select  name='jobStatusId' className='dropdown'  onChange={handleDropdown}>
+                                <option className='options' value={1}>Researching</option>
+                                <option className='options' value={2}>Networking</option>
+                                <option className='options' value={3}>Applying</option>
+                                <option className='options' value={4}>Application Submitted</option>
+                                <option className='options' value={5}>Assessments</option>
+                                <option className='options' value={6}>Interviewing</option>
+                                <option className='options' value={7}>Thank You Sent</option>
+                                <option className='options' value={8}>Waiting for Response</option>
+                                <option className='options' value={9}>Offer</option>
+                                <option className='options' value={10}>Rejected</option>
+                                <option className='options' value={11}>Negotiating</option>
+                                <option className='options' value={12}>Accepted Offer</option>
+                                <option className='options' value={13}>Rejected Offer</option>
                             </select>
-                        )}
+                        {/* )} */}
                     </div>
-                    <div className='detail-item'>
+                    <div className='detail-item-textarea'>
                         <p className='item'>DESCRIPTION</p>
-                        <textarea type='text' name='description' placeholder='Enter job description here.' className='description'>{input.description}</textarea>
+                        <textarea 
+                            onChange={handleChange} 
+                            type='text' 
+                            name='description' 
+                            placeholder='Enter job description here.' className='description' 
+                            value={input.description}></textarea>
                     </div>
-                    <div className='detail-item'>
-                        <p placeholder='Enter any other notes here.' className='item'>NOTES</p>
-                        <textarea type='text' name='notes' className='notes'>{input.notes}</textarea>
+                    <div className='detail-item-textarea'>
+                        <p className='item'>NOTES</p>
+                        <textarea 
+                            onChange={handleChange} 
+                            type='text' 
+                            name='notes' 
+                            placeholder='Enter any other notes here.' className='notes' 
+                            value={input.notes}></textarea>
                     </div>
                 </div>
             </section>

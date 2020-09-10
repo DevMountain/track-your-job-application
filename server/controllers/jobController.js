@@ -2,7 +2,7 @@ module.exports = {
     //On the front end, define what information you need.
     getJobs: async (req, res) => {
         const db = req.app.get('db');
-        const {userId} = req.params;
+        const {userId} = req.session.user;
         const jobs = await db.jobs.get_jobs(userId)
         res.status(200).send(jobs);
     },
@@ -26,28 +26,28 @@ module.exports = {
     },
     //getting userId and jobId - how?
     deleteJob: async (req, res) => {
-        const {userId, jobId} = req.params;
-        // const {jobId} = req.params;
+        const {userId} = req.session.user;
+        const {jobId} = req.params;
         const db = req.app.get('db');
         const jobs = await db.jobs.delete_job([jobId, userId])
         res.status(200).send(jobs);
     },
     addJob: async (req, res) => {
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
-        const {userId} = req.params; 
+        const {userId} = req.session.user; 
         const db = req.app.get('db');
-        const jobs = await db.jobs.add_job({
+        const jobs = await db.jobs.add_job([
             title,
             location,
+            company,
             url,
-            date_posted: datePosted,
+            datePosted,
             description,
             notes,
-            user_id: userId,
-            job_status_id: jobStatusId,
-            company,
-            contact
-        })
+            contact,
+            jobStatusId,
+            userId
+        ])
         res.status(200).send(jobs)
     }
 }
