@@ -41,7 +41,7 @@ const Job = (props) => {
     //Do I need the userId? I think I put it in the endpoint.
     useEffect(() => {
         console.log('props', props)
-        axios.get(`/api/jobs/${props.match.params.jobId}`).then(res=> {
+        axios.get(`/api/jobs/${userId}/${jobId}`).then(res=> {
             setJob(res.data)
         }).catch(err => console.log(err));
     });
@@ -50,12 +50,13 @@ const Job = (props) => {
         setInput({...input, [e.target.name]: e.target.value})
     };
 
-    const saveEdit = (jobId, title, location, url, datePosted, description, notes, jobStatusId, company, contact) => {
+    const saveEdit = (title, location, url, datePosted, description, notes, company, contact, jobId, userId) => {
         // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
-        const {userId} = props.job.user_id;
+        //Do jobStatusId elsewhere. Separate edit function and changeHandler and onClick.
+        // const {userId} = props.job.user_id;
         //Or this? Which is better? I'm connected to redux, so probably redux.
         // const {userId} = props.match.params;
-        axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
+        axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, company, contact}).then(res => {
             props.updateJobs(res.data);
         }).catch(err => console.log(err));
     };
@@ -70,7 +71,7 @@ const Job = (props) => {
     };
 
     const toggleEdit = () => {
-        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.job;
+        const {title, location, url, datePosted, description, notes, company, contact} = props.job;
         setIsEditing(!isEditing);
         //Do I need to do title: props.job.title? or will below work because I destructured it off props.job?
         setInput({
@@ -80,7 +81,6 @@ const Job = (props) => {
             datePosted,
             description,
             notes,
-            jobStatusId,
             company,
             contact
         });
@@ -108,11 +108,10 @@ const Job = (props) => {
                             input.datePosted,
                             input.description,
                             input.notes,
-                            input.jobStatusId,
                             input.company,
                             input.contact
                         )} className='btn' >SAVE</button>
-                        <button onClick={deleteJob(props.user.user_id, props.job.jobId)} className='btn' >DELETE</button>
+                        <button onClick={deleteJob(props.authReducer.user.userId, props.job.jobId)} className='btn' >DELETE</button>
                     </div>
                 </div>
                 <div className='details-container'>

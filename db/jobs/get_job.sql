@@ -1,2 +1,2 @@
 SELECT * FROM jobs
-WHERE job_id = $1;
+WHERE user_id = $1 AND job_id = $2;

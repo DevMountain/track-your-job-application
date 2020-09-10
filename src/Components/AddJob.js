@@ -40,10 +40,10 @@ const AddJob = (props) => {
 
     const addJob = () => {
         console.log('props here!', props)
-        // const {userId} = props.match.params;
-        const {userId} = props.authReducer.user;
+        const {userId} = props.match.params;
+        // const {userId} = props.authReducer.user;
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
-        
+
         axios.post(`/api/jobs/${userId}`, {title, location, url, datePosted, description, notes, userId, jobStatusId, company, contact}).then(res => {
             props.updateJobs(res.data);
             props.history.push('/job');

@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 // import DashboardJob from './DashboardJob'
 // import DashboardAction from './DashboardAction';
-import Job from './Job';
+// import Job from './Job';
 import '../styles/components/Dashboard.scss';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -75,8 +75,8 @@ const Dashboard = (props) => {
                                 <Link to = {`/job/${job.jobId}`}>
                                     <div className='job-map-box' key={index} >
                                         <div className='job-company-box'>
-                                            <p className='job-title'>TEST TITLE{job.title}</p>
-                                            <p className='company-name'>TEST COMPANY{job.company}</p>
+                                            <p className='job-title'>{job.title}</p>
+                                            <p className='company-name'>{job.company}</p>
                                             
                                             {/* <p className='location'>TEST COMPANY{job.location}</p>
                                             <p className='company-name'>TEST COMPANY{job.company}</p>
@@ -86,7 +86,7 @@ const Dashboard = (props) => {
                                             <p className='company-name'>TEST COMPANY{job.company}</p>
                                             <p className='company-name'>TEST COMPANY{job.company}</p> */}
                                         </div>
-                                        <Job className='display-none' job={job} key={job.jobId}/>
+                                        {/* <Job className='display-none' job={job} key={job.jobId}/> */}
                                         <StatusColorChanger job={job}/>
                                     </div>
                                 </Link>
