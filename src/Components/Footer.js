@@ -14,7 +14,7 @@ function Footer(){
                 <p>TYJA © 2020</p>
                 {/* Make About Us a link */}
                 <Link to='/about'>
-                    <p>About Us</p>
+                    <p>About TYJA</p>
                 </Link>
                 {/* Make Contact Us a link to send email with nodemailer */}
                 <p>Contact Us</p>

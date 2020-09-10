@@ -1,26 +1,9 @@
--- INSERT INTO jobs 
--- (title, company_id, location, url, date_posted, description, notes, job_status_id, contact_id, user_id)
--- VALUES
--- ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+--This is working in SQL tabs. Not in Postman.
 
--- SELECT * FROM jobs
--- ORDER BY job_id;
-
--- -- **job_status_id needs to be a drop down.
-
-----**SEE IF THIS ONE WORKS:
-
---**Do I need the user_id here? It's a foreign key reference.
---Is this referencing job_status table correctly? 
 INSERT INTO jobs (title, location, company, url, date_posted, description, notes, contact, job_status_id, user_id) 
 VALUES
-($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
 
-
--- **SELECT * FROM jobs
--- **ORDER BY job_id;
-
---Just all start at researching status. 
 
 
 -- -- company_id needs to be a drop down, and if the company_id doesn't exist in the drop-down menu, it will need to be added, to create a new company entry. Or left null.

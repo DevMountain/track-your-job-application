@@ -12,7 +12,7 @@ CREATE TABLE jobs (
     -- company_id INT REFERENCES companies(company_id),
     location VARCHAR(100),
     url VARCHAR(100), 
-    date_posted DATE,
+    date_posted VARCHAR(50),
     description TEXT, 
     notes TEXT,
     -- contact_id INT REFERENCES contacts(contact_id),

@@ -34,7 +34,7 @@ module.exports = {
     },
     addJob: async (req, res) => {
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
-        const {userId} = req.session.user; 
+        const {userId} = req.params; 
         const db = req.app.get('db');
         const jobs = await db.jobs.add_job([
             title,

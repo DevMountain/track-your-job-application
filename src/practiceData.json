@@ -1,0 +1,16 @@
+// //For Postman
+
+// Add job
+// {
+//     "title": "Forest Ranger",
+//     "location": "The Alps",
+//     "company": "The Swiss Government",
+//     "url": "www.upinthesky.ch",
+//     "datePosted": "2020-09-08",
+//     "description": "Requires a good pair of lungs that don't need much oxygen, and a desire to touch the clouds. Keep the mountain goats safe and happy, and milk them in your spare time.",
+//     "notes": "Contact the main ranger to get a more detailed description.",
+//     "contact": "Ranger Jacque at rangerjacque@alps.com",
+//     "jobStatusId": 2,
+//     "userId": 5
+// }
+

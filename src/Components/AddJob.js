@@ -7,7 +7,8 @@ import '../styles/components/AddJob.scss';
 
 //used hooks
 const AddJob = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+    // console.log('props on addjob', props)
+    // const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState({
         title: '',
         location: '',
@@ -31,16 +32,18 @@ const AddJob = (props) => {
     };
 
     // (attach to dropdown container)
-    const toggling = () => setIsOpen(!isOpen); 
+    // const toggling = () => setIsOpen(!isOpen); 
 
     // How do I have two parameters (userId and jobId) to edit or delete one job? 
 
     //When adding a job with a foreign key reference, do I need to add the userId? Or because I get that off match.params, will that be put on the job object?  
 
     const addJob = () => {
+        console.log('props here!', props)
         // const {userId} = props.match.params;
         const {userId} = props.authReducer.user;
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
+        
         axios.post(`/api/jobs/${userId}`, {title, location, url, datePosted, description, notes, userId, jobStatusId, company, contact}).then(res => {
             props.updateJobs(res.data);
             props.history.push('/job');
@@ -99,7 +102,9 @@ const AddJob = (props) => {
                         <input type='text' name='contact' value={input.contact} onChange={handleChange} className='value'/>
                     </div>
                     
-                    <div onClick={toggling} className='status-dropdown-container-line'>
+                    <div 
+                    // onClick={toggling} 
+                    className='status-dropdown-container-line'>
                         <p className='item'>STATUS</p>
                         {/* Option value needs to be a number. */}
                         {/* {isOpen && ( */}
