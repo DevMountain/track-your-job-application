@@ -11,8 +11,9 @@ module.exports = {
     getOneJob: async (req, res) => {
         const db = req.app.get('db');
         const {userId, jobId} = req.params;
+        console.log('userId and jobId', userId, jobId)
         const job = await db.jobs.get_job([userId, jobId]);
-        res.status(200).send(job);
+        res.status(200).send(job[0]);
     },
     //this now works in postman. Do job_status_id in a separate endpoint.
     //Now this isn't working in postman. I don't know why. It's making the job title the jobId and the userId undefined. 

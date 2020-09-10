@@ -73,7 +73,7 @@ const Dashboard = (props) => {
                         console.log('job', job)
                         return (
                             <>
-                                <Link to = {`/job/${job.job_id}`} >
+                                <Link to = {`/job/${props.authReducer.user.userId}/${job.job_id}`} >
                                     <div key={index} className='job-map-box'  >
                                         <div className='job-company-box'>
                                             <p className='job-title'>{job.title}</p>

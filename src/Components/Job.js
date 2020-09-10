@@ -9,7 +9,7 @@ import {getUser} from '../redux/authReducer';
 
 
 const Job = (props) => {
-    console.log('props job.js', props)
+    // console.log('props job.js', props)
     // const {userId} = props.authReducer.user;
     // const {jobId} = props.match.params;
     //maybe take jobStatusId off this, because it needs to be in the side Status list. 
@@ -58,6 +58,7 @@ const Job = (props) => {
         console.log('props on jobjs', props)
         const {userId} = props.authReducer.user;
         const {jobId} = props.match.params;
+        //when I changed the params in the endpoint, it stopped loading. Try without userId again.
         axios.get(`/api/jobs/${userId}/${jobId}`).then(res=> {
             setJob(res.data)
             console.log("props job.js", props)
@@ -72,12 +73,12 @@ const Job = (props) => {
         setInput({...input, [e.target.name]: e.target.value})
     };
 
-    const saveEdit = (title, location, url, datePosted, description, notes, company, contact, userId) => {
+    const saveEdit = (title, location, url, datePosted, description, notes, company, contact) => {
         // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
         //Do jobStatusId elsewhere. Separate edit function and changeHandler and onClick.
         // const {userId} = props.job.user_id;
         //Or this? Which is better? I'm connected to redux, so probably redux.
-        // const {userId} = props.match.params;
+        const {userId} = props.authReducer.user;
         const {jobId} = props.match.params;
         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, company, contact}).then(res => {
             props.updateJobs(res.data);
@@ -108,7 +109,7 @@ const Job = (props) => {
         });
     };
 
-   
+    console.log('job.js JOB check', job)
     return (
         <div className='page'>
             <section className='job-container-jobjs'>
