@@ -3,28 +3,36 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import '../styles/components/Job.scss'
 import {updateJobs} from '../redux/jobReducer';
+import {getUser} from '../redux/authReducer';
 
-// Dashboard methods: get jobs, delete, edit, add function (defined on jobReducer), handlechange if I add a search/filter function. 
-
-// Job Detail view method: add job, delete, edit, saveinput, handlechange, 
 
 const Job = (props) => {
-    console.log('props', props)
+    console.log('props job.js', props)
     //maybe take jobStatusId off this, because it needs to be in the side Status list. 
     // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.jobReducer.jobs;
-    //am I destructuring off props.job? or props.jobs? I think it's jobs, but then, how do I get into the 
+   
     const [isEditing, setIsEditing] = useState(false)
     const [job, setJob] = useState({})
     const [input, setInput] = useState({
         // title: props.job.title,
         //since I destructured off props, do I need to do it like the above? Or will this work:
+        // title,
+        // location,
+        // url,
+        // datePosted,
+        // description,
+        // notes,
+        // jobStatusId,
+        // company,
+        // contact
+        
         title: props.job.title,
         location: props.job.location,
         url: props.job.url,
         datePosted: props.job.datePosted,
         description: props.job.description,
         notes: props.job.notes,
-        jobStatusId: props.job.jobStatusId,
+        jobStatusId: props.job.job_status_id,
         company: props.job.company,
         contact: props.job.contact,
     })
@@ -44,7 +52,7 @@ const Job = (props) => {
 
     const saveEdit = (jobId, title, location, url, datePosted, description, notes, jobStatusId, company, contact) => {
         // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
-        const {userId} = props.user;
+        const {userId} = props.job.user_id;
         //Or this? Which is better? I'm connected to redux, so probably redux.
         // const {userId} = props.match.params;
         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
@@ -96,7 +104,7 @@ const Job = (props) => {
                             // props.job.jobId,
                             input.title,
                             input.location,
-                            input.ulr,
+                            input.url,
                             input.datePosted,
                             input.description,
                             input.notes,
@@ -104,7 +112,7 @@ const Job = (props) => {
                             input.company,
                             input.contact
                         )} className='btn' >SAVE</button>
-                        <button onClick={deleteJob(props.user.userId, props.job.jobId)} className='btn' >DELETE</button>
+                        <button onClick={deleteJob(props.user.user_id, props.job.jobId)} className='btn' >DELETE</button>
                     </div>
                 </div>
                 <div className='details-container'>
@@ -279,7 +287,7 @@ export default connect(mapStateToProps, { updateJobs })(Job);
 
 
 
-// Job is a completely different Component. It's a way to display a full view of the job. I will edit, save, and delete jobs from this this detailed Job view. This will need to update the Dashboard component. So, the methods to update the list of jobs in the database (and on state), will need to be housed in Dashboard - the master list. So, define the add job function, the 
+// Job is a completely different Component. It's a way to display a full view of the job. I will edit, save, and delete jobs from this this detailed Job view. This will need to update the Dashboard component. If I weren't using redux, the methods to update the list of jobs in the database (and on state), would need to be housed in Dashboard - the master list. 
 
 // The DashboardJobs component will make the same request - and get mostly the same clientInformation, but just not as much. Will it need an axios call? 
 

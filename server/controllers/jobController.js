@@ -1,27 +1,31 @@
 module.exports = {
     //On the front end, define what information you need.
+    //Get jobs works in Postman. 
     getJobs: async (req, res) => {
         const db = req.app.get('db');
-        const {userId} = req.session.user;
+        const {userId} = req.params;
         const jobs = await db.jobs.get_jobs(userId)
         res.status(200).send(jobs);
     },
     editJob: async (req, res) => {
-        console.log(req.params)
+        console.log('console.log req.params in edit jobs', req.params)
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
-        const {userId} = req.params; 
+        const {userId, jobId} = req.params; 
         const db = req.app.get('db');
-        const jobs = await db.jobs.edit_job({
+        const jobs = await db.jobs.edit_job([
             title,
             location,
             url,
-            date_posted: datePosted,
+            datePosted,
             description,
             notes,
-            job_status_id: jobStatusId,
+            //It's not allowing me to insert the foreign key jobStatusId.
+            // jobStatusId,
             company,
-            contact
-        })
+            contact,
+            jobId,
+            userId
+        ])
         res.status(200).send(jobs);
     },
     //getting userId and jobId - how?
@@ -36,7 +40,7 @@ module.exports = {
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {userId} = req.params; 
         const db = req.app.get('db');
-        const jobs = await db.jobs.add_job([
+        const jobs = await db.jobs.add_job({
             title,
             location,
             company,
@@ -47,7 +51,7 @@ module.exports = {
             contact,
             jobStatusId,
             userId
-        ])
+        })
         res.status(200).send(jobs)
     }
 }

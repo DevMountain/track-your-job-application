@@ -9,7 +9,7 @@ const DashboardJob = (props) => {
         //need to figure out if I need to do an axios get request of company...Or is this just a weird db query where I need to do a join? 
         // SELECT jobs.title, companies.name FROM jobs 
         // JOIN ON jobs.company_id = companies.company_id 
-        // WHERE company_id = $1;
+        // WHERE company_id =  ;
         // -- id sent on params in axios get request. 
 
         //Where do I put this query? In the jobController - but which method? getJobBrief, and the axios call will go in dashboard, and get passed as props to DashBoardJob.

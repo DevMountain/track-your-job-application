@@ -8,7 +8,7 @@ import '../styles/components/Dashboard.scss';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getUser} from '../redux/authReducer';
-// import {updateJobs} from '../redux/jobReducer';
+import {updateJobs} from '../redux/jobReducer';
 import {withRouter} from 'react-router-dom';
 // import arrow from '../left-black-arrow-skinny-icon.png';
 import StatusColorChanger from './StatusColorChanger';
@@ -33,7 +33,9 @@ const Dashboard = (props) => {
             .get(`/api/jobs/${userId}`)
             .then(res =>{
                 //**It's not recognizing that I'm using what I'm importing from jobReducer. Why? Am I not using jobs from redux state? I think I need to update state here and then it will map to redux. 
+                console.log(res.data);
                 setJobs(res.data);
+                props.updateJobs(res.data);
             })
             .catch(err => console.log(err));
     }, []);
@@ -84,7 +86,7 @@ const Dashboard = (props) => {
                                             <p className='company-name'>TEST COMPANY{job.company}</p>
                                             <p className='company-name'>TEST COMPANY{job.company}</p> */}
                                         </div>
-                                        <Job className='display-none' job={job}/>
+                                        <Job className='display-none' job={job} key={job.jobId}/>
                                         <StatusColorChanger job={job}/>
                                     </div>
                                 </Link>
@@ -132,9 +134,9 @@ const mapStateToProps = state => state;
 //     };
 // }
 
-export default connect(mapStateToProps, {getUser})(withRouter(Dashboard));
+export default connect(mapStateToProps, {getUser, updateJobs})(withRouter(Dashboard));
 
-//Styling notes: set overflow for lists to auto, so it will scroll down to the other list items.
+
 // {/* Right and left list containers are the same format and can use the same classid or styling handle */}
 
 
