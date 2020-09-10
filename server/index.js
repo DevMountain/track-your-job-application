@@ -38,6 +38,7 @@ app.get('/auth/user', authCtrl.getUser)
 
 //endpoints for jobs
 //Check on these endpoints - how do I get userId and jobId in put and delete?
+// app.get('/api/jobs', jobCtrl.getJobs);
 app.get('/api/jobs/:userId', jobCtrl.getJobs);
 app.get('/api/jobs/:userId/:jobId', jobCtrl.getOneJob);
 app.put('/api/jobs/:userId/:jobId', jobCtrl.editJob);

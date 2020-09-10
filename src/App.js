@@ -55,7 +55,8 @@ function App(props) {
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route path="/dashboard" component={Dashboard}/>
-          <Route path="/job" component={Job}/>
+          {/* Had to change this to be exact path with the jobId parameter for it to show up in Job.js on the match.params object. */}
+          <Route exact path="/job/:userId/:jobId" component={Job}/>
           <Route path="/addjob" component={AddJob}/>
           <Route path="/about" component={About}/>
 

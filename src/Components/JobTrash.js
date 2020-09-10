@@ -1,0 +1,629 @@
+// import React, {useState, useEffect} from 'react';
+// import axios from 'axios';
+// import { connect } from "react-redux";
+// import '../styles/components/Job.scss'
+// import {updateJobs} from '../redux/jobReducer';
+// import {getUser} from '../redux/authReducer';
+// // import {withRouter} from 'react-router-dom';
+
+
+
+// const Job = (props) => {
+//     console.log('props job.js', props)
+//     // const {userId} = props.authReducer.user;
+//     // const {jobId} = props.match.params;
+//     //maybe take jobStatusId off this, because it needs to be in the side Status list. 
+//     // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = props.jobReducer.jobs;
+   
+//     const [isEditing, setIsEditing] = useState(false)
+//     const [job, setJob] = useState([])
+//     const [input, setInput] = useState({
+//         // title: props.job.title,
+//         //since I destructured off props, do I need to do it like the above? Or will this work:
+//         // title,
+//         // location,
+//         // url,
+//         // datePosted,
+//         // description,
+//         // notes,
+//         // jobStatusId,
+//         // company,
+//         // contact
+        
+//         // title: '',
+//         location: '',
+//         url: '',
+//         datePosted: '',
+//         description: '',
+//         notes: '',
+//         //Maybe put this in a different location.
+//         jobStatusId: 1,
+//         company: '',
+//         contact: ''
+
+//         // title: props.job.title,
+//         // location: props.job.location,
+//         // url: props.job.url,
+//         // datePosted: props.job.datePosted,
+//         // description: props.job.description,
+//         // notes: props.job.notes,
+//         // jobStatusId: props.job.job_status_id,
+//         // company: props.job.company,
+//         // contact: props.job.contact,
+//     })
+
+//     // get the job info in an axios request get jobs, inside a component did mount/useEffect, so the job is listed as soon as I view the component.
+//     //Do I need the userId? I think I put it in the endpoint.
+//     useEffect(() => {
+//         console.log('props on jobjs', props)
+//         const {userId} = props.authReducer.user;
+//         const {jobId} = props.match.params;
+//         axios.get(`/api/jobs/${userId}/${jobId}`).then(res=> {
+//             setJob(res.data)
+//             console.log("props job.js", props)
+//             console.log("job job.js ", job)
+//             // console.log("job.js setjob", setJob)
+//             // console.log("job.js useState", useState)
+//         }).catch(err => console.log(err));
+//     }, []);
+//     //This useEffect isn't updating useState. Why? The getOneJob endpoint is working in Postman.
+
+//     const handleChange = (e) => {
+//         setInput({...input, [e.target.name]: e.target.value})
+//     };
+
+//     const saveEdit = (title, location, url, datePosted, description, notes, company, contact, userId) => {
+//         // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
+//         //Do jobStatusId elsewhere. Separate edit function and changeHandler and onClick.
+//         // const {userId} = props.job.user_id;
+//         //Or this? Which is better? I'm connected to redux, so probably redux.
+//         // const {userId} = props.match.params;
+//         const {jobId} = props.match.params;
+//         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, company, contact}).then(res => {
+//             props.updateJobs(res.data);
+//         }).catch(err => console.log(err));
+//     };
+
+//     const deleteJob = (userId, jobId) => {
+//         // const {userId} = props.authReducer.user;
+//         // const {jobId} = props.match.params;
+//         axios.delete(`/api/jobs/${userId}/${jobId}`).then(res=> {
+//             props.updateJobs(res.data);
+//             props.history.push('/dashboard');
+//         }).catch(err => console.log(err))
+//     };
+
+//     const toggleEdit = () => {
+//         const {title, location, url, datePosted, description, notes, company, contact} = input;
+//         setIsEditing(!isEditing);
+//         setInput({
+//             title,
+//             location,
+//             url,
+//             datePosted,
+//             description,
+//             notes,
+//             company,
+//             contact
+//         });
+//     };
+
+   
+//     return (
+//         <div className='page'>
+//             <section className='job-container-jobjs'>
+//                 <div className='title-bar'>
+//                     <div className='title-box'>
+//                         {/* The job title needs to come from where? From useState here. */}
+//                         <p>TITLE NOT WORKING{job.title}</p>
+//                     </div>
+//                     <div className='edit-delete-box'>
+//                         {/* Add onClick method */}
+//                         <button onClick={() => toggleEdit()} className='btn' >EDIT</button>
+//                         <button onClick={() => saveEdit(
+//                             //How am I getting jobId? (It's in the props sent here, and also, it was in the link route.)
+//                             //**Do I need to save userId in here?
+//                             // props.job.jobId,
+//                             // input.title,
+//                             input.location,
+//                             input.url,
+//                             input.datePosted,
+//                             input.description,
+//                             input.notes,
+//                             input.company,
+//                             input.contact
+//                         )} className='btn' >SAVE</button>
+//                         <button onClick={() => deleteJob(props.authReducer.user.userId, job.jobId)} className='btn' >DELETE</button>
+//                     </div>
+//                 </div>
+//                 <div className='details-container'>
+//                     {!isEditing ? (
+//                         <>
+//                     <div className='detail-item'>
+//                         <p className='item'>COMPANY</p>
+//                         <p className='value'>{job.company}</p>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>LOCATION</p>
+//                         <p className='value'>{job.location}</p>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>URL</p>
+//                         <p className='value'>{job.url}</p>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>DATE POSTED</p>
+//                         <p className='value'>{job.date_posted}</p>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>CONTACT</p>
+//                         <p className='value'>{job.contact}</p>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>DESCRIPTION</p>
+//                         <p className='value'>{job.description}</p>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>NOTES</p>
+//                         <props className='value'>{job.notes}</props>
+//                     </div>
+//                         </>
+//                     ) : (
+//                         <>
+//                     <div className='detail-item'>
+//                         <p className='item'>COMPANY</p>
+//                         <input name='company' onChange={(e) => handleChange(e)} className='value' value={input.company}/>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>LOCATION</p>
+//                         <input name='location' onChange={(e) => handleChange(e)} className='value' value={input.location}/>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>URL</p>
+//                         <input name='url' onChange={(e) => handleChange(e)} className='value' value={input.url}/>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>DATE POSTED</p>
+//                         <input name='datePosted' onChange={(e) => handleChange(e)} className='value' value={input.datePosted}/>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>CONTACT</p>
+//                         <input name='contact' onChange={(e) => handleChange(e)} className='value' value={input.contact}/>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>DESCRIPTION</p>
+//                         <textarea name='description' onChange={(e) => handleChange(e)} placeholder='Enter job description here.' className='value-textarea'>{input.description}</textarea>
+//                     </div>
+//                     <div className='detail-item'>
+//                         <p className='item'>NOTES</p>
+//                         <textarea name='notes' onChange={(e) => handleChange(e)} placeholder='Enter any notes here.' className='value-textarea'>{input.notes}</textarea>
+//                     </div>
+//                         </>
+//                     )} 
+//                 </div>
+//             </section>
+
+//             <section className='status-container'>
+//                 <div className='status-title'>
+//                     <p>STATUS</p>
+//                 </div>
+//                 <div className='list-w-bar'>
+//                     <div className='status-line'></div>
+//                     {/* <div className='line-circle'></div> */}
+//                     <div className='status-list'>
+//                         {/* Conditional rendering for status */}
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                                 {job.jobStatusId === 1 ? 
+//                                 <p className='researching'>RESEARCHING</p>
+//                                 : <p className='normal-text'>RESEARCHING</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 2 ? 
+//                                 <p className='networking'>NETWORKING</p>
+//                                 : <p className='normal-text'>NETWORKING</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                                 <p className='applying'>APPLYING</p>
+//                                 : <p className='normal-text'>APPLYING</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='application-submitted'>APPLICATION SUBMITTED</p>
+//                             : <p className='normal-text'>APPLICATION SUBMITTED</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='assessments'>ASSESSMENTS</p>
+//                             : <p className='normal-text'>ASSESSMENTS</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='interviewing'>INTERVIEWING</p>
+//                             : <p className='normal-text'>INTERVIEWING</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='thankyou'>THANK YOU SENT</p>
+//                             : <p className='normal-text'>THANK YOU SENT</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='waiting'>WAITING FOR RESPONSE</p>
+//                             : <p className='normal-text'>WAITING FOR RESPONSE</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='offer'>OFFER</p>
+//                             : <p className='normal-text'>OFFER</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='rejected'>REJECTED</p>
+//                             : <p className='normal-text'>REJECTED</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='negotiating'>NEGOTIATING</p>
+//                             : <p className='normal-text'>NEGOTIATING</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='accepted-offer'>ACCEPTED OFFER</p>
+//                             : <p className='normal-text'>ACCEPTED OFFER</p>}
+//                         </div>
+//                         <div className='status-item-container'>
+//                             <div className='status-dash'></div>
+//                             {job.jobStatusId === 1 ? 
+//                             <p className='rejected-offer'>REJECTED OFFER</p>
+//                             : <p className='normal-text'>REJECTED OFFER</p>}
+//                         </div>
+//                     </div>
+//                 </div>
+//             </section>
+//         </div>
+//     )
+
+// }
+
+// const mapStateToProps = (reduxState) => reduxState;
+
+// // export default connect(mapStateToProps, {getUser, updateJobs })(Job);
+
+
+// // need to get jobs from redux state.
+
+
+
+
+// // Job is a completely different Component. It's a way to display a full view of the job. I will edit, save, and delete jobs from this this detailed Job view. This will need to update the Dashboard component. If I weren't using redux, the methods to update the list of jobs in the database (and on state), would need to be housed in Dashboard - the master list. 
+
+// // The DashboardJobs component will make the same request - and get mostly the same clientInformation, but just not as much. Will it need an axios call? 
+
+import React from 'react';
+import axios from 'axios';
+import { connect } from "react-redux";
+import '../styles/components/Job.scss'
+import {updateJobs} from '../redux/jobReducer';
+import {getUser} from '../redux/authReducer';
+// import {withRouter} from 'react-router-dom';
+
+
+class Job extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            // location: '',
+            // url: '',
+            // datePosted: '',
+            // description: '',
+            // notes: '',
+            // jobStatusId: 1,
+            // company: '',
+            // contact: '',
+            isEditing: false,
+            job: {},
+            input: {
+                inputLocation: '',
+                inputUrl: '',
+                inputDatePosted: '',
+                inputDescription: '',
+                inputNotes: '',
+                //Maybe put this in a different location.
+                inputJobStatusId: 1,
+                inputCompany: '',
+                inputContact: ''
+            }
+        }
+    }
+
+    componentDidMount = () => {
+        // console.log('props on jobjs', props)
+        const {userId} = props.authReducer.user;
+        const {jobId} = props.match.params;
+        axios.get(`/api/jobs/${userId}/${jobId}`).then(res=> {
+            this.setState({
+                job: res.data
+            })
+            console.log("props job.js", props)
+            console.log("job job.js ", job)
+        }).catch(err => console.log(err));
+    }
+
+
+    handleChange = (e) => {
+        setInput({...input, [e.target.name]: e.target.value})
+    };
+
+    saveEdit = (title, location, url, datePosted, description, notes, company, contact, userId) => {
+        // const {inputtitle, location, url, datePosted, description, notes, jobStatusId, company, contact} = this.state.input;
+        const {inputLocation, inputUrl, inputDatePosted, inputDescription, inputNotes, inputJobStatusId, inputCompany, inputContact} = this.state.input;
+        //Do jobStatusId elsewhere. Separate edit function and changeHandler and onClick.
+        // const {userId} = props.job.user_id;
+        //Or this? Which is better? I'm connected to redux, so probably redux.
+        // const {userId} = props.match.params;
+        const {userId} = props.authReducer.user;
+        const {jobId} = props.match.params;
+        axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
+            props.updateJobs(res.data);
+        }).catch(err => console.log(err));
+    };
+
+    deleteJob = (userId, jobId) => {
+        const {userId} = props.authReducer.user;
+        const {jobId} = props.match.params;
+        axios.delete(`/api/jobs/${userId}/${jobId}`).then(res=> {
+            props.updateJobs(res.data);
+            props.history.push('/dashboard');
+        }).catch(err => console.log(err))
+    };
+
+    toggleEdit = () => {
+        const {title, location, url, datePosted, description, notes, company, contact} = input;
+        // setIsEditing(!isEditing);
+        this.setState({
+            // title,
+            location,
+            url,
+            datePosted,
+            description,
+            notes,
+            jobStatusId,
+            company,
+            contact,
+            isEditing: !isEditing
+        });
+    };
+
+    render(){
+        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = this.state.job;
+        const {inputLocation, inputUrl, inputDatePosted, inputDescription, inputNotes, inputJobStatusId, inputCompany, inputContact} = this.state.input;
+
+        return (
+            <div className='page'>
+                <section className='job-container-jobjs'>
+                    <div className='title-bar'>
+                        <div className='title-box'>
+                            {/* The job title needs to come from where? From useState here. */}
+                            <p>TITLE NOT WORKING{title}</p>
+                        </div>
+                        <div className='edit-delete-box'>
+                            {/* Add onClick method */}
+                            <button onClick={() => toggleEdit()} className='btn' >EDIT</button>
+                            <button onClick={() => saveEdit(
+                                //How am I getting jobId? (It's in the props sent here, and also, it was in the link route.)
+                                //**Do I need to save userId in here?
+                                // props.jobId,
+                                // input.title,
+                                // input.location,
+                                // input.url,
+                                // input.datePosted,
+                                // input.description,
+                                // input.notes,
+                                // input.jobStatusId,
+                                // input.company,
+                                // input.contact
+
+                                location,
+                                url,
+                                datePosted,
+                                description,
+                                notes,
+                                jobStatusId,
+                                company,
+                                contact
+                            )} className='btn' >SAVE</button>
+
+                            {/*********-----LOOK AT THIS AND FIX JOBID */}
+                            <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn' >DELETE</button>
+                        </div>
+                    </div>
+                    <div className='details-container'>
+                        {!isEditing ? (
+                            <>
+                        <div className='detail-item'>
+                            <p className='item'>COMPANY</p>
+                            <p className='value'>{company}</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>LOCATION</p>
+                            <p className='value'>{location}</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>URL</p>
+                            <p className='value'>{url}</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>DATE POSTED</p>
+                            <p className='value'>{date_posted}</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>CONTACT</p>
+                            <p className='value'>{contact}</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>DESCRIPTION</p>
+                            <p className='value'>{description}</p>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>NOTES</p>
+                            <props className='value'>{notes}</props>
+                        </div>
+                            </>
+                        ) : (
+                            <>
+                        <div className='detail-item'>
+                            <p className='item'>COMPANY</p>
+                            <input name='company' onChange={(e) => handleChange(e)} className='value' value={company}/>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>LOCATION</p>
+                            <input name='location' onChange={(e) => handleChange(e)} className='value' value={location}/>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>URL</p>
+                            <input name='url' onChange={(e) => handleChange(e)} className='value' value={url}/>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>DATE POSTED</p>
+                            <input name='datePosted' onChange={(e) => handleChange(e)} className='value' value={datePosted}/>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>CONTACT</p>
+                            <input name='contact' onChange={(e) => handleChange(e)} className='value' value={contact}/>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>DESCRIPTION</p>
+                            <textarea name='description' onChange={(e) => handleChange(e)} placeholder='Enter job description here.' className='value-textarea'>{description}</textarea>
+                        </div>
+                        <div className='detail-item'>
+                            <p className='item'>NOTES</p>
+                            <textarea name='notes' onChange={(e) => handleChange(e)} placeholder='Enter any notes here.' className='value-textarea'>{notes}</textarea>
+                        </div>
+                            </>
+                        )} 
+                    </div>
+                </section>
+    
+                <section className='status-container'>
+                    <div className='status-title'>
+                        <p>STATUS</p>
+                    </div>
+                    <div className='list-w-bar'>
+                        <div className='status-line'></div>
+                        {/* <div className='line-circle'></div> */}
+                        <div className='status-list'>
+                            {/* Conditional rendering for status */}
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                    {jobStatusId === 1 ? 
+                                    <p className='researching'>RESEARCHING</p>
+                                    : <p className='normal-text'>RESEARCHING</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 2 ? 
+                                    <p className='networking'>NETWORKING</p>
+                                    : <p className='normal-text'>NETWORKING</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                    <p className='applying'>APPLYING</p>
+                                    : <p className='normal-text'>APPLYING</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='application-submitted'>APPLICATION SUBMITTED</p>
+                                : <p className='normal-text'>APPLICATION SUBMITTED</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='assessments'>ASSESSMENTS</p>
+                                : <p className='normal-text'>ASSESSMENTS</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='interviewing'>INTERVIEWING</p>
+                                : <p className='normal-text'>INTERVIEWING</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='thankyou'>THANK YOU SENT</p>
+                                : <p className='normal-text'>THANK YOU SENT</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='waiting'>WAITING FOR RESPONSE</p>
+                                : <p className='normal-text'>WAITING FOR RESPONSE</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='offer'>OFFER</p>
+                                : <p className='normal-text'>OFFER</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='rejected'>REJECTED</p>
+                                : <p className='normal-text'>REJECTED</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='negotiating'>NEGOTIATING</p>
+                                : <p className='normal-text'>NEGOTIATING</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='accepted-offer'>ACCEPTED OFFER</p>
+                                : <p className='normal-text'>ACCEPTED OFFER</p>}
+                            </div>
+                            <div className='status-item-container'>
+                                <div className='status-dash'></div>
+                                {jobStatusId === 1 ? 
+                                <p className='rejected-offer'>REJECTED OFFER</p>
+                                : <p className='normal-text'>REJECTED OFFER</p>}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        )
+    }
+
+}
+
+const mapStateToProps = (reduxState) => reduxState;
+
+export default connect(mapStateToProps, {getUser, updateJobs })(Job);
+
+
+// need to get jobs from redux state.
+
+
+
+
+// Job is a completely different Component. It's a way to display a full view of the job. I will edit, save, and delete jobs from this this detailed Job view. This will need to update the Dashboard component. If I weren't using redux, the methods to update the list of jobs in the database (and on state), would need to be housed in Dashboard - the master list. 
+
+// The DashboardJobs component will make the same request - and get mostly the same clientInformation, but just not as much. Will it need an axios call? 
+

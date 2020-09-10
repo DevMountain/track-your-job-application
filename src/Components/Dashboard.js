@@ -30,9 +30,10 @@ const Dashboard = (props) => {
         const {userId} = props.authReducer.user;
         // const {updateJobs} = props.jobReducer;
         axios
+            // .get(`/api/jobs`)
             .get(`/api/jobs/${userId}`)
             .then(res =>{
-                //**It's not recognizing that I'm using what I'm importing from jobReducer. Why? Am I not using jobs from redux state? I think I need to update state here and then it will map to redux. 
+                // It's not recognizing that I'm using what I'm importing from jobReducer. Why? Am I not using jobs from redux state? I think I need to update state here and then it will map to redux. 
                 console.log(res.data);
                 setJobs(res.data);
                 props.updateJobs(res.data);
@@ -69,11 +70,11 @@ const Dashboard = (props) => {
                     {/* In hooks, do we have to do props or anything or do we destructure at all? See jobs below: */}
                     {/* Is this right? */}
                     {props.jobReducer.jobs.map((job, index, array) => {
+                        console.log('job', job)
                         return (
-                            <div>
-                                {/* Should I pass props down to Job.js, so I don't have to do an axios call to get the one job? I could render all of this but just have it display: none here. */}
-                                <Link to = {`/job/${job.jobId}`}>
-                                    <div className='job-map-box' key={index} >
+                            <>
+                                <Link to = {`/job/${job.job_id}`} >
+                                    <div key={index} className='job-map-box'  >
                                         <div className='job-company-box'>
                                             <p className='job-title'>{job.title}</p>
                                             <p className='company-name'>{job.company}</p>
@@ -87,10 +88,10 @@ const Dashboard = (props) => {
                                             <p className='company-name'>TEST COMPANY{job.company}</p> */}
                                         </div>
                                         {/* <Job className='display-none' job={job} key={job.jobId}/> */}
-                                        <StatusColorChanger job={job}/>
+                                        <StatusColorChanger key={index} job={job}/>
                                     </div>
                                 </Link>
-                            </div>
+                            </>
                         );
                     })}
                 </section>

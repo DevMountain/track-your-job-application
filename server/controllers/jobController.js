@@ -18,6 +18,8 @@ module.exports = {
     //Now this isn't working in postman. I don't know why. It's making the job title the jobId and the userId undefined. 
     editJob: async (req, res) => {
         console.log('console.log req.params in edit jobs', req.params)
+        // console.log()
+
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {userId, jobId} = req.params; 
         const db = req.app.get('db');
@@ -48,6 +50,16 @@ module.exports = {
     addJob: async (req, res) => {
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {userId} = req.params; 
+        console.log(title,
+            location,
+            company,
+            url,
+            datePosted,
+            description,
+            notes,
+            contact,
+            jobStatusId,
+            userId)
         const db = req.app.get('db');
         const jobs = await db.jobs.add_job({
             title,
