@@ -41,7 +41,7 @@ const Job = (props) => {
         // company: '',
         // contact: ''
 
-        // title: 
+        title: job.title,
         location: job.location,
         url: job.url,
         datePosted: job.datePosted,
@@ -76,9 +76,10 @@ const Job = (props) => {
         //Or this? Which is better? I'm connected to redux, so probably redux.
         const {userId} = props.authReducer.user;
         const {jobId} = props.match.params;
-        console.log('props.match.params', props.match.params)
         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, company, contact}).then(res => {
             props.updateJobs(res.data);
+            console.log('props.match.params', props.match.params)
+            // props.history.push('/dashboard')
         }).catch(err => console.log(err));
     };
 
@@ -110,6 +111,8 @@ const Job = (props) => {
     return (
         <div className='page'>
             <section className='job-container-jobjs'>
+            {!isEditing ? (
+                <>
                 <div className='title-bar'>
                     <div className='title-box'>
                         {/* The job title needs to come from where? From useState here. */}
@@ -118,11 +121,11 @@ const Job = (props) => {
                     <div className='edit-delete-box'>
                         {/* Add onClick method */}
                         <button onClick={() => toggleEdit()} className='btn' >EDIT</button>
-                        <button onClick={() => saveEdit(
-                            //How am I getting jobId? (It's in the props sent here, and also, it was in the link route.)
+                        {/* <button onClick={() => {
+                            saveEdit(
                             //**Do I need to save userId in here?
-                            // props.job.jobId,
-                            // input.title,
+                            props.match.params.jobId,
+                            input.title,
                             input.location,
                             input.url,
                             input.datePosted,
@@ -130,13 +133,13 @@ const Job = (props) => {
                             input.notes,
                             input.company,
                             input.contact
-                        )} className='btn' >SAVE</button>
-                        <button onClick={() => deleteJob(props.authReducer.user.userId, job.jobId)} className='btn' >DELETE</button>
+                        );
+                        toggleEdit();
+                        }} className='btn' >SAVE</button> */}
+                        <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn' >DELETE</button>
                     </div>
                 </div>
                 <div className='details-container'>
-                    {!isEditing ? (
-                        <>
                     <div className='detail-item'>
                         <p className='item'>COMPANY</p>
                         <p className='value'>{job.company}</p>
@@ -165,14 +168,55 @@ const Job = (props) => {
                         <p className='item'>NOTES</p>
                         <p className='value'>{job.notes}</p>
                     </div>
-                        </>
+                </div>
+                </>
                     ) : (
-                        <>
+                <>
+                <div className='title-bar'>
+                    <div className='title-box'>
+                        <input 
+                            value={input.title}
+                            name='title' 
+                            onChange={(e) => handleChange(e)} 
+                            className='title-edit'/>
+                    </div>
+                    <div className='edit-delete-box'>
+                        {/* <button onClick={() => toggleEdit()} className='btn' >EDIT</button> */}
+                        <button onClick={() => {
+                            saveEdit(
+                            //**Do I need to save userId in here?
+                            props.match.params.jobId,
+                            input.title,
+                            input.location,
+                            input.url,
+                            input.datePosted,
+                            input.description,
+                            input.jobStatusId,
+                            input.notes,
+                            input.company,
+                            input.contact
+                        );
+                        toggleEdit();
+                        }} className='btn' >SAVE</button>
+                        {/* <button onClick={() => saveEdit(
+                            // props.job.jobId,
+                            input.title,
+                            input.location,
+                            input.url,
+                            input.datePosted,
+                            input.description,
+                            input.notes,
+                            input.company,
+                            input.contact
+                        )} className='btn' >SAVE</button> */}
+                        <button onClick={() => deleteJob(props.authReducer.user.userId, job.jobId)} className='btn' >DELETE</button>
+                    </div>
+                </div>
                     <div className='detail-item'>
                         <p className='item'>COMPANY</p>
                         <input 
                             name='company' 
-                            value={input.company}
+                            value={job.company}
                             onChange={(e) => handleChange(e)} 
                             className='value' />
                     </div>
@@ -180,7 +224,7 @@ const Job = (props) => {
                         <p className='item'>LOCATION</p>
                         <input 
                         name='location' 
-                        value={input.location}
+                        value={job.location}
                         onChange={(e) => handleChange(e)} 
                         className='value' />
                     </div>
@@ -188,7 +232,7 @@ const Job = (props) => {
                         <p className='item'>URL</p>
                         <input 
                             name='url' 
-                            value={input.url}
+                            value={job.url}
                             onChange={(e) => handleChange(e)} 
                             className='value' />
                     </div>
@@ -196,7 +240,7 @@ const Job = (props) => {
                         <p className='item'>DATE POSTED</p>
                         <input 
                             name='datePosted' 
-                            value={input.datePosted}
+                            value={job.datePosted}
                             onChange={(e) => handleChange(e)} 
                             className='value' />
                     </div>
@@ -204,7 +248,7 @@ const Job = (props) => {
                         <p className='item'>CONTACT</p>
                         <input 
                             name='contact' 
-                            value={input.contact}
+                            value={job.contact}
                             onChange={(e) => handleChange(e)} 
                             className='value' />
                     </div>
@@ -212,27 +256,27 @@ const Job = (props) => {
                         <p className='item'>DESCRIPTION</p>
                         <textarea 
                             name='description' 
-                            value={input.description}
+                            value={job.description}
                             onChange={(e) => handleChange(e)} 
                             placeholder='Enter job description here.' 
-                            className='value-textarea'>{input.description}</textarea>
+                            className='value-textarea'>{job.description}</textarea>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>NOTES</p>
                         <textarea 
                             name='notes' 
-                            value={input.notes}
+                            value={job.notes}
                             onChange={(e) => handleChange(e)} 
                             placeholder='Enter any notes here.' 
-                            className='value-textarea'>{input.notes}</textarea>
+                            className='value-textarea'>{job.notes}</textarea>
                     </div>
-                        </>
+                </>
                     )} 
-                </div>
             </section>
+       
 
             <section className='status-container'>
-                <div className='status-title'>
+                <div className='job-view-status-title'>
                     <p>STATUS</p>
                 </div>
                 <div className='list-w-bar'>

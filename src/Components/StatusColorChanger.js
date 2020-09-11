@@ -2,59 +2,60 @@ import React from 'react';
 import '../styles/components/StatusColorChanger.scss';
 
 const StatusColorChanger = (props) => {
-    const {jobStatusId} = props.job;
+    console.log('status color changer props', props)
+    const {job_status_name} = props.job;
     
-    if(jobStatusId === 1){
+    if(job_status_name === 'RESEARCHING'){
         return <div className='status--researching'>
-            <p className='status'>RESEARCHING</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 2) {
+    } else if(job_status_name === "NETWORKING") {
         return <div className='status--networking'>
-            <p className='status'>NETWORKING</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 3) {
+    } else if(job_status_name === "APPLYING") {
         return <div className='status--applying'>
-            <p className='status'>APPLYING</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 4) {
+    } else if(job_status_name === "APPLICATION SUBMITTED") {
         return <div className='status--application-submitted'>
-            <p className='status'>APPLICATION SUBMITTED</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 5) {
+    } else if(job_status_name === "ASSESSMENTS") {
         return <div className='status--assessments'>
-            <p className='status'>ASSESSMENTS</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 6) {
+    } else if(job_status_name === "INTERVIEWING") {
         return <div className='status--interviewing'>
-            <p className='status'>INTERVIEWING</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 7) {
-        return <div className='status--thank-you'>
-            <p className='status'>THANK YOU SENT</p>
+    } else if(job_status_name === "THANK YOU SENT") {
+        return <div className='status--thankyou'>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 8) {
+    } else if(job_status_name === "WAITING FOR RESPONSE") {
         return <div className='status--waiting'>
-            <p className='status'>WAITING FOR RESPONSE</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 9) {
+    } else if(job_status_name === "APPLICATION SUBMITTED") {
         return <div className='status--offer'>
-            <p className='status'>OFFER</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 10) {
+    } else if(job_status_name === "APPLICATION SUBMITTED") {
         return <div className='status--rejected'>
-            <p className='status'>REJECTED</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if(jobStatusId === 11) {
+    } else if(job_status_name === "NEGOTIATING") {
         return <div className='status--negotiating'>
-            <p className='status'>NEGOTIATING</p>
+            <p className='status'>{job_status_name}</p>
         </div>
-    } else if (jobStatusId === 12) {
+    } else if(job_status_name === "ACCEPTED OFFER") {
         return <div className='status--accepted-offer'>
-            <p className='status'>ACCEPTED OFFER</p>
+            <p className='status'>{job_status_name}</p>
         </div>
     } else {
         return <div className='status--rejected-offer'>
-            <p className='status'>REJECTED OFFER</p>
+            <p className='status'>{job_status_name}</p>
         </div>
     }
 }

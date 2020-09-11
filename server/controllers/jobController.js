@@ -26,7 +26,7 @@ module.exports = {
         const {location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {jobId, userId} = req.params; 
         const db = req.app.get('db');
-        const jobs = await db.jobs.edit_job({
+        const jobs = await db.jobs.edit_job([
             // jobId,
             // title,
             location,
@@ -40,7 +40,7 @@ module.exports = {
             jobId,
             userId
             
-        })
+        ])
         res.status(200).send(jobs);
     },
     //getting userId and jobId - how?

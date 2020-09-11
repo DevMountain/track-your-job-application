@@ -10,7 +10,6 @@ import {connect} from 'react-redux';
 import {getUser} from '../redux/authReducer';
 import {updateJobs} from '../redux/jobReducer';
 import {withRouter} from 'react-router-dom';
-// import arrow from '../left-black-arrow-skinny-icon.png';
 import StatusColorChanger from './StatusColorChanger';
 // import { render } from 'sass';
 
@@ -46,17 +45,17 @@ const Dashboard = (props) => {
         <div className='dash-page'>
             <section className='big-list-container'>
                 <div className='title-bar-jobs'>
-                    <div className='title'>
+                    <div className='dashboard-job-title'>
                         <p>ALL JOBS</p>
                     </div>
                     {/* Fix this line (style) element when I have time. */}
-                    {/* <section className='select-line-box'>
+                    <section className='select-line-box'>
                         <div className='line-box'></div>
                         <div className='line-container'>
                             <div className='box-line-up'></div>
                             <div className='box-line-down'></div>
                         </div>
-                    </section> */}
+                    </section>
                     <div className='status-title'>
                         <p>STATUS</p>
                     </div>
@@ -69,7 +68,7 @@ const Dashboard = (props) => {
                 <section className='map-list-container'>
                     {/* In hooks, do we have to do props or anything or do we destructure at all? See jobs below: */}
                     {/* Is this right? */}
-                    {props.jobReducer.jobs.map((job, index, array) => {
+                    {jobs.map((job, index, array) => {
                         console.log('job', job)
                         return (
                             <>
@@ -87,7 +86,6 @@ const Dashboard = (props) => {
                                             <p className='company-name'>TEST COMPANY{job.company}</p>
                                             <p className='company-name'>TEST COMPANY{job.company}</p> */}
                                         </div>
-                                        {/* <Job className='display-none' job={job} key={job.jobId}/> */}
                                         <StatusColorChanger key={index} job={job}/>
                                     </div>
                                 </Link>
