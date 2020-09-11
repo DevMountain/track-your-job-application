@@ -3,7 +3,7 @@ FROM jobs j
 JOIN users u ON j.user_id = u.user_id
 JOIN job_status jst ON jst.job_status_id = j.job_status_id
 WHERE u.user_id = $1
-ORDER BY j.date_posted;
+ORDER BY j.job_id;
 
 
 -- SELECT * FROM jobs

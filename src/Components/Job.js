@@ -210,6 +210,7 @@ const Job = (props) => {
                             input.contact
                         )} className='btn' >SAVE</button> */}
                         <button onClick={() => deleteJob(props.authReducer.user.userId, job.jobId)} className='btn' >DELETE</button>
+                        <button onClick={() => toggleEdit()} className='btn' >CANCEL</button>
                     </div>
                 </div>
                     <div className='detail-item'>
@@ -252,7 +253,7 @@ const Job = (props) => {
                             onChange={(e) => handleChange(e)} 
                             className='value' />
                     </div>
-                    <div className='detail-item'>
+                    <div className='detail-item-textarea'>
                         <p className='item'>DESCRIPTION</p>
                         <textarea 
                             name='description' 

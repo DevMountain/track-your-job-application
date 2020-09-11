@@ -37,11 +37,11 @@ const StatusColorChanger = (props) => {
         return <div className='status--waiting'>
             <p className='status'>{job_status_name}</p>
         </div>
-    } else if(job_status_name === "APPLICATION SUBMITTED") {
+    } else if(job_status_name === "OFFER") {
         return <div className='status--offer'>
             <p className='status'>{job_status_name}</p>
         </div>
-    } else if(job_status_name === "APPLICATION SUBMITTED") {
+    } else if(job_status_name === "REJECTED") {
         return <div className='status--rejected'>
             <p className='status'>{job_status_name}</p>
         </div>
