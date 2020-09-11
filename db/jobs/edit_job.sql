@@ -2,15 +2,15 @@
 
 UPDATE jobs
 SET 
-title = $1,
-location = $2,
-url = $3,
-date_posted = $4,
-description = $5,
-notes = $6,
-company = $7,
-contact = $8
-WHERE job_id = $9 AND user_id = $10;
+location = ${location},
+url = ${url},
+date_posted = ${date_posted},
+description = ${description},
+notes = ${notes},
+job_status_id = ${job_status_id},
+company = ${company},
+contact = ${contact}
+WHERE job_id = ${job_id} AND user_id = ${user_id};
 
 -- SELECT * FROM jobs 
 -- ORDER BY job_id;

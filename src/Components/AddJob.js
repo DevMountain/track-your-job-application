@@ -39,17 +39,15 @@ const AddJob = (props) => {
     //When adding a job with a foreign key reference, do I need to add the userId? Or because I get that off match.params, will that be put on the job object?  
 
     const addJob = () => {
-        console.log('props here!', props)
-        const {userId} = props.match.params;
-        // const {userId} = props.authReducer.user;
+        const {userId} = props.authReducer.user;
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
 
         axios.post(`/api/jobs/${userId}`, {title, location, url, datePosted, description, notes, userId, jobStatusId, company, contact}).then(res => {
             props.updateJobs(res.data);
-            props.history.push('/job');
+            props.history.push('/dashboard');
         }).catch(err => console.log(err));
     }
-//This is not clearing description or notes. What's going on with those textarea boxes? 
+
     const cancelAdd = () => {
         setInput({
             title: '',
@@ -63,7 +61,7 @@ const AddJob = (props) => {
             contact: ''
             })
     }
-
+    console.log("AddJob.js props", props)
     return (
         <div className='page-add'>
             <section className='job-container-add'>
@@ -72,7 +70,7 @@ const AddJob = (props) => {
                         <p>ADD JOB</p>
                     </div>
                     <div className='add-cancel-box'>
-                        <button onClick={addJob} className='btn'>ADD</button>
+                        <button onClick={() => addJob()} className='btn'>ADD</button>
                         <button onClick={cancelAdd} className='btn'>CANCEL</button>
                     </div>
                 </div>

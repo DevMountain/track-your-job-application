@@ -31,25 +31,25 @@ const Job = (props) => {
         // contact
         
         // title: '',
-        location: '',
-        url: '',
-        datePosted: '',
-        description: '',
-        notes: '',
-        //Maybe put this in a different location.
-        jobStatusId: 1,
-        company: '',
-        contact: ''
+        // location: '',
+        // url: '',
+        // datePosted: '',
+        // description: '',
+        // notes: '',
+        // //Maybe put this in a different location.
+        // jobStatusId: 1,
+        // company: '',
+        // contact: ''
 
-        // title: props.job.title,
-        // location: props.job.location,
-        // url: props.job.url,
-        // datePosted: props.job.datePosted,
-        // description: props.job.description,
-        // notes: props.job.notes,
-        // jobStatusId: props.job.job_status_id,
-        // company: props.job.company,
-        // contact: props.job.contact,
+        // title: 
+        location: job.location,
+        url: job.url,
+        datePosted: job.datePosted,
+        description: job.description,
+        notes: job.notes,
+        jobStatusId: job.job_status_id,
+        company: job.company,
+        contact: job.contact,
     })
 
     // get the job info in an axios request get jobs, inside a component did mount/useEffect, so the job is listed as soon as I view the component.
@@ -61,10 +61,6 @@ const Job = (props) => {
         //when I changed the params in the endpoint, it stopped loading. Try without userId again.
         axios.get(`/api/jobs/${userId}/${jobId}`).then(res=> {
             setJob(res.data)
-            console.log("props job.js", props)
-            console.log("job job.js ", job)
-            // console.log("job.js setjob", setJob)
-            // console.log("job.js useState", useState)
         }).catch(err => console.log(err));
     }, []);
     //This useEffect isn't updating useState. Why? The getOneJob endpoint is working in Postman.
@@ -80,6 +76,7 @@ const Job = (props) => {
         //Or this? Which is better? I'm connected to redux, so probably redux.
         const {userId} = props.authReducer.user;
         const {jobId} = props.match.params;
+        console.log('props.match.params', props.match.params)
         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, company, contact}).then(res => {
             props.updateJobs(res.data);
         }).catch(err => console.log(err));
@@ -116,7 +113,7 @@ const Job = (props) => {
                 <div className='title-bar'>
                     <div className='title-box'>
                         {/* The job title needs to come from where? From useState here. */}
-                        <p>TITLE NOT WORKING{job.title}</p>
+                        <p>{job.title}</p>
                     </div>
                     <div className='edit-delete-box'>
                         {/* Add onClick method */}
@@ -166,7 +163,7 @@ const Job = (props) => {
                     </div>
                     <div className='detail-item'>
                         <p className='item'>NOTES</p>
-                        <props className='value'>{job.notes}</props>
+                        <p className='value'>{job.notes}</p>
                     </div>
                         </>
                     ) : (

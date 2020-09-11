@@ -1,9 +1,14 @@
 --This is working in SQL tabs. Not in Postman.
 
+-- Original:
 INSERT INTO jobs (title, location, company, url, date_posted, description, notes, contact, job_status_id, user_id) 
 VALUES
 ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
 
+-- (${title}, ${location}, ${company}, ${url}, ${date_posted}, ${description}, ${notes}, ${contact}, ${job_status_id}, ${user_id});
+
+-- SELECT * FROM jobs
+-- ORDER BY job_id;
 
 
 -- -- company_id needs to be a drop down, and if the company_id doesn't exist in the drop-down menu, it will need to be added, to create a new company entry. Or left null.

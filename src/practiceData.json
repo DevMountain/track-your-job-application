@@ -26,3 +26,17 @@
     "contact": "Mary Poppins",
     "userId": 1
 }
+
+
+{
+    "title": "Exterminator",
+    "location": "Here",
+    "company": "KillBugs",
+    "url": "www.killbugs.com",
+    "datePosted": "2020-09-05",
+    "description": "Kill Bugs",
+    "notes": "Show them my cockroach collection.",
+    "contact": "Rod Snoot 777-777-7777",
+    "jobStatusId": 8,
+    "userId": 1
+}
