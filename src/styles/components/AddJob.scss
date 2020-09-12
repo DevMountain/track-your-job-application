@@ -84,8 +84,6 @@
     width: 150px;
     color: black;
     display: flex;
-
-
 }
 
 .value {
@@ -105,10 +103,9 @@
     // justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-
 }
 
-textarea {
+.addjob-textarea {
 // .description .notes {
     display: flex;
     height: 100px;
@@ -120,8 +117,6 @@ textarea {
     border: 1px solid black;
     // margin-bottom: 25px;
     resize: none;
-
-
 }
 
 
@@ -144,7 +139,8 @@ textarea {
     font-size: 15px;
 
 }
-option {
+
+.options {
     height: 28px;
     width: 500px;
     display: flex;

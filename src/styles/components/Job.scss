@@ -19,13 +19,14 @@
 //make globals - and put these mixins and variables and a button style as well. 
 
 
-.page {
+.page-job {
     display: flex;
     justify-content: space-around;
     height: 85vh;
     width: 100vw;
     @include flex-positioning-evenly();    
-    align-items: center;
+    align-items: flex-start;
+    padding-top: 40px;
     // margin-top: 20px;
 }
 //Right side of the page.
@@ -33,61 +34,195 @@
 .job-container-jobjs {
     // margin-top: 20px;
     margin-left: 30px;
-    width: 500px;
+    width: 600px;
     height: 600px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-
+    align-items: flex-end;
     // border: solid 1px black;
 }
 
 //same as dashboard.scss title-bar (do a variable or mixin)
-.title-bar {
+.title-bar-jobview {
     height: 80px;
-    width: 500px;
+    width: 600px;
     display: flex;
     // border: solid 1px black;
     @include flex-positioning-evenly;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
     @include big-header-font;
-    
 }
 
-.status-container {
-    margin-top: 20px;
+.title-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.title-edit {
+    height: 40px;
     width: 300px;
-    height: 600px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: $primary-font;
+    font-size: 40px;
+    letter-spacing: 2px;
+    // padding-left: 10px;
+}
+
+.edit-delete-box {
+    @include flex-positioning-evenly();
+    flex-direction: row;
+}
+ 
+.details-container-jobview {
+    height: 700px;
+    width: 600px;    
     display: flex;
     flex-direction: column;
-    align-items: center;
-    // justify-content: flex-start;
+    justify-content: flex-start;
+    // overflow: auto;
+    // resize: none;
+    padding-top: 20px;
+}
 
-}    
+.detail-item-jobview {
+    height: 18px;
+    width: 600px;
+    display: flex;
+    margin-bottom: 25px;
+    // flex-direction: row;
+}
 
-.job-view-status-title {
-    height: 80px;
-    @include big-header-font;
+.label {
+    font-family: $primary-font;
+    font-size: 16px;
+    width: 140px;
+    color: black;
+    display: flex;
+}
+
+.value {
+    width: 500px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: $secondary-font;
+    letter-spacing: 1px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+// .detail-item-textarea {
+//     height: 100px;
+//     display: flex;
+//     // flex-direction: row;
+//     // justify-content: space-between;
+//     align-items: center;
+//     margin-bottom: 25px;
+// }
+
+.textarea-line-jobview {
+    height: 100px;
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
+.textarea-value {
+    display: flex;
+    width: 500px;
+    height: 100px;
+    overflow: auto;
+    border: 1px solid black;
+    font-family: $secondary-font;
+    letter-spacing: 1px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.dropdown-container-jobview {
+    height: 20px;
+    width: 600px;
+    font-family: $secondary-font;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
 
 }
-.list-w-bar {
-    height: 500px;
-    width: 350px;
+
+.dropdown {
+    display: flex;
+    overflow: auto;
+    height: 20px;
+    width: 500px;
+    font-family: $secondary-font;
+    font-size: 15px;
+
+}
+
+.options {
+    height: 28px;
+    width: 500px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
 
-.status-line {
+.detail-jobview-textarea {
+    height: 100px;
+    width: 600px;
     display: flex;
-    height: 500px;
-    width: 4px;
-    background-color: lightgray;
+    // flex-direction: row;
+    // justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.value-textarea {
+    height: 100px;
+    width: 450px;
+    overflow: auto;
+    font-family: $secondary-font;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.status-container {
+    width: 300px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: space-evenly;
+}    
+
+.job-view-status-title {
+    height: 80px;
+    @include big-header-font;
+    font-size: 30px;
 
 }
+.list-w-bar {
+    height: 480px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.status-line {
+    display: flex;
+    height: 480px;
+    width: 3px;
+    background-color: lightgray;
+    margin-left: 50px;
+
+}
+
 .status-item-container {
-   
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -107,10 +242,12 @@
 //Right side of the page.
 .status-dash {
     display: flex;
-    height: 4px;
-    width: 15px;
+    height: 3px;
+    width: 35px;
     background-color: lightgray;
+    margin-right: 5px;
 }
+
 .status-list {
     font-family: $primary-font;
     font-size: 18px;
@@ -134,59 +271,104 @@
     font-size: 16px;
     margin-left: 20px;
     letter-spacing: 1px;
-  }
+}
+
+.normal-text {
+    font-family: $secondary-font;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: black;
+
+}
 
 .researching {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid  rgb(224, 193, 17);
     color:  rgb(224, 193, 17);
-
+    color: black;
+    
 }
 .networking {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(151, 118, 9);
     color:  rgb(151, 118, 9);
+    color: black;
 }
 .applying {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(218, 100, 21);
     color: rgb(218, 100, 21);
+    color: black;
 }
 .application-submitted {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(74, 199, 248);
     color: black;
 }
 .assessments {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(2, 135, 139);
     color: rgb(2, 135, 139);
+    color: black;
 }
 .interviewing {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(35, 66, 167);
     color: rgb(35, 66, 167);
+    color: black;
 }
 .thankyou {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(81, 38, 121);
     color:  rgb(81, 38, 121);
+    color: black;
 }
 .waiting {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(95, 94, 95);
     color:  rgb(95, 94, 95);
-
+    color: black;
 }
 .offer {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(63, 175, 49);
     color:  rgb(63, 175, 49);
+    color: black;
 }
 .rejected {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(194, 54, 19);
     color: rgb(194, 54, 19);
+    color: black;
 }
 .negotiating {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(148, 50, 123);
     color: rgb(148, 50, 123);
+    color: black;
 }
 .accepted-offer {
+    padding: 5px;
+    font-size: 16px;
     border: 3px solid rgb(34, 110, 65);
     color: rgb(34, 110, 65);
+    color: black;
 }
 .rejected-offer {
-    border: 3px solid rgb(105, 52, 52);
-    color:  rgb(105, 52, 52);
+    padding: 5px;
+    font-size: 16px;
+    border: 3px solid rgb(138, 66, 66);
+    color:  rgb(138, 66, 66);
+    color: black;
 }

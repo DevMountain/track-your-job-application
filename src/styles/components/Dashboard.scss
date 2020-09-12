@@ -30,12 +30,7 @@ $secondary-font: 'Roboto Condensed', sans serif;
     // border: solid 1px black;
 
 }
-// .line-between {
-//     margin-top: 20px;
-//     height: 600px;
-//     width: 5px;
-//     background-color: lightgray;
-// }
+
 .title-bar-jobs {
     height: 80px;
     width: 700px;
@@ -44,7 +39,6 @@ $secondary-font: 'Roboto Condensed', sans serif;
     @include big-header-font();
     justify-content: space-between;
     font-family: $primary-font;
-    
 }
 
 .dashboard-job-title {
@@ -53,11 +47,7 @@ $secondary-font: 'Roboto Condensed', sans serif;
     width: 300px;
     font-size: 40px;
 }
-// .title-right {
-//     font-size: 36px;
-//     width: 210px;
-//     letter-spacing: 2px;
-// }
+
 .status-title{
     display: flex;
     align-items: center;
@@ -67,8 +57,8 @@ $secondary-font: 'Roboto Condensed', sans serif;
     // font-family: $secondary-font;
     letter-spacing: 2px;
     // margin-left: 70px;
-
 }
+
 .select-line-box {
     height: 80px;
     width: 450px;
@@ -76,6 +66,7 @@ $secondary-font: 'Roboto Condensed', sans serif;
     flex-direction: row;
     align-items: center;
 }
+
 .line-box {
     height: 60px;
     width: 20px;
@@ -84,8 +75,8 @@ $secondary-font: 'Roboto Condensed', sans serif;
     display: flex;
     // margin-top: 5px;
     align-items: center;
-
 }
+
 .line-container {
     height: 80px;
     width: 330px;
@@ -94,12 +85,6 @@ $secondary-font: 'Roboto Condensed', sans serif;
     justify-content: space-around;
     flex-direction: column;
     align-items: flex-end;
-    // justify-content: flex-start;
-    // display: flex;
-    // // justify-content: flex-end;
-    // align-items: center;
-    // border: black 1px solid;
-
 }
 
 .box-line-up {
@@ -107,31 +92,19 @@ $secondary-font: 'Roboto Condensed', sans serif;
     height: 40px;
     width: 330px;
     border-bottom: 1px black solid;
-  
 }
+
 .box-line-down {
     display: flex;
     height: 40px;
     width: 330px;
-   
-
 }
 
-// .arrow-container-right {
-//     width: 80px;
-// }
-// .arrow {
-//     height: 60px;
-//     width: 150px;
-//     margin-left: 30px;
-// }
-// .arrow-right {
-//     width: 80px;
-// }
 .btn-container {
     display: flex;
     justify-content: flex-end;
 }
+
 .btn {
     background-color: white;
     color: black;
@@ -151,7 +124,6 @@ $secondary-font: 'Roboto Condensed', sans serif;
     height: 500px;
     width: 700px;
     // border: solid 1px black;
-
 }
 
 .job-map-box {

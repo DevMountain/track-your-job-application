@@ -23,12 +23,12 @@ module.exports = {
         console.log('edit jobs req.params ', req.params)
         // console.log()
 
-        const {location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
+        const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {jobId, userId} = req.params; 
         const db = req.app.get('db');
         const jobs = await db.jobs.edit_job([
             // jobId,
-            // title,
+            title,
             location,
             url,
             datePosted,

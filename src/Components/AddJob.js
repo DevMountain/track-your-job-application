@@ -59,7 +59,8 @@ const AddJob = (props) => {
             jobStatusId: 1,
             company: '',
             contact: ''
-            })
+            });
+        props.history.push('/dashboard')
     }
     console.log("AddJob.js props", props)
     return (
@@ -77,36 +78,32 @@ const AddJob = (props) => {
                 <div className='details-container'>
                     <div className='detail-item'>
                         <p className='item'>JOB TITLE</p>
-                        <input type='text' name='title' value={input.title} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='Job Title' name='title' value={input.title} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>COMPANY</p>
-                        <input type='text' name='company' value={input.company} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='Company' name='company' value={input.company} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>LOCATION</p>
-                        <input type='text' name='location' value={input.location} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='Company' name='location' value={input.location} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>URL</p>
-                        <input type='text' name='url' value={input.url} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='URL' name='url' value={input.url} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>DATE POSTED</p>
-                        <input type='text' placeholder='YYYY-MM-DD' name='datePosted' value={input.datePosted} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='Date Posted' name='datePosted' value={input.datePosted} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>CONTACT</p>
-                        <input type='text' name='contact' value={input.contact} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='Contact' name='contact' value={input.contact} onChange={handleChange} className='value'/>
                     </div>
                     
                     <div 
-                    // onClick={toggling} 
                     className='status-dropdown-container-line'>
                         <p className='item'>STATUS</p>
-                        {/* Option value needs to be a number. */}
-                        {/* {isOpen && ( */}
-
                             <select  name='jobStatusId' className='dropdown'  onChange={handleDropdown}>
                                 <option className='options' value={1}>Researching</option>
                                 <option className='options' value={2}>Networking</option>
@@ -122,7 +119,6 @@ const AddJob = (props) => {
                                 <option className='options' value={12}>Accepted Offer</option>
                                 <option className='options' value={13}>Rejected Offer</option>
                             </select>
-                        {/* )} */}
                     </div>
                     <div className='detail-item-textarea'>
                         <p className='item'>DESCRIPTION</p>
@@ -130,7 +126,7 @@ const AddJob = (props) => {
                             onChange={handleChange} 
                             type='text' 
                             name='description' 
-                            placeholder='Enter job description here.' className='description' 
+                            placeholder='Enter job description here.' className='addjob-textarea' 
                             value={input.description}></textarea>
                     </div>
                     <div className='detail-item-textarea'>
@@ -139,7 +135,7 @@ const AddJob = (props) => {
                             onChange={handleChange} 
                             type='text' 
                             name='notes' 
-                            placeholder='Enter any other notes here.' className='notes' 
+                            placeholder='Enter any other notes here.' className='addjob-textarea' 
                             value={input.notes}></textarea>
                     </div>
                 </div>

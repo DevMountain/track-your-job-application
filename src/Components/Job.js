@@ -65,8 +65,28 @@ const Job = (props) => {
     }, []);
     //This useEffect isn't updating useState. Why? The getOneJob endpoint is working in Postman.
 
+    const toggleEdit = () => {
+        const {title, location, url, datePosted, description, notes, company, contact} = input;
+        setIsEditing(!isEditing);
+        setInput({
+            title,
+            location,
+            url,
+            datePosted,
+            description,
+            notes,
+            company,
+            contact
+        });
+    };
+
     const handleChange = (e) => {
         setInput({...input, [e.target.name]: e.target.value})
+    };
+
+    const handleDropdown = (e) => {
+        e.stopPropagation();
+        setInput({...input, jobStatusId: e.target.value})
     };
 
     const saveEdit = (title, location, url, datePosted, description, notes, company, contact) => {
@@ -92,28 +112,13 @@ const Job = (props) => {
         }).catch(err => console.log(err))
     };
 
-    const toggleEdit = () => {
-        const {title, location, url, datePosted, description, notes, company, contact} = input;
-        setIsEditing(!isEditing);
-        setInput({
-            title,
-            location,
-            url,
-            datePosted,
-            description,
-            notes,
-            company,
-            contact
-        });
-    };
-
     console.log('job.js JOB check', job)
     return (
-        <div className='page'>
+        <div className='page-job'>
             <section className='job-container-jobjs'>
             {!isEditing ? (
                 <>
-                <div className='title-bar'>
+                <div className='title-bar-jobview'>
                     <div className='title-box'>
                         {/* The job title needs to come from where? From useState here. */}
                         <p>{job.title}</p>
@@ -139,45 +144,47 @@ const Job = (props) => {
                         <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn' >DELETE</button>
                     </div>
                 </div>
-                <div className='details-container'>
-                    <div className='detail-item'>
-                        <p className='item'>COMPANY</p>
+                <div className='details-container-jobview'>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>COMPANY</p>
                         <p className='value'>{job.company}</p>
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>LOCATION</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>LOCATION</p>
                         <p className='value'>{job.location}</p>
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>URL</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>URL</p>
                         <p className='value'>{job.url}</p>
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>DATE POSTED</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>DATE POSTED</p>
                         <p className='value'>{job.date_posted}</p>
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>CONTACT</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>CONTACT</p>
                         <p className='value'>{job.contact}</p>
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>DESCRIPTION</p>
-                        <p className='value'>{job.description}</p>
+                    <div className='textarea-line-jobview'>
+                        <p className='label'>DESCRIPTION</p>
+                        <p className='textarea-value'>{job.description}</p>
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>NOTES</p>
-                        <p className='value'>{job.notes}</p>
+                    <div className='textarea-line-jobview'>
+                        <p className='label'>NOTES</p>
+                        <p className='textarea-value'>{job.notes}</p>
                     </div>
                 </div>
                 </>
                     ) : (
                 <>
-                <div className='title-bar'>
+                <div className='title-bar-jobview'>
                     <div className='title-box'>
                         <input 
                             value={input.title}
+                            defaultValue={job.title}
                             name='title' 
                             onChange={(e) => handleChange(e)} 
+                            // placeholder={job.title}
                             className='title-edit'/>
                     </div>
                     <div className='edit-delete-box'>
@@ -209,67 +216,92 @@ const Job = (props) => {
                             input.company,
                             input.contact
                         )} className='btn' >SAVE</button> */}
-                        <button onClick={() => deleteJob(props.authReducer.user.userId, job.jobId)} className='btn' >DELETE</button>
+                        <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn' >DELETE</button>
                         <button onClick={() => toggleEdit()} className='btn' >CANCEL</button>
                     </div>
                 </div>
-                    <div className='detail-item'>
-                        <p className='item'>COMPANY</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>COMPANY</p>
                         <input 
                             name='company' 
-                            value={job.company}
+                            value={input.company}
                             onChange={(e) => handleChange(e)} 
+                            defaultValue={job.company}
                             className='value' />
                     </div>
-                    <div className='detail-item'>   
-                        <p className='item'>LOCATION</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>LOCATION</p>
                         <input 
-                        name='location' 
-                        value={job.location}
-                        onChange={(e) => handleChange(e)} 
-                        className='value' />
+                            name='location' 
+                            value={input.location}
+                            onChange={(e) => handleChange(e)} 
+                            defaultValue={job.location}
+                            className='value' />
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>URL</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>URL</p>
                         <input 
                             name='url' 
-                            value={job.url}
+                            value={input.url}
                             onChange={(e) => handleChange(e)} 
+                            defaultValue={job.url}
                             className='value' />
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>DATE POSTED</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>DATE POSTED</p>
                         <input 
                             name='datePosted' 
-                            value={job.datePosted}
+                            value={input.date_posted}
                             onChange={(e) => handleChange(e)} 
+                            defaultValue={job.date_posted}
                             className='value' />
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>CONTACT</p>
+                    <div className='detail-item-jobview'>
+                        <p className='label'>CONTACT</p>
                         <input 
                             name='contact' 
-                            value={job.contact}
+                            value={input.contact}
                             onChange={(e) => handleChange(e)} 
+                            defaultValue={job.contact}
                             className='value' />
                     </div>
-                    <div className='detail-item-textarea'>
-                        <p className='item'>DESCRIPTION</p>
+
+                    <div className='dropdown-container-jobview'>
+                        <p className='label'>STATUS</p>
+                            <select  name='jobStatusId' className='dropdown'  onChange={handleDropdown}>
+                                <option className='options' value={1}>Researching</option>
+                                <option className='options' value={2}>Networking</option>
+                                <option className='options' value={3}>Applying</option>
+                                <option className='options' value={4}>Application Submitted</option>
+                                <option className='options' value={5}>Assessments</option>
+                                <option className='options' value={6}>Interviewing</option>
+                                <option className='options' value={7}>Thank You Sent</option>
+                                <option className='options' value={8}>Waiting for Response</option>
+                                <option className='options' value={9}>Offer</option>
+                                <option className='options' value={10}>Rejected</option>
+                                <option className='options' value={11}>Negotiating</option>
+                                <option className='options' value={12}>Accepted Offer</option>
+                                <option className='options' value={13}>Rejected Offer</option>
+                            </select>
+                    </div>
+
+                    <div className='detail-jobview-textarea'>
+                        <p className='label'>DESCRIPTION</p>
                         <textarea 
                             name='description' 
-                            value={job.description}
+                            value={input.description}
                             onChange={(e) => handleChange(e)} 
-                            placeholder='Enter job description here.' 
-                            className='value-textarea'>{job.description}</textarea>
+                            defaultValue={job.description}
+                            className='value-textarea'></textarea>
                     </div>
-                    <div className='detail-item'>
-                        <p className='item'>NOTES</p>
+                    <div className='detail-jobview-textarea'>
+                        <p className='label'>NOTES</p>
                         <textarea 
                             name='notes' 
-                            value={job.notes}
+                            value={input.notes}
                             onChange={(e) => handleChange(e)} 
-                            placeholder='Enter any notes here.' 
-                            className='value-textarea'>{job.notes}</textarea>
+                            defaultValue={job.notes}
+                            className='value-textarea'></textarea>
                     </div>
                 </>
                     )} 
@@ -287,79 +319,79 @@ const Job = (props) => {
                         {/* Conditional rendering for status */}
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                                {job.jobStatusId === 1 ? 
+                                {job.job_status_id === 1 ? 
                                 <p className='researching'>RESEARCHING</p>
                                 : <p className='normal-text'>RESEARCHING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 2 ? 
+                            {job.job_status_id === 2 ? 
                                 <p className='networking'>NETWORKING</p>
                                 : <p className='normal-text'>NETWORKING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 3 ? 
                                 <p className='applying'>APPLYING</p>
                                 : <p className='normal-text'>APPLYING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 4 ? 
                             <p className='application-submitted'>APPLICATION SUBMITTED</p>
                             : <p className='normal-text'>APPLICATION SUBMITTED</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 5 ? 
                             <p className='assessments'>ASSESSMENTS</p>
                             : <p className='normal-text'>ASSESSMENTS</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 6 ? 
                             <p className='interviewing'>INTERVIEWING</p>
                             : <p className='normal-text'>INTERVIEWING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 7 ? 
                             <p className='thankyou'>THANK YOU SENT</p>
                             : <p className='normal-text'>THANK YOU SENT</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 8 ? 
                             <p className='waiting'>WAITING FOR RESPONSE</p>
                             : <p className='normal-text'>WAITING FOR RESPONSE</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 9 ? 
                             <p className='offer'>OFFER</p>
                             : <p className='normal-text'>OFFER</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 10 ? 
                             <p className='rejected'>REJECTED</p>
                             : <p className='normal-text'>REJECTED</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 11 ? 
                             <p className='negotiating'>NEGOTIATING</p>
                             : <p className='normal-text'>NEGOTIATING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 12 ? 
                             <p className='accepted-offer'>ACCEPTED OFFER</p>
                             : <p className='normal-text'>ACCEPTED OFFER</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.jobStatusId === 1 ? 
+                            {job.job_status_id === 13 ? 
                             <p className='rejected-offer'>REJECTED OFFER</p>
                             : <p className='normal-text'>REJECTED OFFER</p>}
                         </div>
