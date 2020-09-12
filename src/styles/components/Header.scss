@@ -19,11 +19,11 @@
 
 .left-header {
     height: 60px;
-    width: 450px;
+    width: 500px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .logo-box {
@@ -33,7 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 15px;
+    margin-left: 30px;
     color: #E0AF66;
     letter-spacing: 5px;
     font-size: 35px;
@@ -48,6 +48,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-right: 15px;
+    margin-right: 30px;
     text-decoration: none;
 }

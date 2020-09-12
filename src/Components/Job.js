@@ -120,28 +120,11 @@ const Job = (props) => {
                 <>
                 <div className='title-bar-jobview'>
                     <div className='title-box'>
-                        {/* The job title needs to come from where? From useState here. */}
                         <p>{job.title}</p>
                     </div>
                     <div className='edit-delete-box'>
-                        {/* Add onClick method */}
-                        <button onClick={() => toggleEdit()} className='btn' >EDIT</button>
-                        {/* <button onClick={() => {
-                            saveEdit(
-                            //**Do I need to save userId in here?
-                            props.match.params.jobId,
-                            input.title,
-                            input.location,
-                            input.url,
-                            input.datePosted,
-                            input.description,
-                            input.notes,
-                            input.company,
-                            input.contact
-                        );
-                        toggleEdit();
-                        }} className='btn' >SAVE</button> */}
-                        <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn' >DELETE</button>
+                        <button onClick={() => toggleEdit()} className='btn-jobview' >EDIT</button>
+                        <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn-jobview' >DELETE</button>
                     </div>
                 </div>
                 <div className='details-container-jobview'>
@@ -188,7 +171,7 @@ const Job = (props) => {
                             className='title-edit'/>
                     </div>
                     <div className='edit-delete-box'>
-                        {/* <button onClick={() => toggleEdit()} className='btn' >EDIT</button> */}
+                        {/* <button onClick={() => toggleEdit()} className='btn-jobview-jobview' >EDIT</button> */}
                         <button onClick={() => {
                             saveEdit(
                             //**Do I need to save userId in here?
@@ -204,7 +187,7 @@ const Job = (props) => {
                             input.contact
                         );
                         toggleEdit();
-                        }} className='btn' >SAVE</button>
+                        }} className='btn-jobview' >SAVE</button>
                         {/* <button onClick={() => saveEdit(
                             // props.job.jobId,
                             input.title,
@@ -215,9 +198,9 @@ const Job = (props) => {
                             input.notes,
                             input.company,
                             input.contact
-                        )} className='btn' >SAVE</button> */}
-                        <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn' >DELETE</button>
-                        <button onClick={() => toggleEdit()} className='btn' >CANCEL</button>
+                        )} className='btn-jobview' >SAVE</button> */}
+                        <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn-jobview' >DELETE</button>
+                        <button onClick={() => toggleEdit()} className='btn-jobview' >CANCEL</button>
                     </div>
                 </div>
                     <div className='detail-item-jobview'>
@@ -268,7 +251,7 @@ const Job = (props) => {
 
                     <div className='dropdown-container-jobview'>
                         <p className='label'>STATUS</p>
-                            <select  name='jobStatusId' className='dropdown'  onChange={handleDropdown}>
+                            <select  name='jobStatusId' defaultValue={job.job_status_id} className='dropdown'  onChange={handleDropdown}>
                                 <option className='options' value={1}>Researching</option>
                                 <option className='options' value={2}>Networking</option>
                                 <option className='options' value={3}>Applying</option>
@@ -292,7 +275,7 @@ const Job = (props) => {
                             value={input.description}
                             onChange={(e) => handleChange(e)} 
                             defaultValue={job.description}
-                            className='value-textarea'></textarea>
+                            className='textarea-value textarea-value-edit'></textarea>
                     </div>
                     <div className='detail-jobview-textarea'>
                         <p className='label'>NOTES</p>
@@ -301,7 +284,7 @@ const Job = (props) => {
                             value={input.notes}
                             onChange={(e) => handleChange(e)} 
                             defaultValue={job.notes}
-                            className='value-textarea'></textarea>
+                            className='textarea-value textarea-value-edit'></textarea>
                     </div>
                 </>
                     )} 
@@ -310,7 +293,7 @@ const Job = (props) => {
 
             <section className='status-container'>
                 <div className='job-view-status-title'>
-                    <p>STATUS</p>
+                    <p className='status-header'>STATUS</p>
                 </div>
                 <div className='list-w-bar'>
                     <div className='status-line'></div>

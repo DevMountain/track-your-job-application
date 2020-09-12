@@ -21,37 +21,37 @@ import {withRouter} from 'react-router-dom';
 
 function App(props) {
 
-  const styles = {
-    page: {
-      height: '100vh',
-      width: '100vw',
-      display: 'flex',
-      flexDirection: 'column',
-    // },
-    // header: {
-    //   height: '12%',
-    //   width: '100%',
-    //   backgroundColor: 'white'
-    // },
-    // mainPage: {
-    //   height: '80%',
-    //   width: '100%',
-      backgroundColor: '#F6F6F6'
-    // },
-    // footer: {
-    //   height: '8%',
-    //   width: '100%',
-    //   position: 'relative',
-    //   bottom: 0
+  // const styles = {
+  //   page: {
+  //     height: '100vh',
+  //     width: '100vw',
+  //     display: 'flex',
+  //     flexDirection: 'column',
+  //   // },
+  //   // header: {
+  //   //   height: '12%',
+  //   //   width: '100%',
+  //   //   backgroundColor: 'white'
+  //   // },
+  //   // mainPage: {
+  //   //   height: '80%',
+  //   //   width: '100%',
+  //     backgroundColor: '#F6F6F6'
+  //   // },
+  //   // footer: {
+  //   //   height: '8%',
+  //   //   width: '100%',
+  //   //   position: 'relative',
+  //   //   bottom: 0
 
-    }
-  }
+  //   }
+  // }
   return (
     <div className="App">
       {props.location.pathname !== '/' ?
         <Header/> : null
       }
-      <section style={styles.mainPage}>
+      {/* <section style={styles.mainPage}> */}
         <Switch>
           <Route exact path="/" component={Login}/>
           <Route path="/dashboard" component={Dashboard}/>
@@ -68,7 +68,7 @@ function App(props) {
           {/* <Route path="/add_contact" component={AddContact}/> */}
           {/* <Route path="/add_company" component={AddCompany}/> */}
         </Switch>
-      </section>
+      {/* </section> */}
       {props.location.pathname !== '/' ?
         <Footer/> : null
       }

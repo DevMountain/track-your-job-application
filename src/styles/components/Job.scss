@@ -20,39 +20,37 @@
 
 
 .page-job {
-    display: flex;
-    justify-content: space-around;
     height: 85vh;
     width: 100vw;
     @include flex-positioning-evenly();    
+    justify-content: center;
     align-items: flex-start;
-    padding-top: 40px;
+    padding-top: 20px;
     // margin-top: 20px;
 }
-//Right side of the page.
 
 .job-container-jobjs {
     // margin-top: 20px;
     margin-left: 30px;
     width: 600px;
-    height: 600px;
+    height: 800px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    // border: solid 1px black;
+    margin-right: 50px;
 }
 
 //same as dashboard.scss title-bar (do a variable or mixin)
 .title-bar-jobview {
-    height: 80px;
+    height: 60px;
     width: 600px;
     display: flex;
     // border: solid 1px black;
     @include flex-positioning-evenly;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
     @include big-header-font;
+    margin-bottom: 40px;
 }
 
 .title-box {
@@ -69,11 +67,11 @@
     font-family: $primary-font;
     font-size: 40px;
     letter-spacing: 2px;
-    // padding-left: 10px;
 }
 
 .edit-delete-box {
     @include flex-positioning-evenly();
+    align-items: flex-end;
     flex-direction: row;
 }
  
@@ -85,7 +83,7 @@
     justify-content: flex-start;
     // overflow: auto;
     // resize: none;
-    padding-top: 20px;
+    // padding-top: 20px;
 }
 
 .detail-item-jobview {
@@ -111,17 +109,8 @@
     font-family: $secondary-font;
     letter-spacing: 1px;
     font-size: 15px;
-    padding-left: 10px;
+    padding-left: 5px;
 }
-
-// .detail-item-textarea {
-//     height: 100px;
-//     display: flex;
-//     // flex-direction: row;
-//     // justify-content: space-between;
-//     align-items: center;
-//     margin-bottom: 25px;
-// }
 
 .textarea-line-jobview {
     height: 100px;
@@ -136,11 +125,16 @@
     width: 500px;
     height: 100px;
     overflow: auto;
-    border: 1px solid black;
+    resize: none;
     font-family: $secondary-font;
     letter-spacing: 1px;
     font-size: 15px;
-    padding-left: 10px;
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+.textarea-value-edit {
+    border: 1px solid black;
 }
 
 .dropdown-container-jobview {
@@ -150,7 +144,6 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 25px;
-
 }
 
 .dropdown {
@@ -160,7 +153,6 @@
     width: 500px;
     font-family: $secondary-font;
     font-size: 15px;
-
 }
 
 .options {
@@ -175,38 +167,36 @@
     height: 100px;
     width: 600px;
     display: flex;
-    // flex-direction: row;
-    // justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
 }
 
-.value-textarea {
-    height: 100px;
-    width: 450px;
-    overflow: auto;
-    font-family: $secondary-font;
-    font-size: 15px;
-    letter-spacing: 1px;
-}
-
 .status-container {
     width: 300px;
-    height: 600px;
+    height: 550px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    // justify-content: space-evenly;
 }    
 
 .job-view-status-title {
-    height: 80px;
+    height: 60px;
     @include big-header-font;
+    display: flex;
+    align-items: flex-end;
     font-size: 30px;
-
+    margin-bottom: 20px;
 }
+
+.status-header {
+    display: flex;
+    align-items: flex-end;
+}
+
 .list-w-bar {
-    height: 480px;
+    margin-top: 20px;
+    height: 450px;
     width: 300px;
     display: flex;
     flex-direction: row;
@@ -215,7 +205,7 @@
 
 .status-line {
     display: flex;
-    height: 480px;
+    height: 450px;
     width: 3px;
     background-color: lightgray;
     margin-left: 50px;
@@ -253,24 +243,26 @@
     font-size: 18px;
     font-weight: normal;
     letter-spacing: 2px;
-    height: 500px;
+    height: 450px;
     width: 300px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-between;
     // margin-left: 20px;
     // padding-right: 50px;
 }
 
-.btn {
+.btn-jobview {
     background-color: white;
     color: black;
     border: solid 1px black;
     font-family: $primary-font;
-    font-size: 16px;
+    font-size: 14px;
     margin-left: 20px;
     letter-spacing: 1px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .normal-text {

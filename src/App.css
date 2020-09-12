@@ -92,7 +92,7 @@ button {
   outline: none; }
 
 .dash-page {
-  height: 85vh;
+  height: 100%;
   width: 100vw;
   background-color: white;
   display: flex;
@@ -102,7 +102,7 @@ button {
   align-items: flex-start; }
 
 .big-list-container {
-  margin-top: 20px;
+  margin-top: 40px;
   width: 700px;
   height: 600px; }
 
@@ -180,7 +180,7 @@ button {
   color: black;
   border: solid 1px black;
   font-family: "Oswald", sans serif;
-  font-size: 16px;
+  font-size: 14px;
   margin-left: 20px;
   letter-spacing: 1px;
   margin-bottom: 10px; }
@@ -320,26 +320,25 @@ button {
   outline: none; }
 
 .page-job {
-  display: flex;
-  justify-content: space-around;
   height: 85vh;
   width: 100vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  justify-content: center;
   align-items: flex-start;
-  padding-top: 40px; }
+  padding-top: 20px; }
 
 .job-container-jobjs {
   margin-left: 30px;
   width: 600px;
-  height: 600px;
+  height: 800px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; }
+  margin-right: 50px; }
 
 .title-bar-jobview {
-  height: 80px;
+  height: 60px;
   width: 600px;
   display: flex;
   display: flex;
@@ -347,11 +346,12 @@ button {
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   font-family: "Oswald", sans serif;
   font-size: 40px;
   color: black;
-  letter-spacing: 2px; }
+  letter-spacing: 2px;
+  margin-bottom: 40px; }
 
 .title-box {
   display: flex;
@@ -371,6 +371,7 @@ button {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  align-items: flex-end;
   flex-direction: row; }
 
 .details-container-jobview {
@@ -378,8 +379,7 @@ button {
   width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 20px; }
+  justify-content: flex-start; }
 
 .detail-item-jobview {
   height: 18px;
@@ -387,7 +387,7 @@ button {
   display: flex;
   margin-bottom: 25px; }
 
-.item {
+.label {
   font-family: "Oswald", sans serif;
   font-size: 16px;
   width: 140px;
@@ -401,23 +401,29 @@ button {
   font-family: "Roboto Condensed", sans serif;
   letter-spacing: 1px;
   font-size: 15px;
-  padding-left: 10px; }
+  padding-left: 5px; }
 
 .textarea-line-jobview {
   height: 100px;
   width: 600px;
   display: flex;
+  flex-direction: row;
   margin-bottom: 25px; }
 
-.job-value {
+.textarea-value {
+  display: flex;
   width: 500px;
   height: 100px;
   overflow: auto;
-  border: 1px solid black;
+  resize: none;
   font-family: "Roboto Condensed", sans serif;
   letter-spacing: 1px;
   font-size: 15px;
-  padding-left: 10px; }
+  padding: 5px;
+  border-bottom: 1px solid black; }
+
+.textarea-value-edit {
+  border: 1px solid black; }
 
 .dropdown-container-jobview {
   height: 20px;
@@ -449,31 +455,32 @@ button {
   align-items: center;
   margin-bottom: 25px; }
 
-.value-textarea {
-  height: 100px;
-  width: 450px;
-  overflow: auto;
-  font-family: "Roboto Condensed", sans serif;
-  font-size: 15px;
-  letter-spacing: 1px; }
-
 .status-container {
   width: 300px;
-  height: 600px;
+  height: 550px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center; }
 
 .job-view-status-title {
-  height: 80px;
+  height: 60px;
   font-family: "Oswald", sans serif;
   font-size: 40px;
   color: black;
   letter-spacing: 2px;
-  font-size: 30px; }
+  display: flex;
+  align-items: flex-end;
+  font-size: 30px;
+  margin-bottom: 20px; }
+
+.status-header {
+  display: flex;
+  align-items: flex-end; }
 
 .list-w-bar {
-  height: 480px;
+  margin-top: 20px;
+  height: 450px;
   width: 300px;
   display: flex;
   flex-direction: row;
@@ -481,7 +488,7 @@ button {
 
 .status-line {
   display: flex;
-  height: 480px;
+  height: 450px;
   width: 3px;
   background-color: lightgray;
   margin-left: 50px; }
@@ -513,21 +520,23 @@ button {
   font-size: 18px;
   font-weight: normal;
   letter-spacing: 2px;
-  height: 500px;
+  height: 450px;
   width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-evenly; }
+  justify-content: space-between; }
 
-.btn {
+.btn-jobview {
   background-color: white;
   color: black;
   border: solid 1px black;
   font-family: "Oswald", sans serif;
-  font-size: 16px;
+  font-size: 14px;
   margin-left: 20px;
-  letter-spacing: 1px; }
+  letter-spacing: 1px;
+  display: flex;
+  align-items: flex-end; }
 
 .normal-text {
   font-family: "Roboto Condensed", sans serif;
@@ -626,9 +635,12 @@ button {
   color: black; }
 
 .App {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+  overflow: none; }
 
 .btn {
   background-color: white;
