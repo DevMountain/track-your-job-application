@@ -40,3 +40,15 @@
     "jobStatusId": 8,
     "userId": 1
 }
+
+{
+    "title": "Fairy Godmother",
+    "location": "France",
+    "url": "www.magicandlove.com",
+    "datePosted": "8/30/20",
+    "description": "5 ballgowns a week.",
+    "notes": "Better than last job.",
+    "company": "Godmother Magic",
+    "contact": "Gus Gusman",
+    "userId": 1
+}

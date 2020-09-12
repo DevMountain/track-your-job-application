@@ -20,14 +20,17 @@ module.exports = {
     //this now works in postman. Do job_status_id in a separate endpoint.
     //Now this isn't working in postman. I don't know why. It's making the job title the jobId and the userId undefined. 
     editJob: async (req, res) => {
-        console.log('edit jobs req.params ', req.params)
         // console.log()
-
+        
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
-        const {jobId, userId} = req.params; 
+        const {userId, jobId} = req.params; 
+        console.log('edit jobs req.params ', req.params)
+        console.log('edit job each property log',
+            title, location, company, url, datePosted, description, notes, contact, jobStatusId, userId)
         const db = req.app.get('db');
         const jobs = await db.jobs.edit_job([
             // jobId,
+            // userId,
             title,
             location,
             url,
@@ -37,8 +40,8 @@ module.exports = {
             jobStatusId,
             company,
             contact,
-            jobId,
-            userId
+            userId,
+            jobId
             
         ])
         res.status(200).send(jobs);

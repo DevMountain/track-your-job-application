@@ -89,14 +89,11 @@ const Job = (props) => {
         setInput({...input, jobStatusId: e.target.value})
     };
 
-    const saveEdit = (title, location, url, datePosted, description, notes, company, contact) => {
+    const saveEdit = (title, location, url, datePosted, description, notes, jobStatusId, company, contact, userId, jobId) => {
         // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
-        //Do jobStatusId elsewhere. Separate edit function and changeHandler and onClick.
-        // const {userId} = props.job.user_id;
-        //Or this? Which is better? I'm connected to redux, so probably redux.
-        const {userId} = props.authReducer.user;
-        const {jobId} = props.match.params;
-        axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, company, contact}).then(res => {
+        // const {jobId} = props.match.params;
+        // const {userId} = props.authReducer.user;
+        axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
             props.updateJobs(res.data);
             console.log('props.match.params', props.match.params)
             // props.history.push('/dashboard')
@@ -175,16 +172,17 @@ const Job = (props) => {
                         <button onClick={() => {
                             saveEdit(
                             //**Do I need to save userId in here?
-                            props.match.params.jobId,
                             input.title,
                             input.location,
                             input.url,
                             input.datePosted,
                             input.description,
-                            input.jobStatusId,
                             input.notes,
+                            input.jobStatusId,
                             input.company,
-                            input.contact
+                            input.contact,
+                            props.match.params.userId,
+                            props.match.params.jobId
                         );
                         toggleEdit();
                         }} className='btn-jobview' >SAVE</button>
