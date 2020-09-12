@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import '../styles/components/Job.scss'
 import {updateJobs} from '../redux/jobReducer';
-import {getUser} from '../redux/authReducer';
+// import {getUser} from '../redux/authReducer';
 // import {withRouter} from 'react-router-dom';
 
 
@@ -17,40 +17,39 @@ const Job = (props) => {
    
     const [isEditing, setIsEditing] = useState(false)
     const [job, setJob] = useState({})
-    const [input, setInput] = useState({
-        // title: props.job.title,
-        //since I destructured off props, do I need to do it like the above? Or will this work:
-        // title,
-        // location,
-        // url,
-        // datePosted,
-        // description,
-        // notes,
-        // jobStatusId,
-        // company,
-        // contact
+    // const [input, setInput] = useState({
+    //     // title: props.job.title,
+    //     //since I destructured off props, do I need to do it like the above? Or will this work:
+    //     // title,
+    //     // location,
+    //     // url,
+    //     // datePosted,
+    //     // description,
+    //     // notes,
+    //     // jobStatusId,
+    //     // company,
+    //     // contact
         
-        // title: '',
-        // location: '',
-        // url: '',
-        // datePosted: '',
-        // description: '',
-        // notes: '',
-        // //Maybe put this in a different location.
-        // jobStatusId: 1,
-        // company: '',
-        // contact: ''
+    //     // title: '',
+    //     // location: '',
+    //     // url: '',
+    //     // datePosted: '',
+    //     // description: '',
+    //     // notes: '',
+    //     // jobStatusId: 1,
+    //     // company: '',
+    //     // contact: ''
 
-        title: job.title,
-        location: job.location,
-        url: job.url,
-        datePosted: job.datePosted,
-        description: job.description,
-        notes: job.notes,
-        jobStatusId: job.job_status_id,
-        company: job.company,
-        contact: job.contact,
-    })
+    //     title: job.title,
+    //     company: job.company,
+    //     location: job.location,
+    //     url: job.url,
+    //     datePosted: job.date_posted,
+    //     contact: job.contact,
+    //     jobStatusId: job.job_status_id,
+    //     description: job.description,
+    //     notes: job.notes,
+    // })
 
     // get the job info in an axios request get jobs, inside a component did mount/useEffect, so the job is listed as soon as I view the component.
     //Do I need the userId? I think I put it in the endpoint.
@@ -66,35 +65,59 @@ const Job = (props) => {
     //This useEffect isn't updating useState. Why? The getOneJob endpoint is working in Postman.
 
     const toggleEdit = () => {
-        const {title, location, url, datePosted, description, notes, company, contact} = input;
+        // const {title, location, url, datePosted, description, notes, company, contact} = input;
         setIsEditing(!isEditing);
-        setInput({
-            title,
-            location,
-            url,
-            datePosted,
-            description,
-            notes,
-            company,
-            contact
-        });
-    };
+        // setInput({
+        //     title: job.title,
+        //     company: job.company,
+        //     location: job.location,
+        //     url: job.url,
+        //     datePosted: job.date_posted,
+        //     contact: job.contact,
+        //     jobStatusId: job.job_status_id,
+        //     description: job.description,
+        //     notes: job.notes,
 
+//Just made this change. We'll see if it works.
+            // title: input.title,
+            // company: input.company,
+            // location: input.location,
+            // url: input.url,
+            // datePosted: input.datePosted,
+            // contact: input.contact,
+            // jobStatusId: input.jobStatusDd,
+            // description: input.description,
+            // notes: input.notes,
+            
+            // title,
+            // location,
+            // url,
+            // datePosted,
+            // description,
+            // notes,
+            // company,
+            // contact
+    //     });
+    };
+//spread in input or not?
     const handleChange = (e) => {
-        setInput({...input, [e.target.name]: e.target.value})
+        setJob({...job, [e.target.name]: e.target.value})
     };
 
     const handleDropdown = (e) => {
         e.stopPropagation();
-        setInput({...input, jobStatusId: e.target.value})
+        setJob({...job, [e.target.name]: e.target.value})
     };
 
-    const saveEdit = (title, location, url, datePosted, description, notes, jobStatusId, company, contact, userId, jobId) => {
+    const saveEdit = (userId, jobId, title, location, url, datePosted, description, notes, jobStatusId, company, contact) => {
         // const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = input;
         // const {jobId} = props.match.params;
         // const {userId} = props.authReducer.user;
         axios.put(`/api/jobs/${userId}/${jobId}`, {title, location, url, datePosted, description, notes, jobStatusId, company, contact}).then(res => {
+            //This is updating redux state.
             props.updateJobs(res.data);
+            // setJob() would update values on local state. I could also add another axios.get call here (copy and paste from what's in the useEffect function) to update local state.
+            //I wonder if I could also just send one job back from the backend and see what that does. 
             console.log('props.match.params', props.match.params)
             // props.history.push('/dashboard')
         }).catch(err => console.log(err));
@@ -160,96 +183,97 @@ const Job = (props) => {
                 <div className='title-bar-jobview'>
                     <div className='title-box'>
                         <input 
-                            value={input.title}
-                            defaultValue={job.title}
+                            // value={input.title}
+                            value={job.title}
+                            // defaultValue={job.title}
                             name='title' 
                             onChange={(e) => handleChange(e)} 
                             // placeholder={job.title}
                             className='title-edit'/>
                     </div>
                     <div className='edit-delete-box'>
-                        {/* <button onClick={() => toggleEdit()} className='btn-jobview-jobview' >EDIT</button> */}
                         <button onClick={() => {
                             saveEdit(
-                            //**Do I need to save userId in here?
-                            input.title,
-                            input.location,
-                            input.url,
-                            input.datePosted,
-                            input.description,
-                            input.notes,
-                            input.jobStatusId,
-                            input.company,
-                            input.contact,
-                            props.match.params.userId,
-                            props.match.params.jobId
-                        );
-                        toggleEdit();
+                                props.match.params.userId,
+                                props.match.params.jobId,
+                                job.title,
+                                job.location,
+                                job.url,
+                                job.date_posted,
+                                job.description,
+                                job.notes,
+                                job.jobStatusId,
+                                job.company,
+                                job.contact
+                            );
+                            toggleEdit();
                         }} className='btn-jobview' >SAVE</button>
-                        {/* <button onClick={() => saveEdit(
-                            // props.job.jobId,
-                            input.title,
-                            input.location,
-                            input.url,
-                            input.datePosted,
-                            input.description,
-                            input.notes,
-                            input.company,
-                            input.contact
-                        )} className='btn-jobview' >SAVE</button> */}
-                        <button onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} className='btn-jobview' >DELETE</button>
-                        <button onClick={() => toggleEdit()} className='btn-jobview' >CANCEL</button>
+                        <button 
+                            onClick={() => deleteJob(props.authReducer.user.userId, props.match.params.jobId)} 
+                            className='btn-jobview' >DELETE</button>
+                        <button 
+                            onClick={() => toggleEdit()} 
+                            className='btn-jobview' >CANCEL</button>
                     </div>
                 </div>
                     <div className='detail-item-jobview'>
                         <p className='label'>COMPANY</p>
                         <input 
                             name='company' 
-                            value={input.company}
+                            // value={input.company}
+                            value={job.company}
                             onChange={(e) => handleChange(e)} 
-                            defaultValue={job.company}
+                            // defaultValue={job.company}
                             className='value' />
                     </div>
                     <div className='detail-item-jobview'>
                         <p className='label'>LOCATION</p>
                         <input 
                             name='location' 
-                            value={input.location}
+                            value={job.location}
+                            // value={input.location}
                             onChange={(e) => handleChange(e)} 
-                            defaultValue={job.location}
+                            // defaultValue={job.location}
                             className='value' />
                     </div>
                     <div className='detail-item-jobview'>
                         <p className='label'>URL</p>
                         <input 
                             name='url' 
-                            value={input.url}
+                            value={job.url}
+                            // value={input.url}
                             onChange={(e) => handleChange(e)} 
-                            defaultValue={job.url}
+                            // defaultValue={job.url}
                             className='value' />
                     </div>
                     <div className='detail-item-jobview'>
                         <p className='label'>DATE POSTED</p>
                         <input 
-                            name='datePosted' 
-                            value={input.date_posted}
+                            name='date_posted' 
+                            value={job.date_posted}
+                            // value={input.datePosted}
                             onChange={(e) => handleChange(e)} 
-                            defaultValue={job.date_posted}
+                            // defaultValue={job.date_posted}
                             className='value' />
                     </div>
                     <div className='detail-item-jobview'>
                         <p className='label'>CONTACT</p>
                         <input 
                             name='contact' 
-                            value={input.contact}
+                            value={job.contact}
+                            // value={input.contact}
                             onChange={(e) => handleChange(e)} 
-                            defaultValue={job.contact}
+                            // defaultValue={job.contact}
                             className='value' />
                     </div>
 
                     <div className='dropdown-container-jobview'>
                         <p className='label'>STATUS</p>
-                            <select  name='jobStatusId' defaultValue={job.job_status_id} className='dropdown'  onChange={handleDropdown}>
+                            <select  
+                            name='jobStatusId' 
+                            defaultValue={job.job_status_id} 
+                            className='dropdown'  
+                            onChange={(e) => handleDropdown(e)}>
                                 <option className='options' value={1}>Researching</option>
                                 <option className='options' value={2}>Networking</option>
                                 <option className='options' value={3}>Applying</option>
@@ -270,18 +294,20 @@ const Job = (props) => {
                         <p className='label'>DESCRIPTION</p>
                         <textarea 
                             name='description' 
-                            value={input.description}
+                            value={job.description}
+                            // value={input.description}
                             onChange={(e) => handleChange(e)} 
-                            defaultValue={job.description}
+                            // defaultValue={job.description}
                             className='textarea-value textarea-value-edit'></textarea>
                     </div>
                     <div className='detail-jobview-textarea'>
                         <p className='label'>NOTES</p>
                         <textarea 
                             name='notes' 
-                            value={input.notes}
+                            value={job.notes}
+                            // value={input.notes}
                             onChange={(e) => handleChange(e)} 
-                            defaultValue={job.notes}
+                            // defaultValue={job.notes}
                             className='textarea-value textarea-value-edit'></textarea>
                     </div>
                 </>
@@ -386,8 +412,9 @@ const Job = (props) => {
 
 const mapStateToProps = (reduxState) => reduxState;
 
-export default connect(mapStateToProps, {getUser, updateJobs })(Job);
-
+//This takes all of redux state and puts it on props.
+export default connect(mapStateToProps, {updateJobs })(Job);
+//Didn't need getUser function.
 
 // need to get jobs from redux state.
 

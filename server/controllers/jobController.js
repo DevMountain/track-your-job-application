@@ -7,6 +7,10 @@ module.exports = {
         console.log('req.params in get jobs', req.params)
 
         const jobs = await db.jobs.get_jobs(userId)
+        // Another option that adds error handling: 
+        //db.jobs.get_jobs(userId).then(jobs=> {
+            // res.status....
+        // }).catch....
         res.status(200).send(jobs);
     },
     //This seems to work in postman.
@@ -20,14 +24,14 @@ module.exports = {
     //this now works in postman. Do job_status_id in a separate endpoint.
     //Now this isn't working in postman. I don't know why. It's making the job title the jobId and the userId undefined. 
     editJob: async (req, res) => {
-        // console.log()
-        
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {userId, jobId} = req.params; 
         console.log('edit jobs req.params ', req.params)
         console.log('edit job each property log',
-            title, location, company, url, datePosted, description, notes, contact, jobStatusId, userId)
+            title, location, company, url, datePosted, description, notes, contact, jobStatusId, userId, jobId)
         const db = req.app.get('db');
+        //Defaults as an array if you don't put brackets.
+        //This dictates the order of the variables ($1, etc.) in the .sql file.
         const jobs = await db.jobs.edit_job([
             // jobId,
             // userId,
@@ -44,7 +48,11 @@ module.exports = {
             jobId
             
         ])
-        res.status(200).send(jobs);
+        if(jobs){
+            res.status(200).send(jobs);
+        } else {
+            res.status(404).send("Error in the server request.")
+        }
     },
     //getting userId and jobId - how?
     deleteJob: async (req, res) => {

@@ -11,10 +11,10 @@ notes = $6,
 job_status_id = $7,
 company = $8,
 contact = $9
-WHERE job_id = $10 AND user_id = $11;
+WHERE job_id = $11 AND user_id = $10;
 
--- SELECT * FROM jobs rs
--- ORDER BY job_id;
+SELECT * FROM jobs
+ORDER BY job_id;
 
 
 

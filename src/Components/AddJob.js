@@ -49,19 +49,9 @@ const AddJob = (props) => {
     }
 
     const cancelAdd = () => {
-        setInput({
-            title: '',
-            location: '',
-            url: '',
-            datePosted: '',
-            description: '',
-            notes: '',
-            jobStatusId: 1,
-            company: '',
-            contact: ''
-            });
         props.history.push('/dashboard')
     }
+
     console.log("AddJob.js props", props)
     return (
         <div className='page-add'>
