@@ -76,7 +76,7 @@ const AddJob = (props) => {
                     </div>
                     <div className='detail-item'>
                         <p className='item'>LOCATION</p>
-                        <input type='text' placeholder='Company' name='location' value={input.location} onChange={handleChange} className='value'/>
+                        <input type='text' placeholder='Location' name='location' value={input.location} onChange={handleChange} className='value'/>
                     </div>
                     <div className='detail-item'>
                         <p className='item'>URL</p>

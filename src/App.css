@@ -196,7 +196,20 @@ button {
   border-bottom: black solid 1px;
   display: flex;
   align-items: center;
-  flex-direction: row; }
+  flex-direction: row;
+  text-decoration: none; }
+  .job-map-box a:link, .job-map-box a:visited, .job-map-box a:active {
+    text-decoration: none;
+    color: black; }
+  .job-map-box a:hover {
+    text-decoration: none;
+    color: gray; }
+  .job-map-box .job-map-box:link, .job-map-box .job-map-box:visited, .job-map-box .job-map-box:active {
+    text-decoration: none;
+    color: black; }
+  .job-map-box .job-map-box:hover {
+    text-decoration: none;
+    color: gray; }
 
 .job-company-box {
   display: flex;
@@ -213,7 +226,15 @@ button {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  border-bottom: solid 1px lightgray; }
+  border-bottom: solid 1px lightgray;
+  text-decoration: none;
+  text-decoration-line: none; }
+  .job-title p:link, .job-title p:visited, .job-title p:active {
+    text-decoration: none;
+    color: black; }
+  .job-title p:hover {
+    text-decoration: none;
+    color: gray; }
 
 .company-name {
   width: 510px;

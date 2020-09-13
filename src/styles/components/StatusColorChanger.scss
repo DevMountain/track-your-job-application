@@ -24,12 +24,19 @@ $secondary-font: 'Roboto Condensed', sans serif;
     letter-spacing: 1px;
     font-weight: normal;
     text-decoration: none;
-    text-decoration-line: none;
+    a:link, a:visited, a:active {
+        text-decoration: none;
+        color: black;
+    }
+    a:hover {
+        color: gray;
+    }
     
     &--researching{
         @extend .status;
         border: 2px solid rgb(224, 193, 17);
         color: rgb(224, 193, 17);
+        text-decoration: none;
         color: black;
 
     }

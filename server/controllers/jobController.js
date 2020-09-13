@@ -11,7 +11,11 @@ module.exports = {
         //db.jobs.get_jobs(userId).then(jobs=> {
             // res.status....
         // }).catch....
-        res.status(200).send(jobs);
+        if(jobs){
+            res.status(200).send(jobs);
+        } else {
+            res.status(404).send("Error in the server request.")
+        }
     },
     //This seems to work in postman.
     getOneJob: async (req, res) => {
@@ -54,8 +58,7 @@ module.exports = {
             res.status(404).send("Error in the server request.")
         }
     },
-    //getting userId and jobId - how?
-    // deleteJob: async (req, res) => {
+
     deleteJob: async (req, res) => {
         const {jobId, userId} = req.params;        
         console.log('Delete job req.params', req.params)
@@ -67,6 +70,7 @@ module.exports = {
             res.status(500).send("Error in the server request.")
         }
     },
+
     addJob: async (req, res) => {
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;
         const {userId} = req.params; 
@@ -88,7 +92,11 @@ module.exports = {
             jobStatusId,
             userId
         ])
-        res.status(200).send(jobs)
+        if(jobs){
+            res.status(200).send(jobs);
+        } else {
+            res.status(404).send("Error in the server request.")
+        }
     }
 }
 

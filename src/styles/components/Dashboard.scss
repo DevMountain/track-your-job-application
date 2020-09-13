@@ -1,3 +1,5 @@
+// @import '../reset.scss';
+
 @mixin flex-positioning-evenly {
     display: flex;
     justify-content: space-evenly;
@@ -133,6 +135,23 @@ $secondary-font: 'Roboto Condensed', sans serif;
     display: flex;
     align-items: center;
     flex-direction: row;
+    text-decoration: none;
+    a:link, a:visited, a:active {
+        text-decoration: none;
+        color: black;
+    }
+    a:hover {
+        text-decoration: none;
+        color: gray;
+    }
+    .job-map-box:link, .job-map-box:visited, .job-map-box:active {
+        text-decoration: none;
+        color: black;
+    }
+    .job-map-box:hover {
+        text-decoration: none;
+        color: gray;
+    }
     // padding: 2px;
 }
 
@@ -154,6 +173,16 @@ $secondary-font: 'Roboto Condensed', sans serif;
     justify-content: flex-start;
     align-items: center;
     border-bottom: solid 1px lightgray;
+    text-decoration: none;
+    text-decoration-line: none;
+    p:link, p:visited, p:active {
+        text-decoration: none;
+        color: black;
+    }
+    p:hover {
+        text-decoration: none;
+        color: gray;
+    }
 }
 
 .company-name {
