@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import '../styles/components/Login.scss';
 import {loginUser} from '../redux/authReducer';
@@ -9,19 +9,28 @@ import styled from 'styled-components';
 // import { registerUser} from '../../redux/reducer';
 
 //Try to convert to hooks.
-class Login extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            email: '',
-            password: '',
-            firstName: '',
-            lastName: '',
-            newUser: false
-        }
-    }
+// class Login extends React.Component {
+//     constructor() {
+//         super();
+//         this.state = {
+//             email: '',
+//             password: '',
+//             firstName: '',
+//             lastName: '',
+//             newUser: false
+//         }
+//     }
 
-    styles = {
+const Login = (props) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [newUser, setNewUser] = useState(false);
+
+
+
+    const styles = {
         page: {
             height: '100vh',
             width: '100vw',
@@ -203,36 +212,54 @@ class Login extends React.Component {
     //     color: 
     //     `;
 
-    toggle = () => {
-        this.setState({
-            newUser: !this.state.newUser
-        })
+    const toggle = () => {
+        setNewUser(!newUser)   
     }
     
-    handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+    const handleEmail = (e) => {
+    // handleChange = (e) => {
+        // this.setState({
+        //     [e.target.name]: e.target.value
+        // })
+        setEmail(e.target.value)
+    };
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+    };
+    const handleFirstName = (e) => {
+        setFirstName(e.target.value)
+    };
+    const handleLastName = (e) => {
+        setLastName(e.target.value)
+    };
 
-    login = () => {
-        const {email, password} = this.state;
+    const login = () => {
         axios.post('/auth/login', {email, password}).then(res => {
             console.log("this is res.data from login post axios call in Login.js", res.data)
-            this.props.loginUser(res.data)
-            this.props.history.push('/dashboard')
+            props.loginUser(res.data)
+            props.history.push('/dashboard')
         }).catch(err => {
             console.log(err)
-            alert("Login Failed. Try registering as a new user.")
+            alert("Login Failed. Email or password incorrect.")
         })
-    }
+    };
+    // login = () => {
+    //     const {email, password} = this.state;
+    //     axios.post('/auth/login', {email, password}).then(res => {
+    //         console.log("this is res.data from login post axios call in Login.js", res.data)
+    //         this.props.loginUser(res.data)
+    //         this.props.history.push('/dashboard')
+    //     }).catch(err => {
+    //         console.log(err)
+    //         alert("Login Failed. Try registering as a new user.")
+    //     })
+    // }
 
-    register = () => {
-        const {email, password, firstName, lastName} = this.state;
+    const register = () => {
         if(email && password && firstName && lastName){
             axios.post('/auth/register', {email, password, firstName, lastName}).then(res => {
-               this.props.loginUser(res.data)
-               this.props.history.push('/dashboard') 
+               props.loginUser(res.data)
+               props.history.push('/dashboard') 
             }).catch(err => {
                 console.log(err)
                 alert("Registration failed. Try another email address.")
@@ -241,101 +268,115 @@ class Login extends React.Component {
             alert("Registration failed. All fields must have a value.")
         }
     }
+    // register = () => {
+    //     const {email, password, firstName, lastName} = this.state;
+    //     if(email && password && firstName && lastName){
+    //         axios.post('/auth/register', {email, password, firstName, lastName}).then(res => {
+    //            this.props.loginUser(res.data)
+    //            this.props.history.push('/dashboard') 
+    //         }).catch(err => {
+    //             console.log(err)
+    //             alert("Registration failed. Try another email address.")
+    //         })
+    //     } else {
+    //         alert("Registration failed. All fields must have a value.")
+    //     }
+    // }
 
-    render(){
+    // render(){
         //The following is to see what's on the user object, which is created by the axios call...and is put as res.data on the function that corresponds with the action builder in the reducer function. 
         // console.log(this.props.user)
-        const {email, password, firstName, lastName, newUser} = this.state;
-        return(
-            <div style={this.styles.page}>    
-                <header style={this.styles.header} >
-                    <p>Keep track of your job applications with TYJA.</p>
-                </header>
-                <div style={this.styles.centerBackground}>
-                    <section style={this.styles.centerContainer}>
-                        <div>
-                            <div style={this.styles.logoBar}>
-                                <div style={this.styles.logoBox}>
-                                    <h1>TYJA</h1>
-                                </div>
-                                <div style={this.styles.nameBox}>
-                                    <p style={this.styles.logoName}>TRACK YOUR JOB APPLICATION</p>
-                                </div>
+        // const {email, password, firstName, lastName, newUser} = this.state;
+    return(
+        <div style={styles.page}>    
+            <header style={styles.header} >
+                <p>Keep track of your job applications with TYJA.</p>
+            </header>
+            <div style={styles.centerBackground}>
+                <section style={styles.centerContainer}>
+                    <div>
+                        <div style={styles.logoBar}>
+                            <div style={styles.logoBox}>
+                                <h1>TYJA</h1>
                             </div>
-                            {!newUser ? 
-                            <div style={this.styles.loginContainer}>
-                                <div style={this.styles.loginBoxLeft}>
-                                    <div style={this.styles.loginWordBox}>
-                                        <p>LOGIN</p>
-                                    </div>
-                                    <div style={this.styles.loginEmptyBox}></div>
-                                    <div style={this.styles.loginLineBox}></div>
-                                </div>
-                                <div style={this.styles.inputContainer} >
-                                    <div>
-                                        <input style={this.styles.inputs} placeholder='Email' name="email" value={email} type="text" onChange={e => this.handleChange(e)}/>
-                                    </div>
-                                    <div >
-                                        <input style={this.styles.inputs} placeholder='Password' name="password" value={password} type="password" onChange={e => this.handleChange(e)}/>
-                                    </div>
-                                    <div style={this.styles.btnContainer}>
-                                        <button style={this.styles.btn} onClick={this.login}>Login</button>
-                                        <button style={this.styles.btn} onClick={this.toggle}>Register</button>
-                                    </div>
-                                </div>
+                            <div style={styles.nameBox}>
+                                <p style={styles.logoName}>TRACK YOUR JOB APPLICATION</p>
                             </div>
-                            :
-                            <div style={this.styles.loginContainer}>
-                                <div style={this.styles.loginBoxLeft}>
-                                    <div style={this.styles.loginWordBox}>
-                                        <p>LOGIN</p>
-                                    </div>
-                                    <div style={this.styles.loginEmptyBox}></div>
-                                    <div style={this.styles.loginLineBox}></div>
-                                </div>
-                                <div style={this.styles.inputContainer}>
-                                    <div>
-                                        {/* <p>Email: </p> */}
-                                        <input style={this.styles.inputs} placeholder='Email' name="email" value={email} type="text" onChange={e => this.handleChange(e)}/>
-                                    </div>
-                                    <div>
-                                        {/* <p>Password: </p> */}
-                                        <input style={this.styles.inputs} placeholder='Password' name="password" value={password} type="password" onChange={e => this.handleChange(e)}/>
-                                    </div>
-                                    <div>
-                                        {/* <p>First Name: </p> */}
-                                        <input style={this.styles.inputs} placeholder='First Name' name="firstName" value={firstName} type="text" onChange={e => this.handleChange(e)}/>
-                                    </div>
-                                    <div>
-                                        {/* <p>Last Name: </p> */}
-                                        <input style={this.styles.inputs} placeholder='Last Name' name="lastName" value={lastName} type="text" onChange={e => this.handleChange(e)}/>
-                                    </div>
-                                
-                                    <div style={this.styles.btnContainer} >
-                                        <button style={this.styles.btn} onClick={this.register}>Register</button>
-                                        <button style={this.styles.btn} onClick={this.toggle}>Back to Login</button>
-                                    </div>
-                                </div>
-                            </div>
-                            }
                         </div>
-                    </section>
-                </div>
-                <footer className='footer-text' style={this.styles.footer}>
-                    <div style={this.styles.footerLinks}>
-                        {/* This would be nice, but I have to figure out how to get it to go to About Us when not logged in. */}
-                        {/* <p>TYJA © 2020</p> */}
-                        {/* Make About Us a link */}
-                        {/* <Link to='/about'>
-                            <p>About Us</p>
-                        </Link> */}
-                        {/* Make Contact Us a link to send email with nodemailer */}
-                        {/* <p>Contact Us</p> */}
+                        {!newUser ? 
+                        <div style={styles.loginContainer}>
+                            <div style={styles.loginBoxLeft}>
+                                <div style={styles.loginWordBox}>
+                                    <p>LOGIN</p>
+                                </div>
+                                <div style={styles.loginEmptyBox}></div>
+                                <div style={styles.loginLineBox}></div>
+                            </div>
+                            <div style={styles.inputContainer} >
+                                <div>
+                                    <input style={styles.inputs} placeholder='Email' name="email" value={email} type="text" onChange={e => handleEmail(e)}/>
+                                </div>
+                                <div >
+                                    <input style={styles.inputs} placeholder='Password' name="password" value={password} type="password" onChange={e => handlePassword(e)}/>
+                                </div>
+                                <div style={styles.btnContainer}>
+                                    <button style={styles.btn} onClick={login}>Login</button>
+                                    <button style={styles.btn} onClick={() => toggle()}>Register</button>
+                                </div>
+                            </div>
+                        </div>
+                        :
+                        <div style={styles.loginContainer}>
+                            <div style={styles.loginBoxLeft}>
+                                <div style={styles.loginWordBox}>
+                                    <p>LOGIN</p>
+                                </div>
+                                <div style={styles.loginEmptyBox}></div>
+                                <div style={styles.loginLineBox}></div>
+                            </div>
+                            <div style={styles.inputContainer}>
+                                <div>
+                                    {/* <p>Email: </p> */}
+                                    <input style={styles.inputs} placeholder='Email' name="email" value={email} type="text" onChange={e => handleEmail(e)}/>
+                                </div>
+                                <div>
+                                    {/* <p>Password: </p> */}
+                                    <input style={styles.inputs} placeholder='Password' name="password" value={password} type="password" onChange={e => handlePassword(e)}/>
+                                </div>
+                                <div>
+                                    {/* <p>First Name: </p> */}
+                                    <input style={styles.inputs} placeholder='First Name' name="firstName" value={firstName} type="text" onChange={e => handleFirstName(e)}/>
+                                </div>
+                                <div>
+                                    {/* <p>Last Name: </p> */}
+                                    <input style={styles.inputs} placeholder='Last Name' name="lastName" value={lastName} type="text" onChange={e => handleLastName(e)}/>
+                                </div>
+                            
+                                <div style={styles.btnContainer} >
+                                    <button style={styles.btn} onClick={register}>Register</button>
+                                    <button style={styles.btn} onClick={() => toggle()}>Back to Login</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
                     </div>
-                </footer>
+                </section>
             </div>
-        )
-    }
+            <footer className='footer-text' style={styles.footer}>
+                <div style={styles.footerLinks}>
+                    {/* This would be nice, but I have to figure out how to get it to go to About Us when not logged in. */}
+                    {/* <p>TYJA © 2020</p> */}
+                    {/* Make About Us a link */}
+                    {/* <Link to='/about'>
+                        <p>About Us</p>
+                    </Link> */}
+                    {/* Make Contact Us a link to send email with nodemailer */}
+                    {/* <p>Contact Us</p> */}
+                </div>
+            </footer>
+        </div>
+    )
+    // }
 }
 
 const mapStateToProps = state => state;

@@ -8,7 +8,6 @@ import '../styles/components/AddJob.scss';
 //used hooks
 const AddJob = (props) => {
     // console.log('props on addjob', props)
-    // const [isOpen, setIsOpen] = useState(false);
     const [input, setInput] = useState({
         title: '',
         location: '',
