@@ -4,23 +4,12 @@ import '../styles/components/Login.scss';
 import {loginUser} from '../redux/authReducer';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import '../styles/components/Login.scss';
 import styled from 'styled-components';
 // import { Simulate } from 'react-dom/test-utils';
 // import { registerUser} from '../../redux/reducer';
 
-//Try to convert to hooks.
-// class Login extends React.Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             email: '',
-//             password: '',
-//             firstName: '',
-//             lastName: '',
-//             newUser: false
-//         }
-//     }
-
+//used hooks
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,7 +17,7 @@ const Login = (props) => {
     const [lastName, setLastName] = useState('');
     const [newUser, setNewUser] = useState(false);
 
-
+    // width: unquote("calc( 100% - #{$leftnav-width} )")
 
     const styles = {
         page: {
@@ -50,7 +39,7 @@ const Login = (props) => {
             fontWeight: 'lighter',
             color: 'black',
             fontSize: 40,
-            letterSpacing: 5
+            letterSpacing: 2
         },
         centerBackground: {
             height: 500,
@@ -217,10 +206,6 @@ const Login = (props) => {
     }
     
     const handleEmail = (e) => {
-    // handleChange = (e) => {
-        // this.setState({
-        //     [e.target.name]: e.target.value
-        // })
         setEmail(e.target.value)
     };
     const handlePassword = (e) => {
@@ -243,17 +228,6 @@ const Login = (props) => {
             alert("Login Failed. Email or password incorrect.")
         })
     };
-    // login = () => {
-    //     const {email, password} = this.state;
-    //     axios.post('/auth/login', {email, password}).then(res => {
-    //         console.log("this is res.data from login post axios call in Login.js", res.data)
-    //         this.props.loginUser(res.data)
-    //         this.props.history.push('/dashboard')
-    //     }).catch(err => {
-    //         console.log(err)
-    //         alert("Login Failed. Try registering as a new user.")
-    //     })
-    // }
 
     const register = () => {
         if(email && password && firstName && lastName){
@@ -268,34 +242,18 @@ const Login = (props) => {
             alert("Registration failed. All fields must have a value.")
         }
     }
-    // register = () => {
-    //     const {email, password, firstName, lastName} = this.state;
-    //     if(email && password && firstName && lastName){
-    //         axios.post('/auth/register', {email, password, firstName, lastName}).then(res => {
-    //            this.props.loginUser(res.data)
-    //            this.props.history.push('/dashboard') 
-    //         }).catch(err => {
-    //             console.log(err)
-    //             alert("Registration failed. Try another email address.")
-    //         })
-    //     } else {
-    //         alert("Registration failed. All fields must have a value.")
-    //     }
-    // }
-
-    // render(){
         //The following is to see what's on the user object, which is created by the axios call...and is put as res.data on the function that corresponds with the action builder in the reducer function. 
         // console.log(this.props.user)
-        // const {email, password, firstName, lastName, newUser} = this.state;
-    return(
+    
+    return (
         <div style={styles.page}>    
-            <header style={styles.header} >
+            <header className='header' style={styles.header} >
                 <p>Keep track of your job applications with TYJA.</p>
             </header>
             <div style={styles.centerBackground}>
                 <section style={styles.centerContainer}>
                     <div>
-                        <div style={styles.logoBar}>
+                        <div className='logo-bar' style={styles.logoBar}>
                             <div style={styles.logoBox}>
                                 <h1>TYJA</h1>
                             </div>

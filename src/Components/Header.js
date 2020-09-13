@@ -29,7 +29,7 @@ const Header = (props) => {
 
     return (
         <div className='header-container'>
-            <div className='left-header'>
+            <div className='header-left-header'>
                 <div className='logo-box'>
                     <p>TYJA</p>
                 </div>

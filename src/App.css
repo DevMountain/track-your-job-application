@@ -92,7 +92,7 @@ button {
   outline: none; }
 
 .dash-page {
-  height: 100%;
+  height: calc(100% - 105px);
   width: 100vw;
   background-color: white;
   display: flex;

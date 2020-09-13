@@ -16,7 +16,7 @@ $primary-font: 'Oswald', sans serif;
 $secondary-font: 'Roboto Condensed', sans serif;
 
 .dash-page {
-    height: 100%;
+    height: calc(100% - 105px);
     width: 100vw;
     background-color: white;
     @include flex-positioning-evenly;
@@ -28,14 +28,11 @@ $secondary-font: 'Roboto Condensed', sans serif;
     margin-top: 40px;
     width: 700px;
     height: 600px;
-    // border: solid 1px black;
-
 }
 
 .title-bar-jobs {
     height: 80px;
     width: 700px;
-    // border: solid 1px black;
     @include flex-positioning-evenly;
     @include big-header-font();
     justify-content: space-between;
