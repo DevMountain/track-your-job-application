@@ -106,7 +106,9 @@ const Job = (props) => {
 
     const handleDropdown = (e) => {
         e.stopPropagation();
-        setJob({...job, [e.target.name]: e.target.value})
+        //Spread in input again. Testing it without.
+        // This doesn't work if I use the name jobStatusId and in the dropdown code below, don't have a value. 
+        setJob({...job, job_status_id: e.target.value})
     };
 
     const saveEdit = (userId, jobId, title, location, url, datePosted, description, notes, jobStatusId, company, contact) => {
@@ -202,7 +204,7 @@ const Job = (props) => {
                                 job.date_posted,
                                 job.description,
                                 job.notes,
-                                job.jobStatusId,
+                                job.job_status_id,
                                 job.company,
                                 job.contact
                             );
@@ -270,8 +272,12 @@ const Job = (props) => {
                     <div className='dropdown-container-jobview'>
                         <p className='label'>STATUS</p>
                             <select  
-                            name='jobStatusId' 
-                            defaultValue={job.job_status_id} 
+                            name='job_status_id' 
+                            // name='jobStatusId' 
+                            value={job.job_status_id} 
+
+                            //didn't work with handleDropDown function calling name jobStatusId, and using defaultValue here. 
+                            // defaultValue={job.job_status_id} 
                             className='dropdown'  
                             onChange={(e) => handleDropdown(e)}>
                                 <option className='options' value={1}>Researching</option>
@@ -321,84 +327,82 @@ const Job = (props) => {
                 </div>
                 <div className='list-w-bar'>
                     <div className='status-line'></div>
-                    {/* <div className='line-circle'></div> */}
                     <div className='status-list'>
-                        {/* Conditional rendering for status */}
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                                {job.job_status_id === 1 ? 
+                                {parseInt(job.job_status_id) === 1 ? 
                                 <p className='researching'>RESEARCHING</p>
                                 : <p className='normal-text'>RESEARCHING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 2 ? 
+                            {parseInt(job.job_status_id) === 2 ? 
                                 <p className='networking'>NETWORKING</p>
                                 : <p className='normal-text'>NETWORKING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 3 ? 
+                            {parseInt(job.job_status_id) === 3 ? 
                                 <p className='applying'>APPLYING</p>
                                 : <p className='normal-text'>APPLYING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 4 ? 
+                            {parseInt(job.job_status_id) === 4 ? 
                             <p className='application-submitted'>APPLICATION SUBMITTED</p>
                             : <p className='normal-text'>APPLICATION SUBMITTED</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 5 ? 
+                            {parseInt(job.job_status_id) === 5 ? 
                             <p className='assessments'>ASSESSMENTS</p>
                             : <p className='normal-text'>ASSESSMENTS</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 6 ? 
+                            {parseInt(job.job_status_id) === 6 ? 
                             <p className='interviewing'>INTERVIEWING</p>
                             : <p className='normal-text'>INTERVIEWING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 7 ? 
+                            {parseInt(job.job_status_id) === 7 ? 
                             <p className='thankyou'>THANK YOU SENT</p>
                             : <p className='normal-text'>THANK YOU SENT</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 8 ? 
+                            {parseInt(job.job_status_id) === 8 ? 
                             <p className='waiting'>WAITING FOR RESPONSE</p>
                             : <p className='normal-text'>WAITING FOR RESPONSE</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 9 ? 
+                            {parseInt(job.job_status_id) === 9 ? 
                             <p className='offer'>OFFER</p>
                             : <p className='normal-text'>OFFER</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 10 ? 
+                            {parseInt(job.job_status_id) === 10 ? 
                             <p className='rejected'>REJECTED</p>
                             : <p className='normal-text'>REJECTED</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 11 ? 
+                            {parseInt(job.job_status_id) === 11 ? 
                             <p className='negotiating'>NEGOTIATING</p>
                             : <p className='normal-text'>NEGOTIATING</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 12 ? 
+                            {parseInt(job.job_status_id) === 12 ? 
                             <p className='accepted-offer'>ACCEPTED OFFER</p>
                             : <p className='normal-text'>ACCEPTED OFFER</p>}
                         </div>
                         <div className='status-item-container'>
                             <div className='status-dash'></div>
-                            {job.job_status_id === 13 ? 
+                            {parseInt(job.job_status_id) === 13 ? 
                             <p className='rejected-offer'>REJECTED OFFER</p>
                             : <p className='normal-text'>REJECTED OFFER</p>}
                         </div>
