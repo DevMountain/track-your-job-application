@@ -55,12 +55,17 @@ module.exports = {
         }
     },
     //getting userId and jobId - how?
+    // deleteJob: async (req, res) => {
     deleteJob: async (req, res) => {
-        const {jobId, userId} = req.params;
-        const db = req.app.get('db');
+        const {jobId, userId} = req.params;        
         console.log('Delete job req.params', req.params)
+        const db = req.app.get('db');
         const jobs = await db.jobs.delete_job([jobId, userId])
-        res.status(200).send(jobs);
+        if(jobs){
+            res.status(200).send(jobs);
+        } else {
+            res.status(500).send("Error in the server request.")
+        }
     },
     addJob: async (req, res) => {
         const {title, location, url, datePosted, description, notes, jobStatusId, company, contact} = req.body;

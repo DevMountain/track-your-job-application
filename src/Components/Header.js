@@ -37,17 +37,17 @@ const Header = (props) => {
             </div>
             <div className='right-header'>
                 <Link to='/dashboard'>
-                    <p>Dashboard</p>
+                    <p className='header-links'>Dashboard</p>
                 </Link>
                 <Link to='/addjob'>
-                    <p>Add Job</p>
+                    <p className='header-links'>Add Job</p>
                 </Link>
 
                 {/* <p>Companies</p> */}
                 {/* The Search Jobs link is Icebox, but super important to try to incorporate. */}
                 {/* <p>Search Jobs</p> */}
                 <Link to='/'>
-                    <p onClick={logout}>Logout</p>
+                    <p className='header-links' onClick={logout}>Logout</p>
                 </Link>
             </div>
         </div>

@@ -121,7 +121,8 @@ $secondary-font: 'Roboto Condensed', sans serif;
 
 .map-list-container {
     height: 500px;
-    width: 700px;
+    width: 730px;
+    overflow: auto;
     // border: solid 1px black;
 }
 
