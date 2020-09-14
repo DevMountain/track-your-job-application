@@ -127,27 +127,34 @@ $secondary-font: 'Roboto Condensed', sans serif;
 }
 
 
+// @media (max-width: 768px) {
+//     .left-header {
+//         width: 400px;
+//         color: black;
+//         font-size: 16px;
+//     }    
+//     .logo-box {
+//         height: 40px;
+//         width: 80px;
+//         font-size: 22px;
+//         letter-spacing: 4px;
+//         color: #E0AF66;
+//         margin-right: 10px;
+//     }
+//     .header-left-header {
+//         // height: 60px;
+//         width: 375px;
+//         font-size: 16px;
+//     }
+//     .right-header {
+//         font-size: 12px;
+//         letter-spacing: 1px;
+//     }
+// }
+
 @media (max-width: 768px) {
-    .left-header {
-        width: 400px;
-        color: black;
-        font-size: 16px;
-    }    
-    .logo-box {
-        height: 40px;
-        width: 80px;
-        font-size: 22px;
-        letter-spacing: 4px;
-        color: #E0AF66;
-        margin-right: 10px;
-    }
-    .header-left-header {
-        // height: 60px;
-        width: 375px;
-        font-size: 16px;
-    }
-    .right-header {
+    .status {
+        width: 150px;
         font-size: 12px;
-        letter-spacing: 1px;
     }
 }

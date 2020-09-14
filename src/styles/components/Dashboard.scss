@@ -25,7 +25,7 @@ $secondary-font: 'Roboto Condensed', sans serif;
 }
 
 .big-list-container {
-    margin-top: 40px;
+    // margin-top: 10px;
     width: 700px;
     height: 600px;
 }
@@ -157,32 +157,13 @@ $secondary-font: 'Roboto Condensed', sans serif;
     justify-content: space-evenly;
     text-decoration: none;
     margin-right: 10px;
+    width: 510px;
     // padding: 5px;
 }
 
-.job-title {
-    width: 510px;
-    font-family: $primary-font;
-    font-size: 20px;
-    color: black;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border-bottom: solid 1px lightgray;
-    text-decoration: none;
-    text-decoration-line: none;
-    p:link, p:visited, p:active {
-        text-decoration: none;
-        color: black;
-    }
-    p:hover {
-        text-decoration: none;
-        color: gray;
-    }
-}
 
 .company-name {
-    width: 510px;
+    // width: 510px;
     font-family: $secondary-font;
     font-size: 14px;
     color: black;
@@ -197,10 +178,30 @@ $secondary-font: 'Roboto Condensed', sans serif;
 }
 
 
+.job-title {
+    // width: 510px;
+    font-family: $primary-font;
+    font-size: 20px;
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: solid 1px lightgray;
+    text-decoration: none;
+    text-decoration-line: none;
+    a:link, a:visited, a:active {
+        text-decoration: none;
+        color: black;
+    }
+    a:hover {
+        text-decoration: none;
+        color: gray;
+    }
+}
 
 @media (max-width: 768px) {
     .big-list-container {
-        margin-top: 30px;
+        // margin-top: 10px;
         width: 500px;
         height: 500px;
     }
@@ -213,10 +214,29 @@ $secondary-font: 'Roboto Condensed', sans serif;
         letter-spacing: 1px;
     }
     .status-title {
-        font-size: 25px;
+        font-size: 28px;
         letter-spacing: 1px;
     }
     .select-line-box {
         width: 250px;
     }
+    .line-container {
+        width: 230px;
+    }
+    .box-line-down  {
+        width: 230px;
+    }
+
+
+    .box-line-up {
+        width: 230px;
+    }
+
+    .map-list-container {
+        width: 500px;
+    }
+    .job-map-box {
+        width: 500px;
+    }
+
 }

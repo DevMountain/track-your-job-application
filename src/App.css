@@ -102,7 +102,6 @@ button {
   align-items: flex-start; }
 
 .big-list-container {
-  margin-top: 40px;
   width: 700px;
   height: 600px; }
 
@@ -215,28 +214,10 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
   text-decoration: none;
-  margin-right: 10px; }
-
-.job-title {
-  width: 510px;
-  font-family: "Oswald", sans serif;
-  font-size: 20px;
-  color: black;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-bottom: solid 1px lightgray;
-  text-decoration: none;
-  text-decoration-line: none; }
-  .job-title p:link, .job-title p:visited, .job-title p:active {
-    text-decoration: none;
-    color: black; }
-  .job-title p:hover {
-    text-decoration: none;
-    color: gray; }
+  margin-right: 10px;
+  width: 510px; }
 
 .company-name {
-  width: 510px;
   font-family: "Roboto Condensed", sans serif;
   font-size: 14px;
   color: black;
@@ -248,9 +229,25 @@ button {
 .display-none {
   display: hidden; }
 
+.job-title {
+  font-family: "Oswald", sans serif;
+  font-size: 20px;
+  color: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: solid 1px lightgray;
+  text-decoration: none;
+  text-decoration-line: none; }
+  .job-title a:link, .job-title a:visited, .job-title a:active {
+    text-decoration: none;
+    color: black; }
+  .job-title a:hover {
+    text-decoration: none;
+    color: gray; }
+
 @media (max-width: 768px) {
   .big-list-container {
-    margin-top: 30px;
     width: 500px;
     height: 500px; }
   .title-bar-jobs {
@@ -260,10 +257,20 @@ button {
     font-size: 30px;
     letter-spacing: 1px; }
   .status-title {
-    font-size: 25px;
+    font-size: 28px;
     letter-spacing: 1px; }
   .select-line-box {
-    width: 250px; } }
+    width: 250px; }
+  .line-container {
+    width: 230px; }
+  .box-line-down {
+    width: 230px; }
+  .box-line-up {
+    width: 230px; }
+  .map-list-container {
+    width: 500px; }
+  .job-map-box {
+    width: 500px; } }
 
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -672,6 +679,35 @@ button {
   border: 3px solid #8a4242;
   color: #8a4242;
   color: black; }
+
+@media (max-width: 768px) {
+  .job-container-jobjs {
+    width: 400px; }
+  .details-container-jobview {
+    width: 400px; }
+  .detail-item-jobview {
+    width: 400px; }
+  .title-bar-jobview {
+    width: 400px; }
+  .label {
+    font-size: 13px;
+    width: 100px; }
+  .value {
+    width: 300px; }
+  .textarea-line-jobview {
+    width: 300px; }
+  .status-line {
+    margin-left: 5px; }
+  .status-dash {
+    width: 20px; }
+  .status-container {
+    width: 200px; }
+  .status-list {
+    width: 200px; }
+  .list-w-bar {
+    width: 200px; }
+  .normal-text {
+    font-size: 12px; } }
 
 .App {
   height: 100vh;

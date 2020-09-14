@@ -39,7 +39,7 @@ const Login = (props) => {
             fontWeight: 'lighter',
             color: 'black',
             fontSize: 40,
-            letterSpacing: 2
+            letterSpacing: 1
         },
         centerBackground: {
             height: 500,
@@ -51,7 +51,7 @@ const Login = (props) => {
         },
         centerContainer: {
             height: 500,
-            width: 800,
+            width: 700,
             // border: 'solid 1px black',
             display: 'flex',
             flexDirection: 'column',
@@ -65,7 +65,7 @@ const Login = (props) => {
         },
         logoBar: {
             height: 170,
-            width: 800,
+            width: 700,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-evenly',
@@ -97,7 +97,7 @@ const Login = (props) => {
         },
         loginContainer: {
             height: 250,
-            width: 800,
+            width: 700,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
@@ -112,7 +112,7 @@ const Login = (props) => {
         },
         loginWordBox: {
             height: 125,
-            width: 200,
+            width: 150,
             fontWeight: 300,
             fontSize: 40,
             letterSpacing: 5,
@@ -166,18 +166,18 @@ const Login = (props) => {
             width: 110
             // boxShadow: 'none'
         },
-        footerLinks: {
-            width: '60%',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            alignItems: 'flex-end',
-            fontFamily: 'Roboto Condensed, sans-serif',
-            fontWeight: 'bold',
-            color: 'black',
-            fontSize: 16
+        // footerLinks: {
+        //     width: '60%',
+        //     display: 'flex',
+        //     flexDirection: 'row',
+        //     justifyContent: 'space-around',
+        //     alignItems: 'flex-end',
+        //     fontFamily: 'Roboto Condensed, sans-serif',
+        //     fontWeight: 'bold',
+        //     color: 'black',
+        //     fontSize: 16
 
-        },
+        // },
         footer: {
             height: '20%',
             width: '100%',

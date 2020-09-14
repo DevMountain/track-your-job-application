@@ -15,8 +15,10 @@ const About = () => {
                     
                 </div>
                 <div className='about-text'>
-                    <p className='about'>TYJA is a simple way to keep track of the jobs you’re applying to. Add jobs to your dashboard, and see where you’re at in each application process at a glance. No bells and whistles―just plenty of clarity. <br/> <br/>
-                    Whatever your situation, TYJA will lessen the hassle of your job hunt so you can keep moving forward. 
+                    <p className='about'>TYJA is a simple way to keep track of the jobs you’re applying to. Add, edit, and remove jobs to and from your dashboard, and see where you’re at in each application process at a glance. No bells and whistles―just plenty of clarity. </p> 
+                    <br/>
+                    <div className='gray-line'></div>
+                    <p className='about'>Whatever your situation, TYJA will lessen the hassle of your job hunt so you can keep moving forward. 
                     </p>
                     
                 </div>

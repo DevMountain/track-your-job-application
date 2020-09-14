@@ -364,3 +364,47 @@
     color:  rgb(138, 66, 66);
     color: black;
 }
+
+@media (max-width: 768px) {
+    .job-container-jobjs {
+        width: 400px;
+    }
+    .details-container-jobview {
+        width: 400px;
+    }
+    .detail-item-jobview {
+        width: 400px;
+    }
+
+    .title-bar-jobview {
+        width: 400px;
+    }
+    .label {
+        font-size: 13px;
+        width: 100px;
+    }
+    .value {
+        width: 300px;
+    }
+    .textarea-line-jobview {
+        width: 300px;
+    }
+    .status-line {
+        margin-left: 5px;
+    }
+    .status-dash {
+        width: 20px;
+    }
+    .status-container {
+        width: 200px;
+    }
+    .status-list {
+        width: 200px;
+    }
+    .list-w-bar {
+        width: 200px;
+    }
+    .normal-text {
+        font-size: 12px;
+    }
+}
