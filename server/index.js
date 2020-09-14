@@ -16,6 +16,7 @@ const {CONNECTION_STRING, SESSION_SECRET, SERVER_PORT} = process.env;
 
 
 app.use(express.json());
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(session({
     resave: false,
     saveUninitialized: true,
