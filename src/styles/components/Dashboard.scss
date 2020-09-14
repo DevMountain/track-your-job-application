@@ -36,7 +36,6 @@ $secondary-font: 'Roboto Condensed', sans serif;
     @include flex-positioning-evenly;
     @include big-header-font();
     justify-content: space-between;
-    font-family: $primary-font;
 }
 
 .dashboard-job-title {
@@ -195,4 +194,29 @@ $secondary-font: 'Roboto Condensed', sans serif;
 
 .display-none {
     display: hidden;
+}
+
+
+
+@media (max-width: 768px) {
+    .big-list-container {
+        margin-top: 30px;
+        width: 500px;
+        height: 500px;
+    }
+    .title-bar-jobs {
+        height: 70px;
+        width: 500px;
+    }
+    .dashboard-job-title {
+        font-size: 30px;
+        letter-spacing: 1px;
+    }
+    .status-title {
+        font-size: 25px;
+        letter-spacing: 1px;
+    }
+    .select-line-box {
+        width: 250px;
+    }
 }

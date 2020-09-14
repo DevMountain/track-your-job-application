@@ -117,8 +117,7 @@ button {
   font-size: 40px;
   color: black;
   letter-spacing: 2px;
-  justify-content: space-between;
-  font-family: "Oswald", sans serif; }
+  justify-content: space-between; }
 
 .dashboard-job-title {
   display: flex;
@@ -248,6 +247,23 @@ button {
 
 .display-none {
   display: hidden; }
+
+@media (max-width: 768px) {
+  .big-list-container {
+    margin-top: 30px;
+    width: 500px;
+    height: 500px; }
+  .title-bar-jobs {
+    height: 70px;
+    width: 500px; }
+  .dashboard-job-title {
+    font-size: 30px;
+    letter-spacing: 1px; }
+  .status-title {
+    font-size: 25px;
+    letter-spacing: 1px; }
+  .select-line-box {
+    width: 250px; } }
 
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

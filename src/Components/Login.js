@@ -247,7 +247,7 @@ const Login = (props) => {
     
     return (
         <div style={styles.page}>    
-            <header className='header' style={styles.header} >
+            <header className='header-login' style={styles.header} >
                 <p>Keep track of your job applications with TYJA.</p>
             </header>
             <div style={styles.centerBackground}>

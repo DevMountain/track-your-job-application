@@ -40,17 +40,22 @@ $secondary-background: white;
 // }
 
 // width: unquote("calc( 100% - #{$leftnav-width} )")
-$breakpoint-tablet: 768px;
+// $breakpoint-tablet: 768px;
 
-@media (max-width: $breakpoint-tablet) {
-    .header {
-        font-size: 24px; 
-        color: papayawhip;
-    }
-    .logo-bar {
-        width: 700px;
-    }    
-}
+// .header-login {
+//     font-size: 40;
+//     letter-spacing: 2;
+//     color: pink;
+// }
+
+// @media (max-width: $breakpoint-tablet) {
+//     .header-login {
+//         font-size: 80px; 
+//         color: papayawhip;
+//     }
+//     .logo-bar {
+//         width: 700px;
+//     }    
+// }
 
 // @media (max-width: 767px) {
-// }

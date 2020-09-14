@@ -1,5 +1,5 @@
 // @import '../reset.scss';
-$breakpoint-tablet: 768px;
+// $breakpoint-tablet: 768px;
 
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100&family=Oswald:wght@200;300;306;400&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
@@ -18,23 +18,6 @@ $breakpoint-tablet: 768px;
     border-bottom: lightgray solid 5px;   
 }
 
-@media (max-width: 768px) {
-    .left-header {
-        width: 400px;
-        color: yellowgreen;
-        font-size: 10px;
-    }    
-    .logo-box {
-        height: 40px;
-        font-size: 10px;
-        letter-spacing: 4px;
-        color: pink;
-    }
-    .header-left-header {
-        height: 40px;
-        font-size: 10px;
-    }
-}
 .header-left-header {
     height: 60px;
     width: 500px;
@@ -61,7 +44,7 @@ $breakpoint-tablet: 768px;
 
 .right-header {
     height: 60px;
-    width: 400px;
+    width: 30%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -77,3 +60,28 @@ $breakpoint-tablet: 768px;
     }
 }
 
+
+@media (max-width: 768px) {
+    .left-header {
+        width: 400px;
+        color: black;
+        font-size: 16px;
+    }    
+    .logo-box {
+        height: 40px;
+        width: 80px;
+        font-size: 22px;
+        letter-spacing: 4px;
+        color: #E0AF66;
+        margin-right: 10px;
+    }
+    .header-left-header {
+        // height: 60px;
+        width: 375px;
+        font-size: 16px;
+    }
+    .right-header {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+}
