@@ -7,9 +7,9 @@ const initialState = {
 
 // const REGISTER_USER = 'REGISTER_USER';
 const LOGIN_USER = 'LOGIN_USER';
-const LOGOUT_USER = 'LOGOUT_USER;'
+const LOGOUT_USER = 'LOGOUT_USER';
 // const REGISTER_USER = 'REGISTER_USER;'
-const GET_USER = 'GET_USER;'
+const GET_USER = 'GET_USER';
 
 //Look into this. Not sure about parameters and payload value:
 
