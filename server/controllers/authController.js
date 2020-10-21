@@ -39,6 +39,7 @@ module.exports = {
         } else {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
+        console.log(hash)
         const [newUser] = await db.user.add_user([email, hash, firstName, lastName])
         req.session.user = {
             userId: newUser.user_id,
