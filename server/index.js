@@ -5,6 +5,7 @@ const session = require('express-session');
 const app = express();
 const authCtrl = require('./controllers/authController');
 const jobCtrl = require('./controllers/jobController');
+const helmet = require('helmet')
 // const path = require('path');
 
 //ICEBOX features: 
@@ -17,6 +18,13 @@ const {CONNECTION_STRING, SESSION_SECRET, SERVER_PORT} = process.env;
 
 app.use(express.json());
 app.use( express.static( `${__dirname}/../build` ) );
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'"],
+      imgSrc: ["'self'"]
+    }
+}))
 app.use(session({
     resave: false,
     saveUninitialized: true,
